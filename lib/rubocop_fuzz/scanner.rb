@@ -36,7 +36,7 @@ module RuboCopFuzz
             [{ type: 'timeout', cops: [], signature: "timeout:#{shard.name}",
                duration: result.duration.round(1) }]
           else
-            annotate(Detectors.scan_stderr(result.stderr), shard, dir, variant)
+            annotate(Detectors.scan_stderr(result.stderr).uniq, shard, dir, variant)
           end
 
         findings.each { |f| f.merge!(shard: shard.name, config: variant.id) }
@@ -60,8 +60,10 @@ module RuboCopFuzz
     end
 
     def annotate(findings, shard, dir, variant)
+      real_dir = File.realpath(dir)
       findings.each do |f|
-        rel = f[:location].to_s.sub(/:\d+(:\d+)?\z/, '').delete_prefix("#{dir}/")
+        rel = f[:location].to_s.sub(/:\d+(:\d+)?\z/, '')
+                          .delete_prefix("#{real_dir}/").delete_prefix("#{dir}/")
         f[:file] = File.join(shard.root, rel)
         f[:signature] ||= reproduce_crash(f, shard, rel, variant)
       end
