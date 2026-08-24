@@ -27,13 +27,20 @@ jobs:
         working-directory: rubocop
       - name: Fetch corpus
         run: script/fetch-corpus corpus-gems
-      - name: Scan
+      - name: Scan (baseline)
         run: |
           ruby exe/rubocop-fuzz scan \
             --rubocop rubocop --gems-dir corpus-gems \
-            --tier baseline,interactions \
+            --tier baseline \
             --shard-slice ${{ matrix.slice }}/4 \
-            --out fuzz-out
+            --out fuzz-out/baseline
+      - name: Scan (interactions)
+        run: |
+          ruby exe/rubocop-fuzz scan \
+            --rubocop rubocop --gems-dir corpus-gems \
+            --tier interactions --shards-per-config 2 \
+            --shard-slice ${{ matrix.slice }}/4 \
+            --out fuzz-out/interactions
       - uses: actions/upload-artifact@v4
         with:
           name: findings-${{ matrix.slice }}
@@ -54,7 +61,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
         run: |
-          cat artifacts/*/findings.jsonl > all-findings.jsonl 2>/dev/null || true
+          find artifacts -name findings.jsonl -exec cat {} + > all-findings.jsonl 2>/dev/null || true
           if [ -s all-findings.jsonl ]; then
             {
               echo "Nightly fuzz run found $(wc -l < all-findings.jsonl) finding(s)."
