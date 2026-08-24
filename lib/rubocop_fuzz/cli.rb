@@ -10,7 +10,7 @@ module RuboCopFuzz
       gems_dir: File.join(Gem.dir, 'gems'),
       out_dir: 'fuzz-out',
       workers: Etc.nprocessors,
-      timeout: 180,
+      timeout: 600,
       shard_limit: nil,
       shard_filter: nil
     }.freeze
