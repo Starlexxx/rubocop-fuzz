@@ -48,6 +48,29 @@ RSpec.describe RuboCopFuzz::Detectors do
     end
   end
 
+  describe '.corrected_offenses' do
+    it 'extracts corrected offenses from json output' do
+      json = {
+        files: [
+          { path: 'a.rb', offenses: [
+            { cop_name: 'Style/A', corrected: true },
+            { cop_name: 'Style/B', corrected: false }
+          ] },
+          { path: 'b.rb', offenses: [{ cop_name: 'Style/A', corrected: true }] }
+        ]
+      }.to_json
+
+      expect(described_class.corrected_offenses(json)).to eq([
+        { cop: 'Style/A', file: 'a.rb' },
+        { cop: 'Style/A', file: 'b.rb' }
+      ])
+    end
+
+    it 'returns an empty list for unparseable output' do
+      expect(described_class.corrected_offenses('boom')).to eq([])
+    end
+  end
+
   describe '.crash_signature' do
     it 'extracts error class and normalized message from debug output' do
       out = <<~OUT

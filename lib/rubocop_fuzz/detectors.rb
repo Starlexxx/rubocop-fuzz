@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'json'
+
 module RuboCopFuzz
   # Parses RuboCop output for cop crashes and infinite correction loops.
   module Detectors
@@ -36,8 +38,21 @@ module RuboCopFuzz
 
       klass = line.match(ERROR_LINE_RE)[:klass]
       message = line.sub(ERROR_LINE_RE, '').sub(/\A\S+:\d+:in [^:]+:\s*/, '').strip
-      normalized = message.gsub(%r{(?:/[\w.@-]+)+}, '<path>').gsub(/\d+/, 'N')
-      "#{cop}: #{klass}: #{normalized}"
+      "#{cop}: #{klass}: #{normalize(message)}"
+    end
+
+    def normalize(message)
+      message.gsub(%r{(?:/[\w.@-]+)+}, '<path>').gsub(/\d+/, 'N')
+    end
+
+    def corrected_offenses(json_text)
+      data = JSON.parse(json_text)
+      data.fetch('files', []).flat_map do |file|
+        file.fetch('offenses', []).select { |o| o['corrected'] }
+            .map { |o| { cop: o['cop_name'], file: file['path'] } }
+      end
+    rescue JSON::ParserError
+      []
     end
   end
 end

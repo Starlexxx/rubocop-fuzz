@@ -39,6 +39,11 @@ module RuboCopFuzz
             annotate(Detectors.scan_stderr(result.stderr).uniq, shard, dir, variant)
           end
 
+        if !result.timeout? && findings.none? { |f| f[:type] == 'loop' }
+          findings.concat(syntax_findings(shard, dir))
+          findings.concat(idempotency_findings(shard, dir))
+        end
+
         findings.each { |f| f.merge!(shard: shard.name, config: variant.id) }
         { 'shard' => shard.name, 'config' => variant.id, 'duration' => result.duration.round(1),
           'findings' => findings }
@@ -84,6 +89,38 @@ module RuboCopFuzz
                               File.basename(rel)], chdir: dir)
         Detectors.crash_signature(cop, result.stdout + result.stderr)
       end
+    end
+
+    # Corrected output must still parse. A file that no longer parses but
+    # whose original does means autocorrect broke it.
+    def syntax_findings(shard, dir)
+      real_dir = File.realpath(dir)
+      broken = SyntaxCheck.broken_files(Dir.glob(File.join(dir, '**', '*.rb')))
+      broken.filter_map do |b|
+        rel = b[:file].delete_prefix("#{real_dir}/").delete_prefix("#{dir}/")
+        orig = File.join(shard.root, rel)
+        next unless File.exist?(orig) && SyntaxCheck.broken_files([orig]).empty?
+
+        { type: 'broken_autocorrect', cops: [], file: orig,
+          signature: "syntax:#{Detectors.normalize(b[:error].to_s)}" }
+      end
+    end
+
+    # A second `-A` pass over corrected output must correct nothing.
+    def idempotency_findings(shard, dir)
+      result = invoker.run(%w[-A --cache false --no-color -f json], chdir: dir)
+      return [] if result.timeout?
+
+      loops = Detectors.scan_stderr(result.stderr).uniq.select { |f| f[:type] == 'loop' }
+      return annotate(loops, shard, dir, nil) unless loops.empty?
+
+      corrected = Detectors.corrected_offenses(result.stdout)
+      return [] if corrected.empty?
+
+      cops = corrected.map { |c| c[:cop] }.uniq.sort
+      files = corrected.map { |c| File.join(shard.root, c[:file]) }.uniq.take(3)
+      [{ type: 'non_idempotent', cops: cops, signature: "nonidem:#{cops.join('+')}",
+         file: files.first, files: files }]
     end
   end
 end
