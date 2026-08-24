@@ -55,11 +55,18 @@ module RuboCopFuzz
       return false if cops.empty? || source.strip.empty?
 
       Dir.mktmpdir('fuzz-min-') do |dir|
-        File.write(File.join(dir, 'repro.rb'), source)
+        path = File.join(dir, 'repro.rb')
+        File.write(path, source)
+        return false if broken?(finding) && SyntaxCheck.broken_files([path]).any?
+
         File.write(File.join(dir, '.rubocop.yml'), repro_yaml(cops, cop_configs))
         result = @invoker.run(%w[-A --cache false --no-color -f quiet repro.rb], chdir: dir)
-        reproduces?(result, finding)
+        broken?(finding) ? SyntaxCheck.broken_files([path]).any? : reproduces?(result, finding)
       end
+    end
+
+    def broken?(finding)
+      finding['type'] == 'broken_autocorrect'
     end
 
     def reproduces?(result, finding)

@@ -7,7 +7,7 @@ module RuboCopFuzz
   # Runs (config variant x corpus shard) jobs through the pool and
   # turns RuboCop output into findings.
   class Scanner
-    RUBOCOP_ARGS = %w[-A --cache false --no-color -f quiet].freeze
+    RUBOCOP_ARGS = %w[-A --cache false --no-color -f json].freeze
 
     def initialize(rubocop_dir:, shards:, variants:, workers:, timeout:, shards_per_config: nil)
       @rubocop_dir = rubocop_dir
@@ -54,7 +54,8 @@ module RuboCopFuzz
           end
 
         if !result.timeout? && findings.none? { |f| f[:type] == 'loop' }
-          findings.concat(syntax_findings(shard, dir))
+          corrected_by_file = Detectors.corrected_offenses(result.stdout).group_by { |c| c[:file] }
+          findings.concat(syntax_findings(shard, dir, corrected_by_file))
           findings.concat(idempotency_findings(shard, dir))
         end
 
@@ -109,7 +110,7 @@ module RuboCopFuzz
 
     # Corrected output must still parse. A file that no longer parses but
     # whose original does means autocorrect broke it.
-    def syntax_findings(shard, dir)
+    def syntax_findings(shard, dir, corrected_by_file)
       real_dir = File.realpath(dir)
       broken = SyntaxCheck.broken_files(Dir.glob(File.join(dir, '**', '*.rb')))
       broken.filter_map do |b|
@@ -117,7 +118,8 @@ module RuboCopFuzz
         orig = File.join(shard.root, rel)
         next unless File.exist?(orig) && SyntaxCheck.broken_files([orig]).empty?
 
-        { type: 'broken_autocorrect', cops: [], file: orig,
+        cops = (corrected_by_file[rel] || []).map { |c| c[:cop] }.uniq.sort
+        { type: 'broken_autocorrect', cops: cops, file: orig,
           signature: "syntax:#{Detectors.normalize(b[:error].to_s)}" }
       end
     end
