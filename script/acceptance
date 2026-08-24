@@ -1,0 +1,49 @@
+#!/bin/bash
+# Rediscovers rubocop#15590 on a pre-fix rubocop and verifies the fixed
+# revision comes back clean.
+#
+# usage: script/acceptance RUBOCOP_DIR [PRE_FIX_REF] [FIXED_REF]
+set -euo pipefail
+
+RUBOCOP_DIR=${1:?usage: script/acceptance RUBOCOP_DIR [PRE_FIX_REF] [FIXED_REF]}
+PRE_FIX_REF=${2:-master}
+FIXED_REF=${3:-fix-first-argument-indentation-infinite-loop}
+ROOT=$(cd "$(dirname "$0")/.." && pwd)
+
+GEMS_DIR=$(mktemp -d)
+OUT_DIR=$(mktemp -d)
+trap 'rm -rf "$GEMS_DIR" "$OUT_DIR"' EXIT
+
+mkdir -p "$GEMS_DIR/trigger-1.0.0/lib"
+cat > "$GEMS_DIR/trigger-1.0.0/lib/trigger.rb" <<'EOF'
+# frozen_string_literal: true
+
+expect(execute_request(
+         "some_url",
+  :request_method => "PATCH"
+)).to be_throttled
+EOF
+
+scan() {
+  git -C "$RUBOCOP_DIR" checkout -q "$1"
+  ruby "$ROOT/exe/rubocop-fuzz" scan \
+    --rubocop "$RUBOCOP_DIR" --gems-dir "$GEMS_DIR" \
+    --tier interactions --config-filter FirstArgumentIndentation \
+    --workers 8 --out "$OUT_DIR/$2" > /dev/null
+  grep -c '"type":"loop"' "$OUT_DIR/$2/findings.jsonl" 2>/dev/null || true
+}
+
+ORIG_REF=$(git -C "$RUBOCOP_DIR" rev-parse --abbrev-ref HEAD)
+restore() { git -C "$RUBOCOP_DIR" checkout -q "$ORIG_REF"; rm -rf "$GEMS_DIR" "$OUT_DIR"; }
+trap restore EXIT
+
+PRE=$(scan "$PRE_FIX_REF" pre)
+POST=$(scan "$FIXED_REF" post)
+
+echo "pre-fix loops: $PRE, fixed loops: $POST"
+if [ "$PRE" -gt 0 ] && [ "$POST" -eq 0 ]; then
+  echo "ACCEPTANCE PASSED"
+else
+  echo "ACCEPTANCE FAILED"
+  exit 1
+fi
