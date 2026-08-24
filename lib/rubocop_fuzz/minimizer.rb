@@ -16,6 +16,8 @@ module RuboCopFuzz
     end
 
     def minimize(finding)
+      return nil unless finding['file'] && File.exist?(finding['file'])
+
       source = File.read(finding['file'])
       cop_configs = explicit_cop_configs(finding['config_yaml'].to_s)
       cops = (finding['cops'] + cop_configs.keys).uniq
