@@ -83,6 +83,10 @@ module RuboCopFuzz
         o.on('--tier TIERS', 'baseline,sweep,interactions') { |v| opts[:tiers] = v.split(',') }
         o.on('--shards-per-config N', Integer) { |v| opts[:shards_per_config] = v }
         o.on('--config-filter REGEX') { |v| opts[:config_filter] = Regexp.new(v) }
+        o.on('--shard-slice I/N', %r{\A\d+/\d+\z}, 'take shard subset i of n') do |v|
+          i, n = v.split('/').map(&:to_i)
+          opts[:shard_slice] = [i, n]
+        end
       end.parse!(argv)
       opts
     end
@@ -154,6 +158,9 @@ module RuboCopFuzz
     def build_shards(opts)
       shards = Corpus.new(opts[:gems_dir]).shards
       shards = shards.select { |s| s.name.match?(opts[:shard_filter]) } if opts[:shard_filter]
+      if (i, n = opts[:shard_slice])
+        shards = shards.each_with_index.select { |_s, idx| idx % n == i }.map(&:first)
+      end
       shards = shards.take(opts[:shard_limit]) if opts[:shard_limit]
       shards
     end

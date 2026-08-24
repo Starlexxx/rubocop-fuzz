@@ -1,0 +1,70 @@
+name: nightly
+
+on:
+  schedule:
+    - cron: '30 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  fuzz:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        slice: [0, 1, 2, 3]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: rubocop/rubocop
+          path: rubocop
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+      - name: Install rubocop dependencies
+        run: bundle install
+        working-directory: rubocop
+      - name: Fetch corpus
+        run: script/fetch-corpus corpus-gems
+      - name: Scan
+        run: |
+          ruby exe/rubocop-fuzz scan \
+            --rubocop rubocop --gems-dir corpus-gems \
+            --tier baseline,interactions \
+            --shard-slice ${{ matrix.slice }}/4 \
+            --out fuzz-out
+      - uses: actions/upload-artifact@v4
+        with:
+          name: findings-${{ matrix.slice }}
+          path: fuzz-out/
+          if-no-files-found: ignore
+
+  report:
+    needs: fuzz
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+      - name: Open issue when findings exist
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          cat artifacts/*/findings.jsonl > all-findings.jsonl 2>/dev/null || true
+          if [ -s all-findings.jsonl ]; then
+            {
+              echo "Nightly fuzz run found $(wc -l < all-findings.jsonl) finding(s)."
+              echo
+              echo '```json'
+              sort -u all-findings.jsonl | head -50
+              echo '```'
+            } > body.md
+            gh issue create \
+              --title "Nightly findings $(date -u +%F)" \
+              --body-file body.md \
+              --label nightly-findings || true
+          fi

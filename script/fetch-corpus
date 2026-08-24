@@ -1,0 +1,23 @@
+#!/bin/bash
+# Fetches and unpacks corpus gems (source only, no native builds).
+# usage: script/fetch-corpus DEST_DIR [LIST_FILE]
+set -euo pipefail
+
+DEST=${1:?usage: script/fetch-corpus DEST_DIR [LIST_FILE]}
+LIST=$(cd "$(dirname "${2:-"$(dirname "$0")/../corpus/top-gems.txt"}")" && pwd)/$(basename "${2:-top-gems.txt}")
+
+mkdir -p "$DEST"
+cd "$DEST"
+
+while read -r gem; do
+  [ -z "$gem" ] && continue
+  gem fetch "$gem" > /dev/null 2>&1 || true
+  found=0
+  for pkg in "$gem"-*.gem; do
+    [ -e "$pkg" ] || continue
+    gem unpack "$pkg" > /dev/null
+    rm -f "$pkg"
+    found=1
+  done
+  if [ "$found" = 1 ]; then echo "ok $gem"; else echo "skip $gem" >&2; fi
+done < "$LIST"
