@@ -58,7 +58,9 @@ module RuboCopFuzz
           findings.concat(idempotency_findings(shard, dir))
         end
 
-        findings.each { |f| f.merge!(shard: shard.name, config: variant.id) }
+        findings.each do |f|
+          f.merge!(shard: shard.name, config: variant.id, config_yaml: variant.yaml)
+        end
         { 'shard' => shard.name, 'config' => variant.id, 'duration' => result.duration.round(1),
           'findings' => findings }
       end

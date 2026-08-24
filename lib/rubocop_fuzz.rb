@@ -9,6 +9,7 @@ require_relative 'rubocop_fuzz/detectors'
 require_relative 'rubocop_fuzz/syntax_check'
 require_relative 'rubocop_fuzz/pool'
 require_relative 'rubocop_fuzz/scanner'
+require_relative 'rubocop_fuzz/minimizer'
 require_relative 'rubocop_fuzz/report'
 
 module RuboCopFuzz

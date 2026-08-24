@@ -2,6 +2,7 @@
 
 require 'optparse'
 require 'etc'
+require 'json'
 
 module RuboCopFuzz
   class CLI
@@ -21,8 +22,9 @@ module RuboCopFuzz
       command = argv.shift
       case command
       when 'scan' then scan(argv)
+      when 'minimize' then minimize(argv)
       else
-        warn "usage: rubocop-fuzz scan --rubocop DIR [options]"
+        warn 'usage: rubocop-fuzz scan|minimize --rubocop DIR [options]'
         command == 'help' ? 0 : 1
       end
     end
@@ -83,6 +85,52 @@ module RuboCopFuzz
         o.on('--config-filter REGEX') { |v| opts[:config_filter] = Regexp.new(v) }
       end.parse!(argv)
       opts
+    end
+
+    def minimize(argv)
+      opts = { findings: 'fuzz-out/findings.jsonl', timeout: 60 }
+      OptionParser.new do |o|
+        o.on('--rubocop DIR') { |v| opts[:rubocop_dir] = v }
+        o.on('--findings PATH') { |v| opts[:findings] = v }
+        o.on('--timeout SECS', Integer) { |v| opts[:timeout] = v }
+      end.parse!(argv)
+
+      unless opts[:rubocop_dir] && File.exist?(opts[:findings])
+        warn 'error: --rubocop DIR and a findings file are required'
+        return 1
+      end
+
+      minimizer = Minimizer.new(rubocop_dir: File.expand_path(opts[:rubocop_dir]),
+                                timeout: opts[:timeout])
+      findings = File.readlines(opts[:findings]).map { |l| JSON.parse(l) }
+                     .uniq { |f| [f['type'], f['cops'].sort, f['signature']] }
+
+      findings.each_with_index do |finding, i|
+        puts "## #{i + 1}. [#{finding['type']}] #{finding['cops'].join(', ')}"
+        repro = minimizer.minimize(finding)
+        if repro.nil?
+          puts "not reproduced\n\n"
+          next
+        end
+        puts <<~MD
+
+          Cops: #{repro.cops.join(', ')}
+
+          ```ruby
+          #{repro.source.chomp}
+          ```
+
+          ```yaml
+          #{repro.yaml.chomp}
+          ```
+
+          ```
+          rubocop -A --cache false repro.rb
+          ```
+
+        MD
+      end
+      0
     end
 
     def build_variants(opts)
