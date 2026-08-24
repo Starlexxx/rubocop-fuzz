@@ -9,20 +9,34 @@ module RuboCopFuzz
   class Scanner
     RUBOCOP_ARGS = %w[-A --cache false --no-color -f quiet].freeze
 
-    def initialize(rubocop_dir:, shards:, variants:, workers:, timeout:)
+    def initialize(rubocop_dir:, shards:, variants:, workers:, timeout:, shards_per_config: nil)
       @rubocop_dir = rubocop_dir
       @shards = shards
       @variants = variants
       @workers = workers
       @timeout = timeout
+      @shards_per_config = shards_per_config
     end
 
     def scan(progress: nil)
-      jobs = @variants.product(@shards)
+      jobs = build_jobs
       results = Pool.new(size: @workers).run(jobs, progress: progress) do |(variant, shard)|
         run_job(variant, shard)
       end
       results.flat_map { |r| r&.fetch('findings', []) || [] }
+    end
+
+    # Rotating window over the corpus so a large variant set still touches
+    # every shard across the run without a full cartesian product.
+    def build_jobs
+      return @variants.product(@shards) unless @shards_per_config
+
+      @variants.each_with_index.flat_map do |variant, i|
+        picked = (0...@shards_per_config).map do |k|
+          @shards[(i * @shards_per_config + k) % @shards.size]
+        end
+        picked.uniq.map { |shard| [variant, shard] }
+      end
     end
 
     def run_job(variant, shard)

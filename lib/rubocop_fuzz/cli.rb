@@ -12,7 +12,9 @@ module RuboCopFuzz
       workers: Etc.nprocessors,
       timeout: 600,
       shard_limit: nil,
-      shard_filter: nil
+      shard_filter: nil,
+      tiers: ['baseline'],
+      shards_per_config: nil
     }.freeze
 
     def run(argv)
@@ -35,9 +37,13 @@ module RuboCopFuzz
       end
 
       shards = build_shards(opts)
-      variants = ConfigGenerator.new.variants
-      total = shards.size * variants.size
-      puts "#{shards.size} shards x #{variants.size} config(s) = #{total} jobs, " \
+      variants = build_variants(opts)
+      total = if opts[:shards_per_config]
+                variants.size * [opts[:shards_per_config], shards.size].min
+              else
+                shards.size * variants.size
+              end
+      puts "#{shards.size} shards x #{variants.size} config(s) = ~#{total} jobs, " \
            "#{opts[:workers]} workers, timeout #{opts[:timeout]}s"
 
       done = 0
@@ -52,7 +58,8 @@ module RuboCopFuzz
 
       scanner = Scanner.new(rubocop_dir: File.expand_path(opts[:rubocop_dir]),
                             shards: shards, variants: variants,
-                            workers: opts[:workers], timeout: opts[:timeout])
+                            workers: opts[:workers], timeout: opts[:timeout],
+                            shards_per_config: opts[:shards_per_config])
       findings = scanner.scan(progress: progress)
 
       files = Report.new(findings, out_dir: opts[:out_dir],
@@ -71,8 +78,29 @@ module RuboCopFuzz
         o.on('--timeout SECS', Integer) { |v| opts[:timeout] = v }
         o.on('--shard-limit N', Integer) { |v| opts[:shard_limit] = v }
         o.on('--shard-filter REGEX') { |v| opts[:shard_filter] = Regexp.new(v) }
+        o.on('--tier TIERS', 'baseline,sweep,interactions') { |v| opts[:tiers] = v.split(',') }
+        o.on('--shards-per-config N', Integer) { |v| opts[:shards_per_config] = v }
+        o.on('--config-filter REGEX') { |v| opts[:config_filter] = Regexp.new(v) }
       end.parse!(argv)
       opts
+    end
+
+    def build_variants(opts)
+      generator = ConfigGenerator.new(rubocop_dir: File.expand_path(opts[:rubocop_dir]))
+      variants = opts[:tiers].flat_map do |tier|
+        case tier
+        when 'baseline' then [generator.baseline]
+        when 'sweep' then generator.sweep_variants
+        when 'interactions'
+          clusters = DependencyMiner.new(File.expand_path(opts[:rubocop_dir])).clusters
+          generator.interaction_variants(clusters)
+        else
+          warn "unknown tier: #{tier}"
+          []
+        end
+      end
+      variants = variants.select { |v| v.id.match?(opts[:config_filter]) } if opts[:config_filter]
+      variants
     end
 
     def build_shards(opts)
