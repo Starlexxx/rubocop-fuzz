@@ -63,15 +63,18 @@ jobs:
         run: |
           find artifacts -name findings.jsonl -exec cat {} + > all-findings.jsonl 2>/dev/null || true
           if [ -s all-findings.jsonl ]; then
+            jq -s 'group_by([.type, (.cops | sort), .signature])
+                   | map({type: .[0].type, cops: .[0].cops, signature: .[0].signature, count: length})
+                   | sort_by(-.count) | .[:50]' all-findings.jsonl > summary.json
             {
-              echo "Nightly fuzz run found $(wc -l < all-findings.jsonl) finding(s)."
+              echo "Nightly fuzz run: $(wc -l < all-findings.jsonl) finding(s), $(jq length summary.json) unique group(s) shown."
               echo
               echo '```json'
-              sort -u all-findings.jsonl | head -50
+              cat summary.json
               echo '```'
             } > body.md
             gh issue create \
               --title "Nightly findings $(date -u +%F)" \
               --body-file body.md \
-              --label nightly-findings || true
+              --label nightly-findings
           fi
