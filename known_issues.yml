@@ -1,0 +1,94 @@
+# Triaged findings. `status: open` collapses the group in the nightly issue,
+# `status: merged` turns any reappearance into a regression report.
+# Match by exact signature (`signatures`) or by `signature_regex`.
+
+- pr: 15609
+  status: open
+  note: Style/EndlessMethod vs Style/AmbiguousEndlessMethodDefinition loop
+  signature_regex: 'loop:.*Style/AmbiguousEndlessMethodDefinition\+Style/EndlessMethod'
+
+- pr: 15651
+  status: merged
+  note: Style/EndlessMethod self-loop on multiline block body
+  signatures:
+    - 'loop:Layout/LineLength+Style/EndlessMethod'
+
+- pr: 15619
+  status: open
+  note: Layout/LineLength SplitStrings trailing-space split
+  signature_regex: 'loop:Layout/LineEndStringConcatenationIndentation'
+
+- pr: 15622
+  status: open
+  note: Layout/HashAlignment vs IndentationStyle tabs
+  signature_regex: 'loop:.*Layout/HashAlignment\+.*Layout/IndentationStyle'
+
+- pr: 15633
+  status: open
+  note: alignment cops vs IndentationStyle tabs
+  signature_regex: 'loop:.*Layout/IndentationStyle'
+
+- pr: 15665
+  status: open
+  note: Style/EmptyMethod vs Style/SingleLineMethods AllowIfMethodIsEmpty
+  signatures:
+    - 'loop:Layout/TrailingWhitespace+Style/EmptyMethod+Style/Semicolon+Style/SingleLineMethods'
+
+- pr: 15656
+  status: open
+  note: Layout/LineLength break after nested heredoc argument
+  signatures:
+    - "syntax:syntax error, unexpected `end'"
+
+- pr: 15675
+  status: merged
+  note: ExtraSpacing vs SpaceAroundOperators (both roots, see also 15617)
+  signatures:
+    - 'loop:Layout/ExtraSpacing+Layout/SpaceAroundOperators'
+    - 'loop:Layout/ExtraSpacing+Layout/LineLength+Layout/SpaceAroundOperators'
+
+- pr: 15614
+  status: merged
+  note: ArgumentAlignment with_fixed_indentation vs HashAlignment separator
+  signatures:
+    - 'loop:Layout/ArgumentAlignment+Layout/HashAlignment'
+
+- pr: 15618
+  status: merged
+  note: ParenthesesAroundCondition strips parens around safe assignment
+  signature_regex: 'loop:.*Lint/AssignmentInCondition\+.*Style/ParenthesesAroundCondition'
+
+- pr: 15634
+  status: merged
+  note: Lint/LiteralAsCondition leaves parenthesized return as default arg
+  signatures:
+    - 'syntax:void value expression'
+
+- pr: 15645
+  status: merged
+  note: GuardClause and MissingElse same-pass clash
+  signatures:
+    - 'syntax:else without rescue is useless'
+
+- pr: 15648
+  status: merged
+  note: ParenthesesAsGroupedExpression removes space before keyword operators
+  signatures:
+    - "syntax:syntax error, unexpected `and', expecting ')'"
+
+- pr: 15612
+  status: merged
+  note: BlockForwarding and MethodDefParentheses both add def parens
+  signature_regex: "syntax:syntax error, unexpected '\\)'"
+
+- pr: 15599
+  status: merged
+  note: CommentIndentation cascade
+  signatures:
+    - 'loop:Layout/CommentIndentation+Layout/LineLength'
+
+- pr: 15597
+  status: merged
+  note: EmptyLinesAfterModuleInclusion loop
+  signatures:
+    - 'loop:Layout/EmptyLinesAfterModuleInclusion+Layout/EmptyLinesAroundExceptionHandlingKeywords'

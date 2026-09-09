@@ -53,6 +53,7 @@ jobs:
     permissions:
       issues: write
     steps:
+      - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
         with:
           path: artifacts
@@ -63,16 +64,10 @@ jobs:
         run: |
           find artifacts -name findings.jsonl -exec cat {} + > all-findings.jsonl 2>/dev/null || true
           if [ -s all-findings.jsonl ]; then
-            jq -s 'group_by([.type, (.cops | sort), .signature])
-                   | map({type: .[0].type, cops: .[0].cops, signature: .[0].signature, count: length})
-                   | sort_by(-.count) | .[:50]' all-findings.jsonl > summary.json
-            {
-              echo "Nightly fuzz run: $(wc -l < all-findings.jsonl) finding(s), $(jq length summary.json) unique group(s) shown."
-              echo
-              echo '```json'
-              cat summary.json
-              echo '```'
-            } > body.md
+            ruby exe/rubocop-fuzz triage \
+              --findings all-findings.jsonl --known known_issues.yml --out body.md
+            gh issue list --label nightly-findings --state open --json number --jq '.[].number' \
+              | xargs -r -I{} gh issue close {} --comment "Superseded by the next nightly run."
             gh issue create \
               --title "Nightly findings $(date -u +%F)" \
               --body-file body.md \

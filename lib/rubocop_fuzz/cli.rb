@@ -23,8 +23,9 @@ module RuboCopFuzz
       case command
       when 'scan' then scan(argv)
       when 'minimize' then minimize(argv)
+      when 'triage' then triage(argv)
       else
-        warn 'usage: rubocop-fuzz scan|minimize --rubocop DIR [options]'
+        warn 'usage: rubocop-fuzz scan|minimize|triage --rubocop DIR [options]'
         command == 'help' ? 0 : 1
       end
     end
@@ -134,6 +135,25 @@ module RuboCopFuzz
 
         MD
       end
+      0
+    end
+
+    def triage(argv)
+      opts = { findings: 'fuzz-out/findings.jsonl', known: 'known_issues.yml', out: nil }
+      OptionParser.new do |o|
+        o.on('--findings PATH') { |v| opts[:findings] = v }
+        o.on('--known PATH') { |v| opts[:known] = v }
+        o.on('--out PATH') { |v| opts[:out] = v }
+      end.parse!(argv)
+
+      unless File.exist?(opts[:findings])
+        warn "error: findings file not found: #{opts[:findings]}"
+        return 1
+      end
+
+      findings = File.readlines(opts[:findings]).map { |l| JSON.parse(l) }
+      body = Triage.new(findings, known_path: opts[:known]).body
+      opts[:out] ? File.write(opts[:out], body) : puts(body)
       0
     end
 
