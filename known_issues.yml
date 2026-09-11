@@ -2,6 +2,12 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15692
+  status: open
+  note: Layout/RedundantLineBreak ClobberingError on nested multiline assignments
+  signatures:
+    - 'Layout/RedundantLineBreak: Parser::ClobberingError: Parser::Source::TreeRewriter detected clobbering'
+
 - pr: 15609
   status: open
   note: Style/EndlessMethod vs Style/AmbiguousEndlessMethodDefinition loop
