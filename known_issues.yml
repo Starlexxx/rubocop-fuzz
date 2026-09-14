@@ -2,6 +2,12 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15713
+  status: open
+  note: SpaceAroundKeyword vs SpaceBeforeBlockBraces no_space on keyword block
+  signatures:
+    - 'loop:Layout/SpaceAroundKeyword+Layout/SpaceBeforeBlockBraces'
+
 - pr: 15712
   status: open
   note: Style/MissingElse vs Style/GuardClause add/strip else loop
