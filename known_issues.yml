@@ -2,6 +2,11 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15712
+  status: open
+  note: Style/MissingElse vs Style/GuardClause add/strip else loop
+  signature_regex: 'loop:.*Lint/ElseLayout\+.*Style/GuardClause'
+
 - pr: 15692
   status: open
   note: Layout/RedundantLineBreak ClobberingError on nested multiline assignments
