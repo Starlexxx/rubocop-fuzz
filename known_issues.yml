@@ -2,6 +2,11 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15717
+  status: open
+  note: HashAlignment separator style key too wide to right-align
+  signature_regex: 'loop:Layout/HashAlignment\+(Layout/LineLength\+)?Layout/SpaceAroundOperators'
+
 - pr: 15713
   status: merged
   note: SpaceAroundKeyword vs SpaceBeforeBlockBraces no_space on keyword block
