@@ -3,7 +3,7 @@
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
 - pr: 15713
-  status: open
+  status: merged
   note: SpaceAroundKeyword vs SpaceBeforeBlockBraces no_space on keyword block
   signatures:
     - 'loop:Layout/SpaceAroundKeyword+Layout/SpaceBeforeBlockBraces'
