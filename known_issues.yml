@@ -19,7 +19,7 @@
   signature_regex: 'loop:.*Lint/ElseLayout\+.*Style/GuardClause'
 
 - pr: 15692
-  status: open
+  status: merged
   note: Layout/RedundantLineBreak ClobberingError on nested multiline assignments
   signatures:
     - 'Layout/RedundantLineBreak: Parser::ClobberingError: Parser::Source::TreeRewriter detected clobbering'
