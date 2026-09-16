@@ -49,6 +49,7 @@ jobs:
 
   report:
     needs: fuzz
+    if: always()
     runs-on: ubuntu-latest
     permissions:
       issues: write

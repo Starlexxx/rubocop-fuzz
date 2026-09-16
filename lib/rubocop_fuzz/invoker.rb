@@ -13,6 +13,7 @@ module RuboCopFuzz
     end
 
     POLL_INTERVAL = 0.1
+    MEMORY_LIMIT_BYTES = 3 * 1024 * 1024 * 1024
 
     def initialize(rubocop_dir:, timeout:)
       @rubocop_dir = rubocop_dir
@@ -25,8 +26,9 @@ module RuboCopFuzz
       started = monotonic
       env = { 'BUNDLE_GEMFILE' => File.join(@rubocop_dir, 'Gemfile'),
               'PARALLEL_PROCESSOR_COUNT' => '1' }
-      pid = Process.spawn(env, 'bundle', 'exec', 'rubocop', *args,
-                          chdir: chdir, pgroup: true, out: out_f.path, err: err_f.path)
+      spawn_opts = { chdir: chdir, pgroup: true, out: out_f.path, err: err_f.path }
+      spawn_opts[:rlimit_as] = MEMORY_LIMIT_BYTES if RUBY_PLATFORM.include?('linux')
+      pid = Process.spawn(env, 'bundle', 'exec', 'rubocop', *args, **spawn_opts)
       status = wait_with_deadline(pid, started)
       Result.new(
         status: status.nil? ? :timeout : :done,
