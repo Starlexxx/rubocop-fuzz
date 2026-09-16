@@ -14,7 +14,7 @@
     - 'loop:Layout/SpaceAroundKeyword+Layout/SpaceBeforeBlockBraces'
 
 - pr: 15712
-  status: open
+  status: merged
   note: Style/MissingElse vs Style/GuardClause add/strip else loop
   signature_regex: 'loop:.*Lint/ElseLayout\+.*Style/GuardClause'
 
