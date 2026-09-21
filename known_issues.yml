@@ -2,6 +2,12 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15739
+  status: open
+  note: MultilineMethodCallBraceLayout vs MethodCallWithArgsParentheses omit_parentheses same-pass clash
+  signatures:
+    - "syntax:syntax error, unexpected ')', expecting `end' or dummy end"
+
 - pr: 15717
   status: open
   note: HashAlignment separator style key too wide to right-align
