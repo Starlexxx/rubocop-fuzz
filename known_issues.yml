@@ -2,6 +2,12 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15742
+  status: open
+  note: SpaceBeforeBlockBraces no_space vs BlockDelimiters semantic same-pass fuse
+  signatures:
+    - 'syntax:else without rescue is useless'
+
 - pr: 15741
   status: open
   note: require_parentheses merges grouping parens around keyword operators
