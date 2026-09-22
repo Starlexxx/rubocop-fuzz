@@ -2,6 +2,12 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15741
+  status: open
+  note: require_parentheses merges grouping parens around keyword operators
+  signatures:
+    - "syntax:syntax error, unexpected `and', expecting ')'"
+
 - pr: 15739
   status: open
   note: MultilineMethodCallBraceLayout vs MethodCallWithArgsParentheses omit_parentheses same-pass clash
