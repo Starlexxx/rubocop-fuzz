@@ -21,7 +21,7 @@
     - "syntax:syntax error, unexpected ')', expecting `end' or dummy end"
 
 - pr: 15717
-  status: open
+  status: merged
   note: HashAlignment separator style key too wide to right-align
   signature_regex: 'loop:Layout/HashAlignment\+(Layout/LineLength\+)?Layout/SpaceAroundOperators'
 
