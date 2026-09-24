@@ -9,7 +9,7 @@
     - 'syntax:else without rescue is useless'
 
 - pr: 15741
-  status: open
+  status: merged
   note: require_parentheses merges grouping parens around keyword operators
   signatures:
     - "syntax:syntax error, unexpected `and', expecting ')'"
