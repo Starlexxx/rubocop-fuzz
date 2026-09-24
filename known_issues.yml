@@ -2,6 +2,11 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15751
+  status: open
+  note: HashAlignment separator copies first pair value spacing, loops with SpaceAroundOperators
+  signature_regex: 'loop:Layout/HashAlignment\+(Layout/LineLength\+)?Layout/SpaceAroundOperators'
+
 - pr: 15742
   status: open
   note: SpaceBeforeBlockBraces no_space vs BlockDelimiters semantic same-pass fuse
