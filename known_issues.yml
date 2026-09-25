@@ -2,6 +2,13 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15757
+  status: open
+  note: ExtraSpacing ForceEqualSignAlignment vs SpaceAroundOperators, comparison before aligned `=`
+  signatures:
+    - 'loop:Layout/ExtraSpacing+Layout/SpaceAroundOperators'
+    - 'loop:Layout/ExtraSpacing+Layout/LineLength+Layout/SpaceAroundOperators'
+
 - pr: 15751
   status: merged
   note: HashAlignment separator copies first pair value spacing, loops with SpaceAroundOperators
