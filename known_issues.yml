@@ -3,7 +3,7 @@
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
 - pr: 15751
-  status: open
+  status: merged
   note: HashAlignment separator copies first pair value spacing, loops with SpaceAroundOperators
   signature_regex: 'loop:Layout/HashAlignment\+(Layout/LineLength\+)?Layout/SpaceAroundOperators'
 
