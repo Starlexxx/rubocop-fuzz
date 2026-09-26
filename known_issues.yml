@@ -2,9 +2,9 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
-- pr: 15757
+- pr: 15759
   status: open
-  note: ExtraSpacing ForceEqualSignAlignment vs SpaceAroundOperators, comparison before aligned `=`
+  note: (koic, replaced 15757) ExtraSpacing ForceEqualSignAlignment vs SpaceAroundOperators, comparison before aligned `=`
   signatures:
     - 'loop:Layout/ExtraSpacing+Layout/SpaceAroundOperators'
     - 'loop:Layout/ExtraSpacing+Layout/LineLength+Layout/SpaceAroundOperators'
@@ -14,9 +14,9 @@
   note: HashAlignment separator copies first pair value spacing, loops with SpaceAroundOperators
   signature_regex: 'loop:Layout/HashAlignment\+(Layout/LineLength\+)?Layout/SpaceAroundOperators'
 
-- pr: 15742
-  status: open
-  note: SpaceBeforeBlockBraces no_space vs BlockDelimiters semantic same-pass fuse
+- pr: 15747
+  status: merged
+  note: (koic, replaced 15742) SpaceBeforeBlockBraces no_space vs BlockDelimiters semantic same-pass fuse
   signatures:
     - 'syntax:else without rescue is useless'
 
@@ -26,9 +26,9 @@
   signatures:
     - "syntax:syntax error, unexpected `and', expecting ')'"
 
-- pr: 15739
-  status: open
-  note: MultilineMethodCallBraceLayout vs MethodCallWithArgsParentheses omit_parentheses same-pass clash
+- pr: 15748
+  status: merged
+  note: (koic, replaced 15739) MultilineMethodCallBraceLayout vs MethodCallWithArgsParentheses omit_parentheses same-pass clash
   signatures:
     - "syntax:syntax error, unexpected ')', expecting `end' or dummy end"
 
