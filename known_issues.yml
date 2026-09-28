@@ -2,6 +2,13 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15777
+  status: open
+  note: LineLength SplitStrings splits inside a block in interpolation
+  signatures:
+    - "syntax:syntax error, unexpected ')', expecting '}'"
+    - "syntax:syntax error, unexpected local variable or method, expecting '}'"
+
 - pr: 15775
   status: open
   note: EndlessMethod vs BlockForwarding/ArgumentsForwarding both add def parens
@@ -77,7 +84,7 @@
     - 'loop:Layout/LineLength+Style/EndlessMethod'
 
 - pr: 15619
-  status: open
+  status: merged
   note: Layout/LineLength SplitStrings trailing-space split
   signature_regex: 'loop:Layout/LineEndStringConcatenationIndentation'
 
