@@ -3,7 +3,7 @@
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
 - pr: 15759
-  status: open
+  status: merged
   note: (koic, replaced 15757) ExtraSpacing ForceEqualSignAlignment vs SpaceAroundOperators, comparison before aligned `=`
   signatures:
     - 'loop:Layout/ExtraSpacing+Layout/SpaceAroundOperators'
