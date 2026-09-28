@@ -54,6 +54,11 @@
   signatures:
     - 'Layout/RedundantLineBreak: Parser::ClobberingError: Parser::Source::TreeRewriter detected clobbering'
 
+- pr: 15771
+  status: open
+  note: AmbiguousEndlessMethodDefinition ignores defs (follow-up to 15609)
+  signature_regex: '^$never'
+
 - pr: 15609
   status: open
   note: Style/EndlessMethod vs Style/AmbiguousEndlessMethodDefinition loop
