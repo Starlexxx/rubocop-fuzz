@@ -2,6 +2,12 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15775
+  status: open
+  note: EndlessMethod vs BlockForwarding/ArgumentsForwarding both add def parens
+  signatures:
+    - "syntax:syntax error, unexpected ')'"
+
 - pr: 15759
   status: merged
   note: (koic, replaced 15757) ExtraSpacing ForceEqualSignAlignment vs SpaceAroundOperators, comparison before aligned `=`
