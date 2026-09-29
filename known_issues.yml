@@ -2,6 +2,11 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15787
+  status: open
+  note: LineLength SplitStrings splits off empty string right after opening quote
+  signature_regex: 'loop:Layout/LineEndStringConcatenationIndentation(\+Layout/LineLength)?(\+Style/StringLiterals)?$'
+
 - pr: 15777
   status: merged
   note: LineLength SplitStrings splits inside a block in interpolation
