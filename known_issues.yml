@@ -2,6 +2,11 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15793
+  status: open
+  note: LineContinuationSpacing treats trailing $\ as line continuation
+  signature_regex: "without identifiers is not allowed as a global variable name"
+
 - pr: 15790
   status: open
   note: ExplicitBlockArgument adds &block when `block` already an argument
