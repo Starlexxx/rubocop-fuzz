@@ -2,6 +2,12 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15790
+  status: open
+  note: ExplicitBlockArgument adds &block when `block` already an argument
+  signatures:
+    - 'syntax:duplicated argument name'
+
 - pr: 15789
   status: open
   note: MultilineBlockLayout adds trailing comma after keyword block args
