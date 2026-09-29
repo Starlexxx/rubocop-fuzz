@@ -2,6 +2,12 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15802
+  status: open
+  note: AccessModifierDeclarations group moves splatted lvar arg as if it were a def
+  signatures:
+    - "syntax:syntax error, unexpected '\\n', expecting '='"
+
 - pr: 15793
   status: open
   note: LineContinuationSpacing treats trailing $\ as line continuation
