@@ -3,14 +3,14 @@
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
 - pr: 15777
-  status: open
+  status: merged
   note: LineLength SplitStrings splits inside a block in interpolation
   signatures:
     - "syntax:syntax error, unexpected ')', expecting '}'"
     - "syntax:syntax error, unexpected local variable or method, expecting '}'"
 
 - pr: 15775
-  status: open
+  status: merged
   note: EndlessMethod vs BlockForwarding/ArgumentsForwarding both add def parens
   signatures:
     - "syntax:syntax error, unexpected ')'"
@@ -68,7 +68,7 @@
     - 'Layout/RedundantLineBreak: Parser::ClobberingError: Parser::Source::TreeRewriter detected clobbering'
 
 - pr: 15771
-  status: open
+  status: merged
   note: AmbiguousEndlessMethodDefinition ignores defs (follow-up to 15609)
   signature_regex: '^$never'
 
