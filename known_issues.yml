@@ -2,6 +2,12 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15789
+  status: open
+  note: MultilineBlockLayout adds trailing comma after keyword block args
+  signatures:
+    - "syntax:syntax error, unexpected '|', expecting & or '&'"
+
 - pr: 15787
   status: open
   note: LineLength SplitStrings splits off empty string right after opening quote
