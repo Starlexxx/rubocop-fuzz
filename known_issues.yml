@@ -2,9 +2,9 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
-- pr: 15808
+- pr: 15809
   status: open
-  note: RegexpLiteral escapes slashes inside interpolation converting %r to //
+  note: (koic, replaced 15808) RegexpLiteral escapes slashes inside interpolation converting %r to //
   signatures:
     - "syntax:syntax error, unexpected backslash, expecting ']'"
 
