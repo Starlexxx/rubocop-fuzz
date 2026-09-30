@@ -2,31 +2,31 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
-- pr: 15802
-  status: open
-  note: AccessModifierDeclarations group moves splatted lvar arg as if it were a def
+- pr: 15800
+  status: merged
+  note: (upstream, dup of closed 15802) AccessModifierDeclarations group moves splatted lvar arg as if it were a def
   signatures:
     - "syntax:syntax error, unexpected '\\n', expecting '='"
 
 - pr: 15793
-  status: open
+  status: merged
   note: LineContinuationSpacing treats trailing $\ as line continuation
   signature_regex: "without identifiers is not allowed as a global variable name"
 
 - pr: 15790
-  status: open
+  status: merged
   note: ExplicitBlockArgument adds &block when `block` already an argument
   signatures:
     - 'syntax:duplicated argument name'
 
 - pr: 15789
-  status: open
+  status: merged
   note: MultilineBlockLayout adds trailing comma after keyword block args
   signatures:
     - "syntax:syntax error, unexpected '|', expecting & or '&'"
 
 - pr: 15787
-  status: open
+  status: merged
   note: LineLength SplitStrings splits off empty string right after opening quote
   signature_regex: 'loop:Layout/LineEndStringConcatenationIndentation(\+Layout/LineLength)?(\+Style/StringLiterals)?$'
 
