@@ -2,6 +2,12 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15798
+  status: merged
+  note: (koic) RedundantRegexpArgument turns escaped \#\{ into interpolation
+  signatures:
+    - "syntax:syntax error, unexpected local variable or method, expecting end-of-input or '}'"
+
 - pr: 15811
   status: merged
   note: (koic) RedundantParentheses heredoc + chained call pulled onto terminator line (reparse check skipped >64KB)
