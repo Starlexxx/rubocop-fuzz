@@ -2,6 +2,12 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15818
+  status: open
+  note: ExtraSpacing ForceEqualSignAlignment vs SelfAssignment same pass (`||          =`)
+  signatures:
+    - "syntax:syntax error, unexpected '='"
+
 - pr: 15798
   status: merged
   note: (koic) RedundantRegexpArgument turns escaped \#\{ into interpolation
