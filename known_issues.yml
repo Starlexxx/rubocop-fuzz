@@ -2,6 +2,11 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15810
+  status: open
+  note: RedundantRegexpEscape vs RegexpLiteral same-pass delimiter change
+  signature_regex: 'syntax:premature end of char-class'
+
 - pr: 15809
   status: open
   note: (koic, replaced 15808) RegexpLiteral escapes slashes inside interpolation converting %r to //
