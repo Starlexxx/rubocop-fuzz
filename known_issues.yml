@@ -2,6 +2,11 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15811
+  status: merged
+  note: (koic) RedundantParentheses heredoc + chained call pulled onto terminator line (reparse check skipped >64KB)
+  signature_regex: "syntax:can't find string \"[A-Z_]+\" anywhere before EOF"
+
 - pr: 15810
   status: open
   note: RedundantRegexpEscape vs RegexpLiteral same-pass delimiter change
