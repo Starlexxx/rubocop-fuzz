@@ -2,6 +2,12 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15808
+  status: open
+  note: RegexpLiteral escapes slashes inside interpolation converting %r to //
+  signatures:
+    - "syntax:syntax error, unexpected backslash, expecting ']'"
+
 - pr: 15800
   status: merged
   note: (upstream, dup of closed 15802) AccessModifierDeclarations group moves splatted lvar arg as if it were a def
