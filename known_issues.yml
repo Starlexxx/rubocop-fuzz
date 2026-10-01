@@ -2,6 +2,11 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15846
+  status: open
+  note: RedundantBegin joins memoized statement past LineLength (loop with IfUnlessModifier/MultilineMemoization)
+  signature_regex: 'loop:.*Style/MultilineMemoization\+Style/RedundantBegin'
+
 - pr: 15844
   status: open
   note: LineLength breaks after `(` while omit_parentheses removes it, same pass
