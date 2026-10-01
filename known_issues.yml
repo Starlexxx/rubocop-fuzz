@@ -3,7 +3,7 @@
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
 - pr: 15818
-  status: open
+  status: merged
   note: ExtraSpacing ForceEqualSignAlignment vs SelfAssignment same pass (`||          =`)
   signatures:
     - "syntax:syntax error, unexpected '='"
@@ -20,7 +20,7 @@
   signature_regex: "syntax:can't find string \"[A-Z_]+\" anywhere before EOF"
 
 - pr: 15810
-  status: open
+  status: merged
   note: RedundantRegexpEscape vs RegexpLiteral same-pass delimiter change
   signature_regex: 'syntax:premature end of char-class'
 
