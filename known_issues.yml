@@ -2,8 +2,13 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15845
+  status: merged
+  note: (viralpraxis) BlockAlignment loop; covers tab-cluster loops w/o IndentationStyle in signature
+  signature_regex: 'loop:Layout/AccessModifierIndentation\+.*Layout/BlockAlignment'
+
 - pr: 15846
-  status: open
+  status: merged
   note: RedundantBegin joins memoized statement past LineLength (loop with IfUnlessModifier/MultilineMemoization)
   signature_regex: 'loop:.*Style/MultilineMemoization\+Style/RedundantBegin'
 
