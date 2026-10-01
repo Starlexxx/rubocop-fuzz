@@ -143,7 +143,7 @@
 - pr: 15609
   status: open
   note: Style/EndlessMethod vs Style/AmbiguousEndlessMethodDefinition loop
-  signature_regex: 'loop:.*Style/AmbiguousEndlessMethodDefinition\+Style/EndlessMethod'
+  signature_regex: 'loop:.*Style/AmbiguousEndlessMethodDefinition\+.*Style/EndlessMethod'
 
 - pr: 15651
   status: merged
