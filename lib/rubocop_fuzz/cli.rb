@@ -107,7 +107,7 @@ module RuboCopFuzz
 
       minimizer = Minimizer.new(rubocop_dir: File.expand_path(opts[:rubocop_dir]),
                                 timeout: opts[:timeout])
-      findings = File.readlines(opts[:findings]).map { |l| JSON.parse(l) }
+      findings = File.readlines(opts[:findings]).reject { |l| l.strip.empty? }.map { |l| JSON.parse(l) }
                      .uniq { |f| [f['type'], f['cops'].sort, f['signature']] }
 
       findings.each_with_index do |finding, i|
@@ -151,7 +151,7 @@ module RuboCopFuzz
         return 1
       end
 
-      findings = File.readlines(opts[:findings]).map { |l| JSON.parse(l) }
+      findings = File.readlines(opts[:findings]).reject { |l| l.strip.empty? }.map { |l| JSON.parse(l) }
       body = Triage.new(findings, known_path: opts[:known]).body
       opts[:out] ? File.write(opts[:out], body) : puts(body)
       0
