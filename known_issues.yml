@@ -13,7 +13,7 @@
   signature_regex: 'loop:.*Style/MultilineMemoization\+Style/RedundantBegin'
 
 - pr: 15844
-  status: open
+  status: merged
   note: LineLength breaks after `(` while omit_parentheses removes it, same pass
   signatures:
     - "syntax:Can't assign to true"
