@@ -178,7 +178,7 @@
     - 'loop:Layout/TrailingWhitespace+Style/EmptyMethod+Style/Semicolon+Style/SingleLineMethods'
 
 - pr: 15656
-  status: open
+  status: merged
   note: Layout/LineLength break after nested heredoc argument
   signatures:
     - "syntax:syntax error, unexpected `end'"
