@@ -2,6 +2,11 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15861
+  status: open
+  note: FormatString (percent) ClobberingError on format nested in format args (found by rubocop-nightly)
+  signature_regex: 'crash:Style/FormatString.*Clobbering'
+
 - pr: 15860
   status: open
   note: HeredocIndentation ClobberingError on squiggly heredoc nested in another's interpolation (found by rubocop-nightly)
