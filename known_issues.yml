@@ -2,6 +2,12 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15862
+  status: open
+  note: HashSyntax shorthand parens + MethodCallWithArgsParentheses same pass -> `set(bar:))` (found by rubocop-nightly, cumo)
+  signatures:
+    - "syntax:unexpected ')', expecting end-of-input"
+
 - pr: 15861
   status: open
   note: FormatString (percent) ClobberingError on format nested in format args (found by rubocop-nightly)
