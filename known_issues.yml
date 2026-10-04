@@ -2,6 +2,12 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15859
+  status: open
+  note: ItBlockParameter (always) + Lambda (literal) same pass leaves `->(text)` with `it` (found by rubocop-nightly, TargetRubyVersion 3.4+)
+  signatures:
+    - "syntax:'it' is not allowed when an ordinary parameter is defined"
+
 - pr: 15845
   status: merged
   note: (viralpraxis) BlockAlignment loop; covers tab-cluster loops w/o IndentationStyle in signature
