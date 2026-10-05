@@ -2,6 +2,10 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15870
+  status: open
+  note: MultilineMethodDefinitionBraceLayout + MultilineMethodSignature same pass -> `def foo(a, b))` (dalli, packed)
+
 - pr: 15869
   status: merged
   note: (koic, replaced my #15868) IdenticalConditionalBranches ClobberingError with `else; nil; end` (shape from MissingElse)
