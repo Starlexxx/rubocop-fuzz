@@ -2,6 +2,11 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15867
+  status: open
+  note: MapIntoArray NoMethodError when pushing into _1/it block parameter
+  signature_regex: 'crash:Style/MapIntoArray.*declaration_node'
+
 - pr: 15865
   status: open
   note: SingleLineBlockChain breaks the line of a heredoc opener -> heredoc body detached (found by rubocop-nightly, hecks)
