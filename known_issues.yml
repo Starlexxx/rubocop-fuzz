@@ -2,6 +2,11 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15872
+  status: open
+  note: ReturnNil return_nil adds nil to top-level return, TopLevelReturnWithArgument strips it (loop)
+  signature_regex: 'loop:Lint/TopLevelReturnWithArgument\+.*Style/ReturnNil'
+
 - pr: 15871
   status: open
   note: MutableConstant strict freezes chained casgn value, RedundantFreeze strips it (loop)
