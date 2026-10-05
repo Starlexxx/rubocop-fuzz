@@ -2,6 +2,11 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15868
+  status: open
+  note: IdenticalConditionalBranches ClobberingError with `else; nil; end` (shape from MissingElse)
+  signature_regex: 'crash:Style/IdenticalConditionalBranches.*Clobbering'
+
 - pr: 15867
   status: open
   note: MapIntoArray NoMethodError when pushing into _1/it block parameter
