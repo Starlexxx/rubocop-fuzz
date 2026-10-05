@@ -79,7 +79,7 @@ module RuboCopFuzz
 
       lines = ["## #{title}", '', '| files | hits | type | signature |', '|---|---|---|---|']
       groups.first(30).each do |g|
-        pr = g[:entry] ? " ([##{g[:entry].pr}](https://github.com/rubocop/rubocop/pull/#{g[:entry].pr}))" : ''
+        pr = g[:entry] ? " (#{pr_ref(g[:entry].pr)})" : ''
         lines << "| #{g[:files].size} | #{g[:count]} | #{g[:type]} | `#{truncate(g[:signature])}`#{pr} |"
       end
       lines << "… #{groups.size - 30} more group(s) omitted" if groups.size > 30
@@ -95,12 +95,18 @@ module RuboCopFuzz
       groups.group_by { |g| g[:entry].pr }.each do |pr, prs_groups|
         hits = prs_groups.sum { |g| g[:count] }
         note = prs_groups.first[:entry].note
-        lines << "- [##{pr}](https://github.com/rubocop/rubocop/pull/#{pr}) — #{note}: " \
+        lines << "- #{pr_ref(pr)} — #{note}: " \
                  "#{prs_groups.size} group(s), #{hits} finding(s)"
       end
       lines << ''
       lines << '</details>'
       lines
+    end
+
+    # A code span instead of a link: GitHub turns every link to a PR into a
+    # "mentioned this pull request" event on that PR, once per nightly issue.
+    def pr_ref(pr)
+      "`rubocop##{pr}`"
     end
 
     def truncate(signature)

@@ -60,8 +60,9 @@ RSpec.describe RuboCopFuzz::Triage do
     expect(body).to include('1 new, 1 regression(s), 1 known with open PRs')
     expect(body).to include('## New')
     expect(body).to include('## Regressions')
-    expect(body).to include('rubocop/pull/100')
-    expect(body).to include('rubocop/pull/200')
+    expect(body).to include('`rubocop#100`')
+    expect(body).to include('`rubocop#200`')
+    expect(body).not_to include('github.com')
   end
 
   it 'treats everything as new without a known file' do
