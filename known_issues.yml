@@ -2,6 +2,10 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15865
+  status: open
+  note: SingleLineBlockChain breaks the line of a heredoc opener -> heredoc body detached (found by rubocop-nightly, hecks)
+
 - pr: 15864
   status: open
   note: NestedTernaryOperator splits ternary holding a heredoc opener -> heredoc body detached (found by rubocop-nightly, hecks)
