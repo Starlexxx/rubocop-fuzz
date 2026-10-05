@@ -2,6 +2,11 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15871
+  status: open
+  note: MutableConstant strict freezes chained casgn value, RedundantFreeze strips it (loop)
+  signature_regex: 'loop:.*Style/MutableConstant\+.*Style/RedundantFreeze'
+
 - pr: 15870
   status: open
   note: MultilineMethodDefinitionBraceLayout + MultilineMethodSignature same pass -> `def foo(a, b))` (dalli, packed)
