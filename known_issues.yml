@@ -3,7 +3,7 @@
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
 - pr: 15862
-  status: open
+  status: merged
   note: HashSyntax shorthand parens + MethodCallWithArgsParentheses same pass -> `set(bar:))` (found by rubocop-nightly, cumo)
   signatures:
     - "syntax:unexpected ')', expecting end-of-input"
@@ -14,12 +14,12 @@
   signature_regex: 'crash:Style/FormatString.*Clobbering'
 
 - pr: 15860
-  status: open
+  status: merged
   note: HeredocIndentation ClobberingError on squiggly heredoc nested in another's interpolation (found by rubocop-nightly)
   signature_regex: 'crash:Layout/HeredocIndentation.*Clobbering'
 
 - pr: 15859
-  status: open
+  status: merged
   note: ItBlockParameter (always) + Lambda (literal) same pass leaves `->(text)` with `it` (found by rubocop-nightly, TargetRubyVersion 3.4+)
   signatures:
     - "syntax:'it' is not allowed when an ordinary parameter is defined"
