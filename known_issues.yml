@@ -2,6 +2,11 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15873
+  status: open
+  note: FetchEnvVar(DefaultToNil false) vs HashLookupMethod(brackets) ENV.fetch <-> ENV[] loop
+  signature_regex: 'loop:.*Style/FetchEnvVar\+Style/HashLookupMethod'
+
 - pr: 15872
   status: open
   note: ReturnNil return_nil adds nil to top-level return, TopLevelReturnWithArgument strips it (loop)
