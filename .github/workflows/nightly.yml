@@ -20,13 +20,15 @@ jobs:
           path: rubocop
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.3'
+          ruby-version: '3.4'
           bundler-cache: true
       - name: Install rubocop dependencies
         run: bundle install
         working-directory: rubocop
       - name: Fetch corpus
         run: script/fetch-corpus corpus-gems
+      - name: Fetch fresh gems
+        run: script/fetch-fresh-corpus corpus-gems 100
       - name: Scan (baseline)
         run: |
           ruby exe/rubocop-fuzz scan \
@@ -34,6 +36,13 @@ jobs:
             --tier baseline \
             --shard-slice ${{ matrix.slice }}/4 \
             --out fuzz-out/baseline
+      - name: Scan (packed)
+        run: |
+          ruby exe/rubocop-fuzz scan \
+            --rubocop rubocop --gems-dir corpus-gems \
+            --tier packed \
+            --shard-slice ${{ matrix.slice }}/4 \
+            --out fuzz-out/packed
       - name: Scan (interactions)
         run: |
           ruby exe/rubocop-fuzz scan \

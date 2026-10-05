@@ -21,6 +21,12 @@ rubocop-fuzz scan --rubocop path/to/rubocop
 # fuzz cross-cop config interactions
 rubocop-fuzz scan --rubocop path/to/rubocop --tier interactions --shards-per-config 3
 
+# all cops on, non-default options spread over a few configs (reshuffled by --seed)
+rubocop-fuzz scan --rubocop path/to/rubocop --tier packed
+
+# add the last day's newly published gems to a corpus
+script/fetch-fresh-corpus corpus-gems 100
+
 # shrink findings to a minimal repro
 rubocop-fuzz minimize --rubocop path/to/rubocop --findings fuzz-out/findings.jsonl
 ```
