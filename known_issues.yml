@@ -2,22 +2,22 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
-- pr: 15868
-  status: open
-  note: IdenticalConditionalBranches ClobberingError with `else; nil; end` (shape from MissingElse)
+- pr: 15869
+  status: merged
+  note: (koic, replaced my #15868) IdenticalConditionalBranches ClobberingError with `else; nil; end` (shape from MissingElse)
   signature_regex: 'crash:Style/IdenticalConditionalBranches.*Clobbering'
 
 - pr: 15867
-  status: open
+  status: merged
   note: MapIntoArray NoMethodError when pushing into _1/it block parameter
   signature_regex: 'crash:Style/MapIntoArray.*declaration_node'
 
 - pr: 15865
-  status: open
+  status: merged
   note: SingleLineBlockChain breaks the line of a heredoc opener -> heredoc body detached (found by rubocop-nightly, hecks)
 
 - pr: 15864
-  status: open
+  status: merged
   note: NestedTernaryOperator splits ternary holding a heredoc opener -> heredoc body detached (found by rubocop-nightly, hecks)
   signatures:
     - "syntax:unexpected ':', expecting end-of-input"
