@@ -15,7 +15,8 @@ module RuboCopFuzz
       shard_limit: nil,
       shard_filter: nil,
       tiers: ['baseline'],
-      shards_per_config: nil
+      shards_per_config: nil,
+      seed: Time.now.utc.strftime('%Y%m%d').to_i
     }.freeze
 
     def run(argv)
@@ -81,7 +82,8 @@ module RuboCopFuzz
         o.on('--timeout SECS', Integer) { |v| opts[:timeout] = v }
         o.on('--shard-limit N', Integer) { |v| opts[:shard_limit] = v }
         o.on('--shard-filter REGEX') { |v| opts[:shard_filter] = Regexp.new(v) }
-        o.on('--tier TIERS', 'baseline,sweep,interactions') { |v| opts[:tiers] = v.split(',') }
+        o.on('--tier TIERS', 'baseline,sweep,packed,interactions') { |v| opts[:tiers] = v.split(',') }
+        o.on('--seed N', Integer, 'shuffles the packed tier (default: today, YYYYMMDD)') { |v| opts[:seed] = v }
         o.on('--shards-per-config N', Integer) { |v| opts[:shards_per_config] = v }
         o.on('--config-filter REGEX') { |v| opts[:config_filter] = Regexp.new(v) }
         o.on('--shard-slice I/N', %r{\A\d+/\d+\z}, 'take shard subset i of n') do |v|
@@ -163,6 +165,7 @@ module RuboCopFuzz
         case tier
         when 'baseline' then [generator.baseline]
         when 'sweep' then generator.sweep_variants
+        when 'packed' then generator.packed_variants(seed: opts[:seed])
         when 'interactions'
           clusters = DependencyMiner.new(File.expand_path(opts[:rubocop_dir])).clusters
           generator.interaction_variants(clusters)

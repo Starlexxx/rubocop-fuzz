@@ -15,6 +15,10 @@ module RuboCopFuzz
 
     SKIP_BOOLEAN_KEYS = %w[Enabled Safe SafeAutoCorrect AutoCorrect Include Exclude].freeze
     MAX_COMBOS_PER_CLUSTER = 200
+    # Disabled by default because they contradict a cop that is on by default
+    # (`EmptyElse` style `both`, `SymbolConversion`), so turning them on in the
+    # packed tier only produces loops nobody would fix.
+    PACKED_EXCLUDED_COPS = %w[Style/MissingElse Style/StringHashKeys].freeze
 
     def initialize(rubocop_dir: nil, target_ruby_version: RUBY_VERSION[/\d+\.\d+/])
       @rubocop_dir = rubocop_dir
@@ -28,6 +32,30 @@ module RuboCopFuzz
     def sweep_variants
       cop_entries.flat_map { |cop, conf| axes_for(cop, conf) }
                  .map { |cop, opts| variant_for(cop, opts) }
+    end
+
+    # Every cop on in every variant, with the non-default values of each
+    # option spread across the variants, so cops meet each other's
+    # non-default styles. The seed reshuffles which values share a variant.
+    def packed_variants(seed:)
+      rng = Random.new(seed)
+      cops = cop_entries.reject { |cop, _conf| PACKED_EXCLUDED_COPS.include?(cop) }
+      options = cops.flat_map { |cop, conf| axes_for(cop, conf) }
+                    .group_by { |cop, opts| [cop, opts.keys.first] }
+      count = [options.values.map(&:size).max || 0, 1].max
+      slots = Array.new(count) { cops.keys.to_h { |cop| [cop, { 'Enabled' => true }] } }
+
+      options.each_value do |alternatives|
+        offset = rng.rand(count)
+        alternatives.shuffle(random: rng).each_with_index do |(cop, opts), i|
+          slots[(offset + i) % count][cop].merge!(opts)
+        end
+      end
+
+      slots.each_with_index.map do |config, i|
+        Variant.new(id: "packed:#{seed}:#{i}",
+                    yaml: "#{all_cops_yaml}\n#{config.to_yaml.delete_prefix("---\n")}")
+      end
     end
 
     def interaction_variants(clusters)
