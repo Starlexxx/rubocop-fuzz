@@ -2,6 +2,12 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15899
+  status: open
+  note: StringConcatenation strips first/last char of %() parts starting with a quote (baseline; browser_review_gate)
+  signatures:
+    - "syntax:syntax error, unexpected global variable, expecting end-of-input"
+
 - pr: 15891
   status: merged
   note: (koic) MutableConstant strict + logical operator loop with LineLength
