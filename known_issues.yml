@@ -2,6 +2,11 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15898
+  status: open
+  note: HeredocArgumentClosingParenthesis climbs past block arg to outer call; loops with MultilineMethodCallBraceLayout
+  signature_regex: 'loop:Layout/HeredocArgumentClosingParenthesis\+Layout/MultilineMethodCallBraceLayout'
+
 - pr: 15874
   status: merged
   note: (koic) SpaceAroundBlockParameters loop with SpaceBeforeComma on trailing comma
