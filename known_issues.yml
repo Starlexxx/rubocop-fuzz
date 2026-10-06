@@ -34,12 +34,12 @@
 - pr: 15869
   status: merged
   note: (koic, replaced my #15868) IdenticalConditionalBranches ClobberingError with `else; nil; end` (shape from MissingElse)
-  signature_regex: 'crash:Style/IdenticalConditionalBranches.*Clobbering'
+  signature_regex: '^Style/IdenticalConditionalBranches.*Clobbering'
 
 - pr: 15867
   status: merged
   note: MapIntoArray NoMethodError when pushing into _1/it block parameter
-  signature_regex: 'crash:Style/MapIntoArray.*declaration_node'
+  signature_regex: '^Style/MapIntoArray.*declaration_node'
 
 - pr: 15865
   status: merged
@@ -60,12 +60,12 @@
 - pr: 15861
   status: open
   note: FormatString (percent) ClobberingError on format nested in format args (found by rubocop-nightly)
-  signature_regex: 'crash:Style/FormatString.*Clobbering'
+  signature_regex: '^Style/FormatString.*Clobbering'
 
 - pr: 15860
   status: merged
   note: HeredocIndentation ClobberingError on squiggly heredoc nested in another's interpolation (found by rubocop-nightly)
-  signature_regex: 'crash:Layout/HeredocIndentation.*Clobbering'
+  signature_regex: '^Layout/HeredocIndentation.*Clobbering'
 
 - pr: 15859
   status: merged
