@@ -2,6 +2,12 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15900
+  status: open
+  note: MutableConstant(Recursive) + TrailingCommaInHashLiteral same pass -> `},.freeze` (pry, jwt, vcr, activesupport)
+  signatures:
+    - "syntax:syntax error, unexpected '.'"
+
 - pr: 15899
   status: open
   note: StringConcatenation strips first/last char of %() parts starting with a quote (baseline; browser_review_gate)
