@@ -8,7 +8,7 @@
   signature_regex: 'loop:.*Style/FetchEnvVar\+Style/HashLookupMethod'
 
 - pr: 15872
-  status: open
+  status: merged
   note: ReturnNil return_nil adds nil to top-level return, TopLevelReturnWithArgument strips it (loop)
   signature_regex: 'loop:Lint/TopLevelReturnWithArgument\+.*Style/ReturnNil'
 
@@ -18,7 +18,7 @@
   signature_regex: 'loop:.*Style/MutableConstant\+.*Style/RedundantFreeze'
 
 - pr: 15870
-  status: open
+  status: merged
   note: MultilineMethodDefinitionBraceLayout + MultilineMethodSignature same pass -> `def foo(a, b))` (dalli, packed)
 
 - pr: 15869
