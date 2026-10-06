@@ -2,6 +2,11 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15891
+  status: merged
+  note: (koic) MutableConstant strict + logical operator loop with LineLength
+  signature_regex: 'loop:Layout/LineLength\+Style/MutableConstant$'
+
 - pr: 15898
   status: open
   note: HeredocArgumentClosingParenthesis climbs past block arg to outer call; loops with MultilineMethodCallBraceLayout
