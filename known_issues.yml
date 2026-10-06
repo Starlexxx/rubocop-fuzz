@@ -2,6 +2,11 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
+- pr: 15874
+  status: merged
+  note: (koic) SpaceAroundBlockParameters loop with SpaceBeforeComma on trailing comma
+  signature_regex: 'loop:Layout/SpaceAroundBlockParameters\+Layout/SpaceBeforeComma'
+
 - pr: 15873
   status: open
   note: FetchEnvVar(DefaultToNil false) vs HashLookupMethod(brackets) ENV.fetch <-> ENV[] loop
