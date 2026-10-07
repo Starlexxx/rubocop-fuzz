@@ -2,14 +2,14 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 
-- pr: 15900
-  status: open
-  note: MutableConstant(Recursive) + TrailingCommaInHashLiteral same pass -> `},.freeze` (pry, jwt, vcr, activesupport)
+- pr: 15902
+  status: merged
+  note: (koic, replaces 15900) MutableConstant(Recursive) + TrailingCommaInHashLiteral same pass -> `},.freeze` (pry, jwt, vcr, activesupport)
   signatures:
     - "syntax:syntax error, unexpected '.'"
 
 - pr: 15899
-  status: open
+  status: merged
   note: StringConcatenation strips first/last char of %() parts starting with a quote (baseline; browser_review_gate)
   signatures:
     - "syntax:syntax error, unexpected global variable, expecting end-of-input"
@@ -19,9 +19,9 @@
   note: (koic) MutableConstant strict + logical operator loop with LineLength
   signature_regex: 'loop:Layout/LineLength\+Style/MutableConstant$'
 
-- pr: 15898
-  status: open
-  note: HeredocArgumentClosingParenthesis climbs past block arg to outer call; loops with MultilineMethodCallBraceLayout
+- pr: 15901
+  status: merged
+  note: (koic, replaces 15898) HeredocArgumentClosingParenthesis climbs past block arg to outer call; loops with MultilineMethodCallBraceLayout
   signature_regex: 'loop:Layout/HeredocArgumentClosingParenthesis\+Layout/MultilineMethodCallBraceLayout'
 
 - pr: 15874
