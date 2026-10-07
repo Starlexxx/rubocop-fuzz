@@ -32,6 +32,12 @@
   signatures:
     - "syntax:syntax error, unexpected global variable, expecting end-of-input"
 
+- pr: 15871
+  status: open
+  note: chained casgn (`A = B = C`) under strict also loops with LineLength; shares signature with 15891
+  signatures:
+    - 'loop:Layout/LineLength+Style/MutableConstant'
+
 - pr: 15891
   status: merged
   note: (koic) MutableConstant strict + logical operator loop with LineLength
