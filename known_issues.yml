@@ -1,6 +1,16 @@
 # Triaged findings. `status: open` collapses the group in the nightly issue,
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
+# Optional `cops` must all be present in the finding.
+
+- pr: 15917
+  status: open
+  note: MultilineHashBraceLayout + RedundantDoubleSplatHashBraces same pass -> dangling `}` (friendly_id; default config)
+  signatures:
+    - "syntax:syntax error, unexpected '}', expecting 'end' or dummy end"
+  cops:
+    - Layout/MultilineHashBraceLayout
+    - Style/RedundantDoubleSplatHashBraces
 
 - pr: 15902
   status: merged

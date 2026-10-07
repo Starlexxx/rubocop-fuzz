@@ -65,6 +65,24 @@ RSpec.describe RuboCopFuzz::Triage do
     expect(body).not_to include('github.com')
   end
 
+  context 'when an entry lists `cops`' do
+    let(:known_yaml) do
+      <<~YAML
+        - pr: 300
+          status: open
+          note: only with Style/E
+          signatures:
+            - 'syntax:boom'
+          cops:
+            - Style/E
+      YAML
+    end
+
+    it 'does not match a finding missing one of them' do
+      expect(triage.buckets[:new].map { |g| g[:signature] }).to include('syntax:boom')
+    end
+  end
+
   it 'treats everything as new without a known file' do
     triage = described_class.new(findings, known_path: nil)
 

@@ -7,7 +7,7 @@ module RuboCopFuzz
   # Partitions grouped findings into new / regression / known-open buckets
   # using known_issues.yml and renders the nightly issue body.
   class Triage
-    Entry = Struct.new(:pr, :status, :note, :signatures, :signature_regex, keyword_init: true)
+    Entry = Struct.new(:pr, :status, :note, :signatures, :signature_regex, :cops, keyword_init: true)
 
     def initialize(findings, known_path:)
       @findings = findings
@@ -18,7 +18,7 @@ module RuboCopFuzz
       @buckets ||= begin
         result = { new: [], regression: [], known: [] }
         grouped.each do |group|
-          entry = match_entry(group[:signature])
+          entry = match_entry(group)
           if entry.nil?
             result[:new] << group
           elsif entry.status == 'merged'
@@ -64,12 +64,16 @@ module RuboCopFuzz
       YAML.safe_load_file(path).to_a.map do |raw|
         Entry.new(pr: raw['pr'], status: raw['status'], note: raw['note'],
                   signatures: raw['signatures'] || [],
-                  signature_regex: raw['signature_regex'] && Regexp.new(raw['signature_regex']))
+                  signature_regex: raw['signature_regex'] && Regexp.new(raw['signature_regex']),
+                  cops: raw['cops'] || [])
       end
     end
 
-    def match_entry(signature)
+    def match_entry(group)
+      signature = group[:signature]
       @entries.find do |entry|
+        next false unless (entry.cops - group[:cops]).empty?
+
         entry.signatures.include?(signature) || entry.signature_regex&.match?(signature)
       end
     end
