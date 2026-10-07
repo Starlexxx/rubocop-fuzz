@@ -11,6 +11,12 @@
   cops:
     - Style/CombinableLoops
 
+- pr: 15925
+  status: open
+  note: LineEndStringConcatenationIndentation moved one misaligned part per pass; huge SplitStrings literal hits iteration limit (verifiabl-issuer)
+  signatures:
+    - 'loop:Layout/LineEndStringConcatenationIndentation+Layout/LineLength'
+
 - pr: 15917
   status: open
   note: MultilineHashBraceLayout + RedundantDoubleSplatHashBraces same pass -> dangling `}` (friendly_id; default config)
