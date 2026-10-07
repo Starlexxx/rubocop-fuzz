@@ -335,6 +335,9 @@
   status: merged
   note: BlockForwarding and MethodDefParentheses both add def parens
   signature_regex: "syntax:syntax error, unexpected '\\)'"
+  cops:
+    - Naming/BlockForwarding
+    - Style/MethodDefParentheses
 
 - pr: 15599
   status: merged
