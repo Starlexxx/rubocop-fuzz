@@ -11,6 +11,15 @@
   cops:
     - Style/CombinableLoops
 
+- pr: 15929
+  status: open
+  note: AmbiguousOperator parenthesizes `bar *args` while ArgumentsForwarding rewrites the splat -> `bar((*))` (files.com)
+  signatures:
+    - "syntax:syntax error, unexpected ')', expecting '='"
+  cops:
+    - Lint/AmbiguousOperator
+    - Style/ArgumentsForwarding
+
 - pr: 15927
   status: open
   note: SpaceInsideArrayLiteralBrackets compact joins `[\n  [`, FirstArrayElementLineBreak re-breaks it (design conflict, user-approved option 1)
