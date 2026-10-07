@@ -3,6 +3,14 @@
 # Match by exact signature (`signatures`) or by `signature_regex`.
 # Optional `cops` must all be present in the finding.
 
+- pr: 15922
+  status: open
+  note: CombinableLoops keeps `}` after merging into do-end loop when followed by another block (baseline; agentmon)
+  signatures:
+    - "syntax:syntax error, unexpected '}', expecting 'end' or dummy end"
+  cops:
+    - Style/CombinableLoops
+
 - pr: 15917
   status: open
   note: MultilineHashBraceLayout + RedundantDoubleSplatHashBraces same pass -> dangling `}` (friendly_id; default config)
