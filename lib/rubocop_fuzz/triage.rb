@@ -107,8 +107,6 @@ module RuboCopFuzz
       lines
     end
 
-    # A code span instead of a link: GitHub turns every link to a PR into a
-    # "mentioned this pull request" event on that PR, once per nightly issue.
     def pr_ref(pr)
       "`rubocop##{pr}`"
     end

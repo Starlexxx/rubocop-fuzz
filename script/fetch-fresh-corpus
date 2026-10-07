@@ -1,25 +1,17 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# Fetches and unpacks the most recently published gems (pure-Ruby platform
-# only), so each night scans code the fixed top-gems corpus never had.
-# usage: script/fetch-fresh-corpus DEST_DIR [LIMIT] [HOURS]
-
 require 'json'
 require 'net/http'
 require 'time'
 require 'fileutils'
 
-# Generated API clients ship thousands of near-identical files and would
-# take over the night's scan time.
 MAX_RUBY_FILES = 500
 
 dest = ARGV[0] or abort('usage: script/fetch-fresh-corpus DEST_DIR [LIMIT] [HOURS]')
 limit = Integer(ARGV[1] || 100)
 hours = Integer(ARGV[2] || 24)
 
-# Anchored at midnight UTC so every CI slice fetching the corpus separately
-# gets the same gem list, which shard slicing relies on.
 now = Time.now.utc
 to = Time.utc(now.year, now.month, now.day)
 from = to - (hours * 3600)

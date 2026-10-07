@@ -15,9 +15,6 @@ module RuboCopFuzz
 
     SKIP_BOOLEAN_KEYS = %w[Enabled Safe SafeAutoCorrect AutoCorrect Include Exclude].freeze
     MAX_COMBOS_PER_CLUSTER = 200
-    # Disabled by default because they contradict a cop that is on by default
-    # (`EmptyElse` style `both`, `SymbolConversion`), so turning them on in the
-    # packed tier only produces loops nobody would fix.
     PACKED_EXCLUDED_COPS = %w[Style/MissingElse Style/StringHashKeys].freeze
 
     def initialize(rubocop_dir: nil, target_ruby_version: RUBY_VERSION[/\d+\.\d+/])
@@ -34,9 +31,6 @@ module RuboCopFuzz
                  .map { |cop, opts| variant_for(cop, opts) }
     end
 
-    # Every cop on in every variant, with the non-default values of each
-    # option spread across the variants, so cops meet each other's
-    # non-default styles. The seed reshuffles which values share a variant.
     def packed_variants(seed:)
       rng = Random.new(seed)
       cops = cop_entries.reject { |cop, _conf| PACKED_EXCLUDED_COPS.include?(cop) }
