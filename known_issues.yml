@@ -11,6 +11,11 @@
   cops:
     - Style/CombinableLoops
 
+- pr: 15946
+  status: open
+  note: "ExplicitBlockArgument crashes on `.()` shorthand call (no selector) (fog-aws)"
+  signature_regex: '^Style/ExplicitBlockArgument: NoMethodError'
+
 - pr: 15939
   status: open
   note: "ClassAndModuleChildren compact style: outer and nested compaction overlap in one pass -> ClobberingError (sequel jdbc)"
