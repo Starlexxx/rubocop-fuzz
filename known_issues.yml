@@ -11,6 +11,11 @@
   cops:
     - Style/CombinableLoops
 
+- pr: 15956
+  status: open
+  note: "EndlessMethod length estimate ignored SpaceInsideParens padding of added parens; loop with LineLength + MethodDefParentheses no_parentheses (jwt, actionview)"
+  signature_regex: '^loop:.*Layout/LineLength.*Layout/SpaceInsideParens.*Style/EndlessMethod'
+
 - pr: 15955
   status: open
   note: "(koic) MultilineBlockLayout incompatible with Style/Lambda (lambda block args moved into ->(...)) (virtus etc.)"
