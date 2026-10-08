@@ -11,6 +11,11 @@
   cops:
     - Style/CombinableLoops
 
+- pr: 15949
+  status: open
+  note: "Style/Next modifier correction copied the body, clobbering a nested Next correction (widget_list)"
+  signature_regex: '^Style/Next: Parser::ClobberingError'
+
 - pr: 15946
   status: open
   note: "ExplicitBlockArgument crashes on `.()` shorthand call (no selector) (fog-aws)"
