@@ -11,6 +11,12 @@
   cops:
     - Style/CombinableLoops
 
+- pr: 15962
+  status: open
+  note: "ArgumentsForwarding adds def parens once per offense -> `def run(*, &))` (rbfind; also needs 15929 for AmbiguousOperator)"
+  signatures:
+    - "syntax:syntax error, unexpected **arg"
+
 - pr: 15943
   status: merged
   note: "(koic) ClassAndModuleChildren compact + StructInheritance (activerecord arel attribute)"
