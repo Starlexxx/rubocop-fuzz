@@ -31,9 +31,9 @@
   signatures:
     - 'loop:Layout/LineEndStringConcatenationIndentation+Layout/LineLength'
 
-- pr: 15917
+- pr: 15932
   status: open
-  note: MultilineHashBraceLayout + RedundantDoubleSplatHashBraces same pass -> dangling `}` (friendly_id; default config)
+  note: (koic, replaces 15917) MultilineHashBraceLayout + RedundantDoubleSplatHashBraces same pass -> dangling `}` (friendly_id; default config)
   signatures:
     - "syntax:syntax error, unexpected '}', expecting 'end' or dummy end"
   cops:
@@ -52,9 +52,9 @@
   signatures:
     - "syntax:syntax error, unexpected global variable, expecting end-of-input"
 
-- pr: 15871
+- pr: 15933
   status: open
-  note: chained casgn (`A = B = C`) under strict also loops with LineLength; shares signature with 15891
+  note: (koic, replaces 15871) chained casgn (`A = B = C`) under strict also loops with LineLength; shares signature with 15891
   signatures:
     - 'loop:Layout/LineLength+Style/MutableConstant'
 
@@ -75,7 +75,7 @@
 
 - pr: 15873
   status: open
-  note: FetchEnvVar(DefaultToNil false) vs HashLookupMethod(brackets) ENV.fetch <-> ENV[] loop
+  note: (closed 10-08 by koic, comment looks meant for 15871; unfixed) FetchEnvVar(DefaultToNil false) vs HashLookupMethod(brackets) ENV.fetch <-> ENV[] loop
   signature_regex: 'loop:.*Style/FetchEnvVar\+Style/HashLookupMethod'
 
 - pr: 15872
@@ -83,9 +83,9 @@
   note: ReturnNil return_nil adds nil to top-level return, TopLevelReturnWithArgument strips it (loop)
   signature_regex: 'loop:Lint/TopLevelReturnWithArgument\+.*Style/ReturnNil'
 
-- pr: 15871
+- pr: 15933
   status: open
-  note: MutableConstant strict freezes chained casgn value, RedundantFreeze strips it (loop)
+  note: (koic, replaces 15871) MutableConstant strict freezes chained casgn value, RedundantFreeze strips it (loop)
   signature_regex: 'loop:.*Style/MutableConstant\+.*Style/RedundantFreeze'
 
 - pr: 15870
