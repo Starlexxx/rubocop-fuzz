@@ -11,6 +11,15 @@
   cops:
     - Style/CombinableLoops
 
+- pr: 15943
+  status: merged
+  note: "(koic) ClassAndModuleChildren compact + StructInheritance (activerecord arel attribute)"
+  signatures:
+    - "syntax:syntax error, unexpected '='"
+  cops:
+    - Style/ClassAndModuleChildren
+    - Style/StructInheritance
+
 - pr: 15958
   status: open
   note: "IndentationWidth skipped inline `private def` as an access modifier under outdent; loop with IndentationConsistency (activemodel, faraday, activesupport)"
