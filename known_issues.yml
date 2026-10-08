@@ -11,6 +11,23 @@
   cops:
     - Style/CombinableLoops
 
+- pr: 15955
+  status: open
+  note: "(koic) MultilineBlockLayout incompatible with Style/Lambda (lambda block args moved into ->(...)) (virtus etc.)"
+  signatures:
+    - "syntax:syntax error, unexpected '|'"
+  cops:
+    - Layout/MultilineBlockLayout
+    - Style/Lambda
+
+- pr: 15955
+  status: open
+  note: "(koic) MultilineBlockLayout incompatible with Style/ItBlockParameter (worldwide plurals etc.)"
+  signatures:
+    - "syntax:ordinary parameter is defined"
+  cops:
+    - Style/ItBlockParameter
+
 - pr: 15949
   status: open
   note: "Style/Next modifier correction copied the body, clobbering a nested Next correction (widget_list)"
