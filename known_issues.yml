@@ -19,14 +19,14 @@
     - Style/ReturnNilInPredicateMethodDefinition
 
 - pr: 15986
-  status: open
+  status: merged
   note: "LambdaCall rebuilt call from argument sources, dropping heredoc bodies (rails-ai-bridge)"
   signature_regex: "^syntax:can't find string"
   cops:
     - Style/LambdaCall
 
 - pr: 15969
-  status: open
+  status: merged
   note: "MultilineInPatternThen/WhenThen removed then after endless range pattern (`in 500.. then`) (galaxy-ruby)"
   signature_regex: "^syntax:syntax error, unexpected constant, expecting 'then'"
   cops:
