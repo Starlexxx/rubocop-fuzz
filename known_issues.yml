@@ -11,6 +11,13 @@
   cops:
     - Style/CombinableLoops
 
+- pr: 15986
+  status: open
+  note: "LambdaCall rebuilt call from argument sources, dropping heredoc bodies (rails-ai-bridge)"
+  signature_regex: "^syntax:can't find string"
+  cops:
+    - Style/LambdaCall
+
 - pr: 15969
   status: open
   note: "MultilineInPatternThen/WhenThen removed then after endless range pattern (`in 500.. then`) (galaxy-ruby)"
