@@ -11,6 +11,15 @@
   cops:
     - Style/CombinableLoops
 
+- pr: 15984
+  status: merged
+  note: "(koic) ClassStructure + EmptyLinesAroundAccessModifier (moxml adapters)"
+  signatures:
+    - "syntax:syntax error, unexpected 'def', expecting 'end' or dummy end"
+  cops:
+    - Layout/ClassStructure
+    - Layout/EmptyLinesAroundAccessModifier
+
 - pr: 15992
   status: open
   note: "EndlessMethod converted modifier-if / and-or bodies (semantics change); UselessMethodDefinition then deleted def (brakeman rexml)"
