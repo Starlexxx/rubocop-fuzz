@@ -11,6 +11,13 @@
   cops:
     - Style/CombinableLoops
 
+- pr: 15992
+  status: open
+  note: "EndlessMethod converted modifier-if / and-or bodies (semantics change); UselessMethodDefinition then deleted def (brakeman rexml)"
+  signature_regex: "^syntax:syntax error, unexpected 'and'"
+  cops:
+    - Style/EndlessMethod
+
 - pr: 15991
   status: open
   note: "ReturnNilInPredicateMethodDefinition `|| return` -> `|| return false`; plus AndOr same-pass clash (ollama_chat)"
