@@ -11,6 +11,13 @@
   cops:
     - Style/CombinableLoops
 
+- pr: 16002
+  status: open
+  note: "SpaceBeforeBlockBraces no_space left backslash before brace after line continuation (captive-release)"
+  signature_regex: "^syntax:syntax error, unexpected backslash"
+  cops:
+    - Layout/SpaceBeforeBlockBraces
+
 - pr: 15993
   status: open
   note: "RequireOrder swapped whole lines for requires sharing a line (loop on `require b; require a`; moves code) (docpdf)"
