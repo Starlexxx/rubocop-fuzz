@@ -41,13 +41,13 @@
     - Style/StructInheritance
 
 - pr: 15958
-  status: open
+  status: merged
   note: "IndentationWidth skipped inline `private def` as an access modifier under outdent; loop with IndentationConsistency (activemodel, faraday, activesupport)"
   signatures:
     - 'loop:Layout/IndentationConsistency+Layout/IndentationWidth'
 
 - pr: 15956
-  status: open
+  status: merged
   note: "EndlessMethod length estimate ignored SpaceInsideParens padding of added parens; loop with LineLength + MethodDefParentheses no_parentheses (jwt, actionview)"
   signature_regex: '^loop:.*Layout/LineLength.*Layout/SpaceInsideParens.*Style/EndlessMethod'
 
