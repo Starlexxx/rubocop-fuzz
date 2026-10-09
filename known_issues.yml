@@ -11,6 +11,13 @@
   cops:
     - Style/CombinableLoops
 
+- pr: 15969
+  status: open
+  note: "MultilineInPatternThen/WhenThen removed then after endless range pattern (`in 500.. then`) (galaxy-ruby)"
+  signature_regex: "^syntax:syntax error, unexpected constant, expecting 'then'"
+  cops:
+    - Style/MultilineInPatternThen
+
 - pr: 15962
   status: merged
   note: "ArgumentsForwarding adds def parens once per offense -> `def run(*, &))` (rbfind; also needs 15929 for AmbiguousOperator)"
