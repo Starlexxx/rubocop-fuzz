@@ -4,7 +4,7 @@
 # Optional `cops` must all be present in the finding.
 
 - pr: 15922
-  status: open
+  status: merged
   note: CombinableLoops keeps `}` after merging into do-end loop when followed by another block (baseline; agentmon)
   signatures:
     - "syntax:syntax error, unexpected '}', expecting 'end' or dummy end"
