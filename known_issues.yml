@@ -12,7 +12,7 @@
     - Style/CombinableLoops
 
 - pr: 15962
-  status: open
+  status: merged
   note: "ArgumentsForwarding adds def parens once per offense -> `def run(*, &))` (rbfind; also needs 15929 for AmbiguousOperator)"
   signatures:
     - "syntax:syntax error, unexpected **arg"
@@ -55,12 +55,12 @@
     - Style/ItBlockParameter
 
 - pr: 15949
-  status: open
+  status: merged
   note: "Style/Next modifier correction copied the body, clobbering a nested Next correction (widget_list)"
   signature_regex: '^Style/Next: Parser::ClobberingError'
 
 - pr: 15946
-  status: open
+  status: merged
   note: "ExplicitBlockArgument crashes on `.()` shorthand call (no selector) (fog-aws)"
   signature_regex: '^Style/ExplicitBlockArgument: NoMethodError'
 
@@ -69,9 +69,9 @@
   note: "ClassAndModuleChildren compact style: outer and nested compaction overlap in one pass -> ClobberingError (sequel jdbc)"
   signature_regex: '^Style/ClassAndModuleChildren: Parser::ClobberingError'
 
-- pr: 15929
+- pr: 15838
   status: open
-  note: AmbiguousOperator parenthesizes `bar *args` while ArgumentsForwarding rewrites the splat -> `bar((*))` (files.com)
+  note: (bbatsov, replaces 15929) AmbiguousOperator parenthesizes `bar *args` while ArgumentsForwarding rewrites the splat -> `bar((*))` (files.com)
   signatures:
     - "syntax:syntax error, unexpected ')', expecting '='"
   cops:
@@ -84,7 +84,7 @@
   signature_regex: '^loop:.*Layout/FirstArrayElementLineBreak.*Layout/SpaceInsideArrayLiteralBrackets'
 
 - pr: 15925
-  status: open
+  status: merged
   note: LineEndStringConcatenationIndentation moved one misaligned part per pass; huge SplitStrings literal hits iteration limit (verifiabl-issuer)
   signatures:
     - 'loop:Layout/LineEndStringConcatenationIndentation+Layout/LineLength'
@@ -177,7 +177,7 @@
     - "syntax:unexpected ')', expecting end-of-input"
 
 - pr: 15861
-  status: open
+  status: merged
   note: FormatString (percent) ClobberingError on format nested in format args (found by rubocop-nightly)
   signature_regex: '^Style/FormatString.*Clobbering'
 
