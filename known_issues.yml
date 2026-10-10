@@ -11,6 +11,13 @@
   cops:
     - Style/CombinableLoops
 
+- pr: 16020
+  status: open
+  note: "ArgumentsForwarding chose `...` while another call forwarded anonymous `*, **` without block (effective_datatables)"
+  signature_regex: "^syntax:no anonymous (rest|keyword rest) parameter"
+  cops:
+    - Style/ArgumentsForwarding
+
 - pr: 16018
   status: open
   note: "RequireOrder moved require only above nearest greater sibling; ~100 require_relative SDK files exceed 200 passes (turbopuffer, voltaria, dodopayments...)"
