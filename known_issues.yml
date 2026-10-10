@@ -19,6 +19,8 @@
     - "syntax:syntax error, unexpected symbol literal, expecting 'do' or '{' or '('"
     - "syntax:syntax error, unexpected 'false', expecting 'end' or dummy end"
     - "syntax:syntax error, unexpected 'false', expecting 'do' or '{' or '('"
+  cops:
+    - Style/EndlessMethod
 
 - pr: 16022
   status: open
