@@ -11,6 +11,11 @@
   cops:
     - Style/CombinableLoops
 
+- pr: 16018
+  status: open
+  note: "RequireOrder moved require only above nearest greater sibling; ~100 require_relative SDK files exceed 200 passes (turbopuffer, voltaria, dodopayments...)"
+  signature_regex: "^loop:.*Style/RequireOrder"
+
 - pr: 16002
   status: open
   note: "SpaceBeforeBlockBraces no_space left backslash before brace after line continuation (captive-release)"
