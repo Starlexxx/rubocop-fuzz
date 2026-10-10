@@ -187,9 +187,9 @@
   note: (koic) SpaceAroundBlockParameters loop with SpaceBeforeComma on trailing comma
   signature_regex: 'loop:Layout/SpaceAroundBlockParameters\+Layout/SpaceBeforeComma'
 
-- pr: 15873
-  status: open
-  note: (closed 10-08 by koic, comment looks meant for 15871; unfixed) FetchEnvVar(DefaultToNil false) vs HashLookupMethod(brackets) ENV.fetch <-> ENV[] loop
+- pr: 15950
+  status: merged
+  note: (koic, replaces 15873) FetchEnvVar(DefaultToNil false) vs HashLookupMethod(brackets) ENV.fetch <-> ENV[] loop
   signature_regex: 'loop:.*Style/FetchEnvVar\+Style/HashLookupMethod'
 
 - pr: 15872
