@@ -11,6 +11,15 @@
   cops:
     - Style/CombinableLoops
 
+- pr: 16021
+  status: open
+  note: "HashAsLastArrayItem no_braces + TrailingCommaInArrayLiteral diff_comma same pass (solidus, pulp clients, fog-aws, brakeman...)"
+  signatures:
+    - "syntax:syntax error, unexpected ',', expecting ']'"
+  cops:
+    - Style/HashAsLastArrayItem
+    - Style/TrailingCommaInArrayLiteral
+
 - pr: 16020
   status: open
   note: "ArgumentsForwarding chose `...` while another call forwarded anonymous `*, **` without block (effective_datatables)"
@@ -19,7 +28,7 @@
     - Style/ArgumentsForwarding
 
 - pr: 16018
-  status: open
+  status: merged
   note: "RequireOrder moved require only above nearest greater sibling; ~100 require_relative SDK files exceed 200 passes (turbopuffer, voltaria, dodopayments...)"
   signature_regex: "^loop:.*Style/RequireOrder"
 
