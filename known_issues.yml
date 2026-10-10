@@ -11,6 +11,11 @@
   cops:
     - Style/CombinableLoops
 
+- pr: 16022
+  status: open
+  note: "LineLength SplitStrings split off blank part, LineContinuationLeadingSpace leading moved it, LineEndStringConcatenationIndentation reindented; growing loop (samagotchi, google-events, fog-aws, stablemates)"
+  signature_regex: '^loop:Layout/LineContinuationLeadingSpace\+Layout/LineEndStringConcatenationIndentation'
+
 - pr: 16021
   status: open
   note: "HashAsLastArrayItem no_braces + TrailingCommaInArrayLiteral diff_comma same pass (solidus, pulp clients, fog-aws, brakeman...)"
