@@ -13,7 +13,7 @@
 
 - pr: 16023
   status: open
-  note: "EndlessMethod made def-as-argument endless with command body (parses only on 4.0+, sole arg); AccessModifierDeclarations inline incompat EndlessMethod/SingleLineMethods (resque, capybara, plutonium, shrine, sinatra, aws client_api...)"
+  note: "EndlessMethod made def-as-argument endless with command body (parses only on 4.0+, sole arg); AccessModifierDeclarations inline incompat EndlessMethod/SingleLineMethods (resque, capybara, plutonium, shrine, sinatra...)"
   signatures:
     - "syntax:syntax error, unexpected symbol literal, expecting 'end' or dummy end"
     - "syntax:syntax error, unexpected symbol literal, expecting 'do' or '{' or '('"
