@@ -19,7 +19,7 @@
     - Layout/SpaceBeforeBlockBraces
 
 - pr: 15993
-  status: open
+  status: merged
   note: "RequireOrder swapped whole lines for requires sharing a line (loop on `require b; require a`; moves code) (docpdf)"
   signature_regex: "(^syntax:syntax error, unexpected string literal, expecting 'do'|^loop:.*Style/RequireOrder)"
   cops:
@@ -35,14 +35,14 @@
     - Layout/EmptyLinesAroundAccessModifier
 
 - pr: 15992
-  status: open
+  status: merged
   note: "EndlessMethod converted modifier-if / and-or bodies (semantics change); UselessMethodDefinition then deleted def (brakeman rexml)"
   signature_regex: "^syntax:syntax error, unexpected 'and'"
   cops:
     - Style/EndlessMethod
 
 - pr: 15991
-  status: open
+  status: merged
   note: "ReturnNilInPredicateMethodDefinition `|| return` -> `|| return false`; plus AndOr same-pass clash (ollama_chat)"
   signature_regex: "^syntax:syntax error, unexpected 'false'"
   cops:
