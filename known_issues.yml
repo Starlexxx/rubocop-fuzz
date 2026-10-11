@@ -3,6 +3,24 @@
 # Match by exact signature (`signatures`) or by `signature_regex`.
 # Optional `cops` must all be present in the finding.
 
+- pr: 16031
+  status: open
+  note: "GuardClause multiline form put end before heredoc body of the guard; heredoc in kept branch duplicated guard (activerecord finder_methods.rb)"
+  signatures:
+    - "syntax:syntax error, unexpected end-of-input, expecting 'end' or dummy end"
+  cops:
+    - Style/GuardClause
+    - Layout/LineLength
+
+- pr: 16025
+  status: open
+  note: "koic: Lambda literal with extra spacing before do -> lambdado (ExtraSpacing same pass; activemodel validations.rb)"
+  signatures:
+    - "syntax:syntax error, unexpected 'end'"
+  cops:
+    - Style/Lambda
+    - Layout/ExtraSpacing
+
 - pr: 16030
   status: open
   note: "RaiseArgs exploded dropped parens of raise(X.new(y)) inside endless def passed as argument, array, hash, call (activemodel validations.rb, activesupport cache.rb)"
