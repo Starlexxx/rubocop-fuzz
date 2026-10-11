@@ -3,6 +3,15 @@
 # Match by exact signature (`signatures`) or by `signature_regex`.
 # Optional `cops` must all be present in the finding.
 
+- pr: 16030
+  status: open
+  note: "RaiseArgs exploded dropped parens of raise(X.new(y)) inside endless def passed as argument, array, hash, call (activemodel validations.rb, activesupport cache.rb)"
+  signatures:
+    - "syntax:syntax error, unexpected constant, expecting 'do' or '{' or '('"
+  cops:
+    - Style/RaiseArgs
+    - Style/EndlessMethod
+
 - pr: 15922
   status: merged
   note: CombinableLoops keeps `}` after merging into do-end loop when followed by another block (baseline; agentmon)
