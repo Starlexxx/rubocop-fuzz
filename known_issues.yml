@@ -13,7 +13,7 @@
     - Layout/LineLength
 
 - pr: 16025
-  status: open
+  status: merged
   note: "koic: Lambda literal with extra spacing before do -> lambdado (ExtraSpacing same pass; activemodel validations.rb)"
   signatures:
     - "syntax:syntax error, unexpected 'end'"
