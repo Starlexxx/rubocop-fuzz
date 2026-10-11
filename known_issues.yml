@@ -30,6 +30,15 @@
     - Style/RaiseArgs
     - Style/EndlessMethod
 
+- pr: 16032
+  status: open
+  note: "CombinableLoops + BlockEndNewline same pass on multiline brace block with } on body line -> }} (baseline; ace-test-runner)"
+  signatures:
+    - "syntax:syntax error, unexpected '}', expecting 'end' or dummy end"
+  cops:
+    - Style/CombinableLoops
+    - Layout/BlockEndNewline
+
 - pr: 15922
   status: merged
   note: CombinableLoops keeps `}` after merging into do-end loop when followed by another block (baseline; agentmon)
