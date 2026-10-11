@@ -32,7 +32,7 @@
   signature_regex: '^loop:Layout/LineContinuationLeadingSpace\+Layout/LineEndStringConcatenationIndentation'
 
 - pr: 16021
-  status: open
+  status: merged
   note: "HashAsLastArrayItem no_braces + TrailingCommaInArrayLiteral diff_comma same pass (solidus, pulp clients, fog-aws, brakeman...)"
   signatures:
     - "syntax:syntax error, unexpected ',', expecting ']'"
@@ -41,7 +41,7 @@
     - Style/TrailingCommaInArrayLiteral
 
 - pr: 16020
-  status: open
+  status: merged
   note: "ArgumentsForwarding chose `...` while another call forwarded anonymous `*, **` without block (effective_datatables)"
   signature_regex: "^syntax:no anonymous (rest|keyword rest) parameter"
   cops:
