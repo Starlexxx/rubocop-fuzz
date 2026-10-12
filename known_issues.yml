@@ -3,6 +3,16 @@
 # Match by exact signature (`signatures`) or by `signature_regex`.
 # Optional `cops` must all be present in the finding.
 
+- pr: 16058
+  status: open
+  note: "EndlessMethod + RaiseArgs same pass: private def a = raise(X.new(self)) -> raise X, self (aasm no_brainer_persistence)"
+  signatures:
+    - "syntax:syntax error, unexpected constant, expecting 'do' or '{' or '('"
+  cops:
+    - Style/EndlessMethod
+    - Style/RaiseArgs
+    - Style/AccessModifierDeclarations
+
 - pr: 16056
   status: open
   note: "AndOr: csend command operand (obj&.m arg) not parenthesized -> `a && b&.c? x` (filecon, baseline)"
