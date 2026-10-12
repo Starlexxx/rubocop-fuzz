@@ -3,6 +3,11 @@
 # Match by exact signature (`signatures`) or by `signature_regex`.
 # Optional `cops` must all be present in the finding.
 
+- pr: 16055
+  status: open
+  note: "RescueModifier: rescue modifier nested in the rescue body of another one -> ClobberingError (typr, baseline)"
+  signature_regex: "^Style/RescueModifier: Parser::ClobberingError"
+
 - pr: 16043
   status: open
   note: "koic: AndOr + ReturnNil same pass -> `bar || return nil` (ollama_chat, grape, simplecov...)"
