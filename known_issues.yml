@@ -12,7 +12,7 @@
     - Style/ReturnNil
 
 - pr: 16047
-  status: open
+  status: merged
   note: "ClassMethodsDefinitions def_self: class << self nested in a method of an outer class << self -> ClobberingError (foobara)"
   signature_regex: "^Style/ClassMethodsDefinitions: Parser::ClobberingError"
 
@@ -76,7 +76,7 @@
     - Style/AccessModifierDeclarations
 
 - pr: 16022
-  status: open
+  status: merged
   note: "LineLength SplitStrings split off blank part, LineContinuationLeadingSpace leading moved it, LineEndStringConcatenationIndentation reindented; growing loop (samagotchi, google-events, fog-aws, stablemates)"
   signature_regex: '^loop:Layout/LineContinuationLeadingSpace\+Layout/LineEndStringConcatenationIndentation'
 
