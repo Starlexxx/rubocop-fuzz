@@ -30,7 +30,7 @@
   signature_regex: "^Style/ClassMethodsDefinitions: Parser::ClobberingError"
 
 - pr: 16031
-  status: open
+  status: merged
   note: "GuardClause multiline form put end before heredoc body of the guard; heredoc in kept branch duplicated guard (activerecord finder_methods.rb)"
   signatures:
     - "syntax:syntax error, unexpected end-of-input, expecting 'end' or dummy end"
@@ -48,7 +48,7 @@
     - Layout/ExtraSpacing
 
 - pr: 16030
-  status: open
+  status: merged
   note: "RaiseArgs exploded dropped parens of raise(X.new(y)) inside endless def passed as argument, array, hash, call (activemodel validations.rb, activesupport cache.rb)"
   signatures:
     - "syntax:syntax error, unexpected constant, expecting 'do' or '{' or '('"
