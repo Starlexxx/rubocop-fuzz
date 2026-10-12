@@ -3,6 +3,14 @@
 # Match by exact signature (`signatures`) or by `signature_regex`.
 # Optional `cops` must all be present in the finding.
 
+- pr: 16043
+  status: open
+  note: "koic: AndOr + ReturnNil same pass -> `bar || return nil` (ollama_chat, grape, simplecov...)"
+  signature_regex: "^syntax:syntax error, unexpected 'nil'"
+  cops:
+    - Style/AndOr
+    - Style/ReturnNil
+
 - pr: 16047
   status: open
   note: "ClassMethodsDefinitions def_self: class << self nested in a method of an outer class << self -> ClobberingError (foobara)"
