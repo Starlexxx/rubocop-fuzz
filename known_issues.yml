@@ -3,6 +3,11 @@
 # Match by exact signature (`signatures`) or by `signature_regex`.
 # Optional `cops` must all be present in the finding.
 
+- pr: 16047
+  status: open
+  note: "ClassMethodsDefinitions def_self: class << self nested in a method of an outer class << self -> ClobberingError (foobara)"
+  signature_regex: "^Style/ClassMethodsDefinitions: Parser::ClobberingError"
+
 - pr: 16031
   status: open
   note: "GuardClause multiline form put end before heredoc body of the guard; heredoc in kept branch duplicated guard (activerecord finder_methods.rb)"
