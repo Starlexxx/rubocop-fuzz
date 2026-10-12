@@ -3,6 +3,14 @@
 # Match by exact signature (`signatures`) or by `signature_regex`.
 # Optional `cops` must all be present in the finding.
 
+- pr: 16056
+  status: open
+  note: "AndOr: csend command operand (obj&.m arg) not parenthesized -> `a && b&.c? x` (filecon, baseline)"
+  signatures:
+    - "syntax:syntax error, unexpected string literal, expecting 'then' or '\\n' or ';'"
+  cops:
+    - Style/AndOr
+
 - pr: 16055
   status: open
   note: "RescueModifier: rescue modifier nested in the rescue body of another one -> ClobberingError (typr, baseline)"
