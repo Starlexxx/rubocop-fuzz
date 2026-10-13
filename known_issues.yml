@@ -3,6 +3,11 @@
 # Match by exact signature (`signatures`) or by `signature_regex`.
 # Optional `cops` must all be present in the finding.
 
+- pr: 16069
+  status: open
+  note: "HeredocArgumentClosingParenthesis missed heredocs nested in hash args when skipping calls with args after the heredoc end; loop with MultilineMethodCallBraceLayout (carray mkkernel.rb)"
+  signature_regex: "^loop:Layout/HeredocArgumentClosingParenthesis\\+.*Layout/MultilineMethodCallBraceLayout"
+
 - pr: 16068
   status: open
   note: "RedundantSort left the newline before an own-line .first (`}\n unless x`); SingleLineBlockChain breaks the chain in the same pass (brick extensions.rb)"
