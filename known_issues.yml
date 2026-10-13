@@ -3,6 +3,11 @@
 # Match by exact signature (`signatures`) or by `signature_regex`.
 # Optional `cops` must all be present in the finding.
 
+- pr: 16067
+  status: open
+  note: "RedundantInterpolationUnfreeze replaced whole node; unfrozen string interpolated into another -> ClobberingError (brick, baseline)"
+  signature_regex: "^Style/RedundantInterpolationUnfreeze: Parser::ClobberingError"
+
 - pr: 16058
   status: open
   note: "EndlessMethod + RaiseArgs same pass: private def a = raise(X.new(self)) -> raise X, self (aasm no_brainer_persistence)"
