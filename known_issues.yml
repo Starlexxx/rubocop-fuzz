@@ -3,6 +3,15 @@
 # Match by exact signature (`signatures`) or by `signature_regex`.
 # Optional `cops` must all be present in the finding.
 
+- pr: 16068
+  status: open
+  note: "RedundantSort left the newline before an own-line .first (`}\n unless x`); SingleLineBlockChain breaks the chain in the same pass (brick extensions.rb)"
+  signatures:
+    - "syntax:syntax error, unexpected end-of-input, expecting 'end' or dummy end"
+  cops:
+    - Style/RedundantSort
+    - Layout/SingleLineBlockChain
+
 - pr: 16067
   status: open
   note: "RedundantInterpolationUnfreeze replaced whole node; unfrozen string interpolated into another -> ClobberingError (brick, baseline)"
