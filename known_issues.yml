@@ -3,6 +3,14 @@
 # Match by exact signature (`signatures`) or by `signature_regex`.
 # Optional `cops` must all be present in the finding.
 
+- pr: 16074
+  status: open
+  note: "koic: MCWAP omit_parentheses removed parens of a call assigned inside a parenthesized arg in a >64KB scope (reparse skipped) (brick engine.rb)"
+  signatures:
+    - "syntax:syntax error, unexpected string literal, expecting ')'"
+  cops:
+    - Style/MethodCallWithArgsParentheses
+
 - pr: 16072
   status: open
   note: "koic: CombinableLoops + RedundantLineBreak (InspectBlocks) same pass -> extra end (carray carray_cast_func.rb)"
