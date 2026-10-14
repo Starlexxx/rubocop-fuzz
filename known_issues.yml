@@ -3,6 +3,26 @@
 # Match by exact signature (`signatures`) or by `signature_regex`.
 # Optional `cops` must all be present in the finding.
 
+- pr: 16084
+  status: open
+  note: "koic: MutableConstant loops with a splat in a frozen array (brakeman, activesupport, rake, rubocop-rails, simplecov, good_job; verified 8/8)"
+  signature_regex: "^loop:.*Style/MutableConstant"
+  cops:
+    - Style/MutableConstant
+
+- pr: 16085
+  status: open
+  note: "koic: MutableConstant with an omitted hash value -> expected => (good_job scheduler.rb; verified)"
+  signatures:
+    - "syntax:syntax error, unexpected symbol literal, expecting =>"
+  cops:
+    - Style/MutableConstant
+
+- pr: 16078
+  status: open
+  note: "koic: LineLength infinite loop with a very long string (meshtastic protobuf, iteration cap)"
+  signature_regex: "^loop:Layout/(LineContinuationSpacing\\+)?Layout/LineEndStringConcatenationIndentation\\+Layout/LineLength"
+
 - pr: 16074
   status: open
   note: "koic: MCWAP omit_parentheses removed parens of a call assigned inside a parenthesized arg in a >64KB scope (reparse skipped) (brick engine.rb)"
@@ -35,7 +55,7 @@
     - Layout/SingleLineBlockChain
 
 - pr: 16067
-  status: open
+  status: merged
   note: "RedundantInterpolationUnfreeze replaced whole node; unfrozen string interpolated into another -> ClobberingError (brick, baseline)"
   signature_regex: "^Style/RedundantInterpolationUnfreeze: Parser::ClobberingError"
 
