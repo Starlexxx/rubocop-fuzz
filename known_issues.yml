@@ -3,6 +3,15 @@
 # Match by exact signature (`signatures`) or by `signature_regex`.
 # Optional `cops` must all be present in the finding.
 
+- pr: 16072
+  status: open
+  note: "koic: CombinableLoops + RedundantLineBreak (InspectBlocks) same pass -> extra end (carray carray_cast_func.rb)"
+  signatures:
+    - "syntax:syntax error, unexpected '}'"
+  cops:
+    - Style/CombinableLoops
+    - Layout/RedundantLineBreak
+
 - pr: 16069
   status: merged
   note: "HeredocArgumentClosingParenthesis missed heredocs nested in hash args when skipping calls with args after the heredoc end; loop with MultilineMethodCallBraceLayout (carray mkkernel.rb)"
