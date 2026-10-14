@@ -4,12 +4,12 @@
 # Optional `cops` must all be present in the finding.
 
 - pr: 16069
-  status: open
+  status: merged
   note: "HeredocArgumentClosingParenthesis missed heredocs nested in hash args when skipping calls with args after the heredoc end; loop with MultilineMethodCallBraceLayout (carray mkkernel.rb)"
   signature_regex: "^loop:Layout/HeredocArgumentClosingParenthesis\\+.*Layout/MultilineMethodCallBraceLayout"
 
-- pr: 16068
-  status: open
+- pr: 16076
+  status: merged
   note: "RedundantSort left the newline before an own-line .first (`}\n unless x`); SingleLineBlockChain breaks the chain in the same pass (brick extensions.rb)"
   signatures:
     - "syntax:syntax error, unexpected end-of-input, expecting 'end' or dummy end"
