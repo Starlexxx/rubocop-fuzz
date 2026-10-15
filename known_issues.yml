@@ -3,6 +3,14 @@
 # Match by exact signature (`signatures`) or by `signature_regex`.
 # Optional `cops` must all be present in the finding.
 
+- pr: 16100
+  status: open
+  note: "koic: EmptyStringInsideInterpolation ternary + MCWAP omit_parentheses same pass -> `b? ? foo 'a' : ''` (rspec-expectations include.rb verified; actionview tag_helper, pry, rolemodel likely same)"
+  signature_regex: "^syntax:syntax error, unexpected (local variable or method|string literal), expecting ('do' or '\\{' or '\\('|':')"
+  cops:
+    - Style/EmptyStringInsideInterpolation
+    - Style/MethodCallWithArgsParentheses
+
 - pr: 16102
   status: open
   note: "koic: RequireOrder swapped the last require without trailing newline -> two requires on one line (shapelib.rb x4 #40; verified)"
