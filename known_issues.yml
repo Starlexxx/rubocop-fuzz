@@ -165,7 +165,7 @@
   cops:
     - Style/CombinableLoops
 
-- pr: 16024
+- pr: 16058
   status: open
   note: "#39 '16023 regressions' (activejob backburner, activesupport message_pack, vcr request_handler, brakeman commandline): AMD inline + EndlessMethod command body; fixed by #16024 + #16058 together (verified 4/4)"
   signature_regex: "^syntax:syntax error, unexpected (local variable or method, expecting 'end' or dummy end|(string literal|constant), expecting 'do' or '\\{' or '\\(')"
@@ -174,7 +174,7 @@
     - Style/EndlessMethod
 
 - pr: 16024
-  status: open
+  status: merged
   note: "AccessModifierDeclarations inline into endless def with command body (pre-4.0); companion of 16023; remaining activemodel/aasm = RaiseArgs drops parens in endless arg-def body"
   signature_regex: "^syntax:syntax error, unexpected [^,]+, expecting end-of-input$"
   cops:
@@ -319,7 +319,7 @@
   signature_regex: '^Style/ExplicitBlockArgument: NoMethodError'
 
 - pr: 15939
-  status: open
+  status: merged
   note: "ClassAndModuleChildren compact style: outer and nested compaction overlap in one pass -> ClobberingError (sequel jdbc)"
   signature_regex: '^Style/ClassAndModuleChildren: Parser::ClobberingError'
 
@@ -333,7 +333,7 @@
     - Style/ArgumentsForwarding
 
 - pr: 15927
-  status: open
+  status: merged
   note: SpaceInsideArrayLiteralBrackets compact joins `[\n  [`, FirstArrayElementLineBreak re-breaks it (design conflict, user-approved option 1)
   signature_regex: '^loop:.*Layout/FirstArrayElementLineBreak.*Layout/SpaceInsideArrayLiteralBrackets'
 
