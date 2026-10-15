@@ -3,6 +3,14 @@
 # Match by exact signature (`signatures`) or by `signature_regex`.
 # Optional `cops` must all be present in the finding.
 
+- pr: 16091
+  status: open
+  note: "BlockDelimiters moved trailing rubocop:disable after } above the block (range directive; next run removes it as redundant) (phlex-reactive; #39 nonidem)"
+  signatures:
+    - "nonidem:Lint/RedundantCopDisableDirective"
+  cops:
+    - Style/BlockDelimiters
+
 - pr: 16086
   status: open
   note: "koic: Lint/SymbolConversion with hash value omission ("nonce": -> nonce: lost) (hanami-importmap; #39 '15775 regression')"
