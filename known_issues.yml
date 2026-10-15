@@ -3,6 +3,14 @@
 # Match by exact signature (`signatures`) or by `signature_regex`.
 # Optional `cops` must all be present in the finding.
 
+- pr: 16102
+  status: open
+  note: "koic: RequireOrder swapped the last require without trailing newline -> two requires on one line (shapelib.rb x4 #40; verified)"
+  signatures:
+    - "syntax:syntax error, unexpected local variable or method, expecting end-of-input"
+  cops:
+    - Style/RequireOrder
+
 - pr: 16098
   status: open
   note: "koic: AmbiguousRegexpLiteral `Contract /foo/ => nil` -> `Contract (/foo/ => nil)` (after RedundantParentheses; entitlements-app contracts fixtures, 47 #40 hits; verified)"
