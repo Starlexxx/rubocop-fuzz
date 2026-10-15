@@ -3,6 +3,11 @@
 # Match by exact signature (`signatures`) or by `signature_regex`.
 # Optional `cops` must all be present in the finding.
 
+- pr: 16097
+  status: open
+  note: "UselessSetterCall appended the lvar to initialize/setter methods, Lint/Void removed it (graphql visibility/migration.rb; #40)"
+  signature_regex: "^loop:.*Lint/UselessSetterCall.*Lint/Void|^loop:.*Lint/Void.*Lint/UselessSetterCall"
+
 - pr: 16095
   status: open
   note: "RedundantLineBreak measured the joined line without tab width, LineLength SplitStrings split it again (IndentationStyle tabs; packed:20261015:4, 19/22 #40 files; gitaly repository_pb, graphql migration, sequel pg_multirange still loop)"
