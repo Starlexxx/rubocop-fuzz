@@ -50,7 +50,7 @@
     - Style/MutableConstant
 
 - pr: 16078
-  status: open
+  status: merged
   note: "koic: LineLength infinite loop with a very long string (meshtastic protobuf, iteration cap)"
   signature_regex: "^loop:Layout/(LineContinuationSpacing\\+)?Layout/LineEndStringConcatenationIndentation\\+Layout/LineLength"
 
