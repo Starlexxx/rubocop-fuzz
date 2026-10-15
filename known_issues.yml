@@ -3,6 +3,11 @@
 # Match by exact signature (`signatures`) or by `signature_regex`.
 # Optional `cops` must all be present in the finding.
 
+- pr: 16093
+  status: open
+  note: "NumberConversion: &:to_f inside a receiver whose .to_f is replaced in the same pass -> ClobberingError (ci-queue redis records; #40)"
+  signature_regex: "^Lint/NumberConversion: Parser::ClobberingError"
+
 - pr: 16091
   status: open
   note: "BlockDelimiters moved trailing rubocop:disable after } above the block (range directive; next run removes it as redundant) (phlex-reactive; #39 nonidem)"
