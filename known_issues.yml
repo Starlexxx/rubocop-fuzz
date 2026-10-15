@@ -35,7 +35,7 @@
     - Lint/RedundantCopDisableDirective
 
 - pr: 16086
-  status: open
+  status: merged
   note: "koic: Lint/SymbolConversion with hash value omission ('nonce': -> \"nonce\": broken) (hanami-importmap; #39 '15775 regression')"
   signatures:
     - "syntax:syntax error, unexpected ')'"
@@ -50,7 +50,7 @@
     - Style/MutableConstant
 
 - pr: 16085
-  status: open
+  status: merged
   note: "koic: MutableConstant with an omitted hash value -> expected => (good_job scheduler.rb; verified)"
   signatures:
     - "syntax:syntax error, unexpected symbol literal, expecting =>"
