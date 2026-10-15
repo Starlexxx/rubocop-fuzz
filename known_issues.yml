@@ -3,6 +3,14 @@
 # Match by exact signature (`signatures`) or by `signature_regex`.
 # Optional `cops` must all be present in the finding.
 
+- pr: 16098
+  status: open
+  note: "koic: AmbiguousRegexpLiteral `Contract /foo/ => nil` -> `Contract (/foo/ => nil)` (after RedundantParentheses; entitlements-app contracts fixtures, 47 #40 hits; verified)"
+  signatures:
+    - "syntax:void value expression"
+  cops:
+    - Lint/AmbiguousRegexpLiteral
+
 - pr: 16097
   status: open
   note: "UselessSetterCall appended the lvar to initialize/setter methods, Lint/Void removed it (graphql visibility/migration.rb; #40)"
