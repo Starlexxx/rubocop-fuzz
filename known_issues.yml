@@ -35,7 +35,7 @@
     - Lint/SymbolConversion
 
 - pr: 16084
-  status: open
+  status: merged
   note: "koic: MutableConstant loops with a splat in a frozen array (brakeman, activesupport, rake, rubocop-rails, simplecov, good_job; verified 8/8)"
   signature_regex: "^loop:.*Style/MutableConstant"
   cops:
