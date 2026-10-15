@@ -63,7 +63,7 @@
 
 - pr: 16076
   status: merged
-  note: "RedundantSort left the newline before an own-line .first (`}\n unless x`); SingleLineBlockChain breaks the chain in the same pass (brick extensions.rb)"
+  note: "RedundantSort left the newline before an own-line .first (`}\n unless x`); SingleLineBlockChain breaks the chain in the same pass (brick extensions.rb); incompat via #16077 (merged)"
   signatures:
     - "syntax:syntax error, unexpected end-of-input, expecting 'end' or dummy end"
   cops:
