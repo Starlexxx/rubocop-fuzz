@@ -3,6 +3,14 @@
 # Match by exact signature (`signatures`) or by `signature_regex`.
 # Optional `cops` must all be present in the finding.
 
+- pr: 16086
+  status: open
+  note: "koic: Lint/SymbolConversion with hash value omission ("nonce": -> nonce: lost) (hanami-importmap; #39 '15775 regression')"
+  signatures:
+    - "syntax:syntax error, unexpected ')'"
+  cops:
+    - Lint/SymbolConversion
+
 - pr: 16084
   status: open
   note: "koic: MutableConstant loops with a splat in a frozen array (brakeman, activesupport, rake, rubocop-rails, simplecov, good_job; verified 8/8)"
