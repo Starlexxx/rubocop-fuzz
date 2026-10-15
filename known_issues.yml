@@ -3,6 +3,11 @@
 # Match by exact signature (`signatures`) or by `signature_regex`.
 # Optional `cops` must all be present in the finding.
 
+- pr: 16095
+  status: open
+  note: "RedundantLineBreak measured the joined line without tab width, LineLength SplitStrings split it again (IndentationStyle tabs; packed:20261015:4, 19/22 #40 files; gitaly repository_pb, graphql migration, sequel pg_multirange still loop)"
+  signature_regex: "^loop:.*Layout/LineLength.*Layout/RedundantLineBreak"
+
 - pr: 16093
   status: open
   note: "NumberConversion: &:to_f inside a receiver whose .to_f is replaced in the same pass -> ClobberingError (ci-queue redis records; #40)"
