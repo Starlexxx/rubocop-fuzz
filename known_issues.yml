@@ -28,7 +28,7 @@
     - Style/RequireOrder
 
 - pr: 16098
-  status: open
+  status: merged
   note: "koic: AmbiguousRegexpLiteral `Contract /foo/ => nil` -> `Contract (/foo/ => nil)` (after RedundantParentheses; entitlements-app contracts fixtures, 47 #40 hits; verified)"
   signatures:
     - "syntax:void value expression"
