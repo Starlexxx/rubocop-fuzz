@@ -3,6 +3,14 @@
 # Match by exact signature (`signatures`) or by `signature_regex`.
 # Optional `cops` must all be present in the finding.
 
+- pr: 16106
+  status: open
+  note: "HeredocMethodCallPosition + MCWAP same pass: `)` glued to heredoc delimiter (motion-sparkle-sandbox sparkle.rb; #41)"
+  signature_regex: "^syntax:(unterminated heredoc; )?can't find string"
+  cops:
+    - Lint/HeredocMethodCallPosition
+    - Style/MethodCallWithArgsParentheses
+
 - pr: 16100
   status: open
   note: "koic: EmptyStringInsideInterpolation ternary + MCWAP omit_parentheses same pass -> `b? ? foo 'a' : ''` (rspec-expectations include.rb verified; actionview tag_helper, pry, rolemodel likely same)"
