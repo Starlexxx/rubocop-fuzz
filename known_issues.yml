@@ -130,7 +130,7 @@
   signature_regex: "^Style/RedundantInterpolationUnfreeze: Parser::ClobberingError"
 
 - pr: 16058
-  status: open
+  status: merged
   note: "EndlessMethod + RaiseArgs same pass: private def a = raise(X.new(self)) -> raise X, self (aasm no_brainer_persistence)"
   signatures:
     - "syntax:syntax error, unexpected constant, expecting 'do' or '{' or '('"
@@ -210,7 +210,7 @@
     - Style/CombinableLoops
 
 - pr: 16058
-  status: open
+  status: merged
   note: "#39 '16023 regressions' (activejob backburner, activesupport message_pack, vcr request_handler, brakeman commandline): AMD inline + EndlessMethod command body; fixed by #16024 + #16058 together (verified 4/4)"
   signature_regex: "^syntax:syntax error, unexpected (local variable or method, expecting 'end' or dummy end|(string literal|constant), expecting 'do' or '\\{' or '\\(')"
   cops:
