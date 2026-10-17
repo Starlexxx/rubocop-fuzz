@@ -4,7 +4,7 @@
 # Optional `cops` must all be present in the finding.
 
 - pr: 16106
-  status: open
+  status: merged
   note: "HeredocMethodCallPosition + MCWAP same pass: `)` glued to heredoc delimiter (motion-sparkle-sandbox sparkle.rb; #41)"
   signature_regex: "^syntax:(unterminated heredoc; )?can't find string"
   cops:
@@ -20,7 +20,7 @@
     - Style/MethodCallWithArgsParentheses
 
 - pr: 16102
-  status: open
+  status: merged
   note: "koic: RequireOrder swapped the last require without trailing newline -> two requires on one line (shapelib.rb x4 #40; verified)"
   signatures:
     - "syntax:syntax error, unexpected local variable or method, expecting end-of-input"
@@ -36,7 +36,7 @@
     - Lint/AmbiguousRegexpLiteral
 
 - pr: 16097
-  status: open
+  status: merged
   note: "UselessSetterCall appended the lvar to initialize/setter methods, Lint/Void removed it (graphql visibility/migration.rb; #40)"
   signature_regex: "^loop:.*Lint/UselessSetterCall.*Lint/Void|^loop:.*Lint/Void.*Lint/UselessSetterCall"
 
@@ -46,12 +46,12 @@
   signature_regex: "^loop:.*Layout/LineLength.*Layout/RedundantLineBreak"
 
 - pr: 16093
-  status: open
+  status: merged
   note: "NumberConversion: &:to_f inside a receiver whose .to_f is replaced in the same pass -> ClobberingError (ci-queue redis records; #40)"
   signature_regex: "^Lint/NumberConversion: Parser::ClobberingError"
 
 - pr: 16091
-  status: open
+  status: merged
   note: "BlockDelimiters moved trailing rubocop:disable after } above the block (range directive; next run removes it as redundant) (phlex-reactive; #39 nonidem)"
   signatures:
     - "nonidem:Lint/RedundantCopDisableDirective"
