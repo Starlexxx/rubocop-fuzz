@@ -3,6 +3,13 @@
 # Match by exact signature (`signatures`) or by `signature_regex`.
 # Optional `cops` must all be present in the finding.
 
+- pr: 16109
+  status: open
+  note: "ParenthesesAroundCondition (AllowSafeAssignment false) stripped parens around masgn in condition (rails-paradedb migration_helpers; #42)"
+  signature_regex: "^syntax:syntax error, unexpected ',', expecting 'then'"
+  cops:
+    - Style/ParenthesesAroundCondition
+
 - pr: 16106
   status: merged
   note: "HeredocMethodCallPosition + MCWAP same pass: `)` glued to heredoc delimiter (motion-sparkle-sandbox sparkle.rb; #41)"
