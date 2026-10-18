@@ -48,7 +48,7 @@
   signature_regex: "^loop:.*Lint/UselessSetterCall.*Lint/Void|^loop:.*Lint/Void.*Lint/UselessSetterCall"
 
 - pr: 16095
-  status: open
+  status: merged
   note: "RedundantLineBreak measured the joined line without tab width, LineLength SplitStrings split it again (IndentationStyle tabs; packed:20261015:4, 19/22 #40 files; gitaly repository_pb, graphql migration, sequel pg_multirange still loop)"
   signature_regex: "^loop:.*Layout/LineLength.*Layout/RedundantLineBreak"
 
