@@ -3,6 +3,11 @@
 # Match by exact signature (`signatures`) or by `signature_regex`.
 # Optional `cops` must all be present in the finding.
 
+- pr: 16112
+  status: open
+  note: "RedundantBegin: multiline begin as modifier-if condition -> ClobberingError (activeagent instrumentation.rb after RescueModifier expands `begin a rescue nil end`; 170 #43 hits, baseline)"
+  signature_regex: "^Style/RedundantBegin: Parser::ClobberingError"
+
 - pr: 16109
   status: open
   note: "ParenthesesAroundCondition (AllowSafeAssignment false) stripped parens around masgn in condition (rails-paradedb migration_helpers; #42)"
