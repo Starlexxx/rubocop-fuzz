@@ -88,4 +88,21 @@ RSpec.describe RuboCopFuzz::Triage do
 
     expect(triage.buckets[:new].size).to eq(3)
   end
+
+  context 'when an entry points at a plugin PR' do
+    let(:known_yaml) do
+      <<~YAML
+        - pr: rubocop-performance#123
+          status: open
+          note: plugin loop
+          signatures:
+            - 'loop:Style/C'
+      YAML
+    end
+
+    it 'renders the repo-qualified reference' do
+      expect(triage.body).to include('`rubocop-performance#123`')
+      expect(triage.body).not_to include('rubocop#rubocop-performance')
+    end
+  end
 end

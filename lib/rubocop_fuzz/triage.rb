@@ -108,7 +108,7 @@ module RuboCopFuzz
     end
 
     def pr_ref(pr)
-      "`rubocop##{pr}`"
+      pr.to_s.include?('#') ? "`#{pr}`" : "`rubocop##{pr}`"
     end
 
     def truncate(signature)

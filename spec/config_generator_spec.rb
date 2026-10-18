@@ -138,4 +138,50 @@ RSpec.describe RuboCopFuzz::ConfigGenerator do
       expect(config['Layout/Bar']).to eq('Enabled' => true, 'AllowMultiline' => false)
     end
   end
+
+  context 'with a plugin' do
+    before do
+      plugin_dir = File.join(@rubocop_dir, 'plugin')
+      FileUtils.mkdir_p(File.join(plugin_dir, 'config'))
+      File.write(File.join(plugin_dir, 'config', 'default.yml'), <<~YAML)
+        Performance:
+          Enabled: true
+        Performance/Baz:
+          Enabled: pending
+          EnforcedStyle: fast
+          SupportedStyles:
+            - fast
+            - slow
+          AllowSplat: false
+      YAML
+      @plugin_dir = plugin_dir
+    end
+
+    let(:generator) do
+      described_class.new(rubocop_dir: @rubocop_dir, plugins: { 'rubocop-performance' => @plugin_dir },
+                          target_ruby_version: '3.3')
+    end
+
+    it 'lists the plugins in every variant' do
+      expect(YAML.safe_load(generator.baseline.yaml)['plugins']).to eq(['rubocop-performance'])
+      expect(YAML.safe_load(generator.sweep_variants.first.yaml)['plugins']).to eq(['rubocop-performance'])
+      expect(YAML.safe_load(generator.packed_variants(seed: 1).first.yaml)['plugins']).to eq(['rubocop-performance'])
+    end
+
+    it 'sweeps plugin cop options alongside core ones' do
+      ids = generator.sweep_variants.map(&:id)
+      expect(ids).to include('Performance/Baz:EnforcedStyle=slow', 'Performance/Baz:AllowSplat=true',
+                             'Style/Foo:EnforcedStyle=expanded')
+    end
+
+    it 'packs plugin cops with the core ones' do
+      config = YAML.safe_load(generator.packed_variants(seed: 1).first.yaml)
+      expect(config['Performance/Baz']).to include('Enabled' => true)
+      expect(config['Style/Foo']).to include('Enabled' => true)
+    end
+  end
+
+  it 'omits the plugins key without plugins' do
+    expect(YAML.safe_load(generator.baseline.yaml)).not_to have_key('plugins')
+  end
 end

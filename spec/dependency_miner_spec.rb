@@ -38,4 +38,13 @@ RSpec.describe RuboCopFuzz::DependencyMiner do
 
     expect(described_class.new(@dir).clusters).to eq([%w[Style/Foo Style/Bar]])
   end
+
+  it 'scans plugin checkouts too' do
+    plugin_dir = File.join(@dir, 'plugin')
+    path = File.join(plugin_dir, 'lib', 'rubocop', 'cop', 'performance', 'foo.rb')
+    FileUtils.mkdir_p(File.dirname(path))
+    File.write(path, "config.for_cop('Style/Bar')")
+
+    expect(described_class.new(@dir, [plugin_dir]).clusters).to eq([%w[Performance/Foo Style/Bar]])
+  end
 end

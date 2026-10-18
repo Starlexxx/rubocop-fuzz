@@ -10,9 +10,11 @@ module RuboCopFuzz
   class Minimizer
     Repro = Struct.new(:cops, :cop_configs, :source, :yaml, keyword_init: true)
 
-    def initialize(rubocop_dir:, timeout: 60)
+    def initialize(rubocop_dir:, timeout: 60, plugins: {})
       @rubocop_dir = rubocop_dir
-      @invoker = Invoker.new(rubocop_dir: rubocop_dir, timeout: timeout)
+      @plugins = plugins
+      gemfile = Gemfile.new(rubocop_dir: rubocop_dir, plugins: plugins).path
+      @invoker = Invoker.new(rubocop_dir: rubocop_dir, timeout: timeout, gemfile: gemfile)
     end
 
     def minimize(finding)
@@ -45,6 +47,7 @@ module RuboCopFuzz
 
     def repro_yaml(cops, cop_configs)
       config = { 'AllCops' => { 'DisabledByDefault' => true, 'SuggestExtensions' => false } }
+      config = { 'plugins' => @plugins.keys }.merge(config) unless @plugins.empty?
       cops.sort.each do |cop|
         config[cop] = { 'Enabled' => true }.merge(cop_configs[cop] || {})
       end

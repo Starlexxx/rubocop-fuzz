@@ -8,6 +8,7 @@ module RuboCopFuzz
   class CLI
     DEFAULTS = {
       rubocop_dir: nil,
+      plugins: {},
       gems_dir: File.join(Gem.dir, 'gems'),
       out_dir: 'fuzz-out',
       workers: Etc.nprocessors,
@@ -26,7 +27,7 @@ module RuboCopFuzz
       when 'minimize' then minimize(argv)
       when 'triage' then triage(argv)
       else
-        warn 'usage: rubocop-fuzz scan|minimize|triage --rubocop DIR [options]'
+        warn 'usage: rubocop-fuzz scan|minimize|triage --rubocop DIR [--plugin NAME=DIR] [options]'
         command == 'help' ? 0 : 1
       end
     end
@@ -37,6 +38,12 @@ module RuboCopFuzz
       opts = parse_options(argv)
       unless opts[:rubocop_dir] && File.directory?(opts[:rubocop_dir])
         warn 'error: --rubocop DIR (path to rubocop checkout) is required'
+        return 1
+      end
+
+      missing = opts[:plugins].reject { |_name, dir| File.directory?(dir) }
+      unless missing.empty?
+        warn "error: plugin checkout not found: #{missing.values.join(', ')}"
         return 1
       end
 
@@ -60,14 +67,15 @@ module RuboCopFuzz
                     result&.fetch('duration', '?'), marker)
       end
 
+      gemfile = Gemfile.new(rubocop_dir: File.expand_path(opts[:rubocop_dir]), plugins: opts[:plugins]).path
       scanner = Scanner.new(rubocop_dir: File.expand_path(opts[:rubocop_dir]),
                             shards: shards, variants: variants,
                             workers: opts[:workers], timeout: opts[:timeout],
-                            shards_per_config: opts[:shards_per_config])
+                            shards_per_config: opts[:shards_per_config], gemfile: gemfile)
       findings = scanner.scan(progress: progress)
 
       files = Report.new(findings, out_dir: opts[:out_dir],
-                         rubocop_dir: File.expand_path(opts[:rubocop_dir])).write
+                         rubocop_dir: File.expand_path(opts[:rubocop_dir]), plugins: opts[:plugins]).write
       puts "\n#{findings.size} findings -> #{files.join(', ')}"
       0
     end
@@ -76,6 +84,7 @@ module RuboCopFuzz
       opts = DEFAULTS.dup
       OptionParser.new do |o|
         o.on('--rubocop DIR') { |v| opts[:rubocop_dir] = v }
+        o.on('--plugin NAME=DIR', 'plugin checkout, repeatable') { |v| add_plugin(opts, v) }
         o.on('--gems-dir DIR') { |v| opts[:gems_dir] = v }
         o.on('--out DIR') { |v| opts[:out_dir] = v }
         o.on('--workers N', Integer) { |v| opts[:workers] = v }
@@ -95,9 +104,10 @@ module RuboCopFuzz
     end
 
     def minimize(argv)
-      opts = { findings: 'fuzz-out/findings.jsonl', timeout: 60 }
+      opts = { findings: 'fuzz-out/findings.jsonl', timeout: 60, plugins: {} }
       OptionParser.new do |o|
         o.on('--rubocop DIR') { |v| opts[:rubocop_dir] = v }
+        o.on('--plugin NAME=DIR') { |v| add_plugin(opts, v) }
         o.on('--findings PATH') { |v| opts[:findings] = v }
         o.on('--timeout SECS', Integer) { |v| opts[:timeout] = v }
       end.parse!(argv)
@@ -108,7 +118,7 @@ module RuboCopFuzz
       end
 
       minimizer = Minimizer.new(rubocop_dir: File.expand_path(opts[:rubocop_dir]),
-                                timeout: opts[:timeout])
+                                timeout: opts[:timeout], plugins: opts[:plugins])
       findings = File.readlines(opts[:findings]).reject { |l| l.strip.empty? }.map { |l| JSON.parse(l) }
                      .uniq { |f| [f['type'], f['cops'].sort, f['signature']] }
 
@@ -159,15 +169,22 @@ module RuboCopFuzz
       0
     end
 
+    def add_plugin(opts, value)
+      name, dir = value.split('=', 2)
+      raise OptionParser::InvalidArgument, value unless name && dir
+
+      opts[:plugins] = opts[:plugins].merge(name => File.expand_path(dir))
+    end
+
     def build_variants(opts)
-      generator = ConfigGenerator.new(rubocop_dir: File.expand_path(opts[:rubocop_dir]))
+      generator = ConfigGenerator.new(rubocop_dir: File.expand_path(opts[:rubocop_dir]), plugins: opts[:plugins])
       variants = opts[:tiers].flat_map do |tier|
         case tier
         when 'baseline' then [generator.baseline]
         when 'sweep' then generator.sweep_variants
         when 'packed' then generator.packed_variants(seed: opts[:seed])
         when 'interactions'
-          clusters = DependencyMiner.new(File.expand_path(opts[:rubocop_dir])).clusters
+          clusters = DependencyMiner.new(File.expand_path(opts[:rubocop_dir]), opts[:plugins].values).clusters
           generator.interaction_variants(clusters)
         else
           warn "unknown tier: #{tier}"

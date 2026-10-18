@@ -9,8 +9,9 @@ module RuboCopFuzz
   class Scanner
     RUBOCOP_ARGS = %w[-A --cache false --no-color -f json].freeze
 
-    def initialize(rubocop_dir:, shards:, variants:, workers:, timeout:, shards_per_config: nil)
+    def initialize(rubocop_dir:, shards:, variants:, workers:, timeout:, shards_per_config: nil, gemfile: nil)
       @rubocop_dir = rubocop_dir
+      @gemfile = gemfile
       @shards = shards
       @variants = variants
       @workers = workers
@@ -70,7 +71,7 @@ module RuboCopFuzz
     private
 
     def invoker
-      @invoker ||= Invoker.new(rubocop_dir: @rubocop_dir, timeout: @timeout)
+      @invoker ||= Invoker.new(rubocop_dir: @rubocop_dir, timeout: @timeout, gemfile: @gemfile)
     end
 
     def copy_shard(shard, dir)

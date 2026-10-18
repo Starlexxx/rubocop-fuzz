@@ -7,12 +7,13 @@ module RuboCopFuzz
   class DependencyMiner
     REFERENCE_RE = %r{(?:for_cop|for_enabled_cop|cop_enabled\?)\(\s*['"](?<cop>[A-Z][A-Za-z]*/[A-Z][A-Za-z]*)['"]}
 
-    def initialize(rubocop_dir)
-      @rubocop_dir = rubocop_dir
+    def initialize(rubocop_dir, plugin_dirs = [])
+      @dirs = [rubocop_dir, *plugin_dirs]
     end
 
     def clusters
-      Dir.glob(File.join(@rubocop_dir, 'lib', 'rubocop', 'cop', '*', '*.rb')).sort.filter_map do |path|
+      cop_files = @dirs.flat_map { |dir| Dir.glob(File.join(dir, 'lib', 'rubocop', 'cop', '*', '*.rb')).sort }
+      cop_files.filter_map do |path|
         refs = File.read(path).scan(REFERENCE_RE).flatten.uniq
         next if refs.empty?
 

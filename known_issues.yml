@@ -2,6 +2,7 @@
 # `status: merged` turns any reappearance into a regression report.
 # Match by exact signature (`signatures`) or by `signature_regex`.
 # Optional `cops` must all be present in the finding.
+# `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
 - pr: 16113
   status: merged

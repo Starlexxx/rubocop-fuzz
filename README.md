@@ -24,6 +24,9 @@ rubocop-fuzz scan --rubocop path/to/rubocop --tier interactions --shards-per-con
 # all cops on, non-default options spread over a few configs (reshuffled by --seed)
 rubocop-fuzz scan --rubocop path/to/rubocop --tier packed
 
+# fuzz a plugin checkout together with core (repeat --plugin for several)
+rubocop-fuzz scan --rubocop path/to/rubocop --plugin rubocop-performance=path/to/rubocop-performance
+
 # add the last day's newly published gems to a corpus
 script/fetch-fresh-corpus corpus-gems 100
 

@@ -7,10 +7,11 @@ module RuboCopFuzz
   # Writes findings as JSONL plus a markdown report deduped by
   # (type, cop set, error signature).
   class Report
-    def initialize(findings, out_dir:, rubocop_dir:)
+    def initialize(findings, out_dir:, rubocop_dir:, plugins: {})
       @findings = findings.map { |f| stringify(f) }
       @out_dir = out_dir
       @rubocop_dir = rubocop_dir
+      @plugins = plugins
     end
 
     def write
@@ -33,7 +34,8 @@ module RuboCopFuzz
 
     def markdown
       lines = ["# rubocop-fuzz findings", '',
-               "RuboCop under test: `#{@rubocop_dir}` (#{git_rev})", '',
+               "RuboCop under test: `#{@rubocop_dir}` (#{git_rev(@rubocop_dir)})",
+               *@plugins.map { |name, dir| "Plugin #{name}: `#{dir}` (#{git_rev(dir)})" }, '',
                "Total findings: #{@findings.size}, unique: #{groups.size}", '']
       groups.each_with_index do |((type, cops, signature), items), i|
         sample = items.first
@@ -49,8 +51,8 @@ module RuboCopFuzz
       lines.join("\n")
     end
 
-    def git_rev
-      Dir.chdir(@rubocop_dir) { `git rev-parse --short HEAD`.strip }
+    def git_rev(dir)
+      Dir.chdir(dir) { `git rev-parse --short HEAD`.strip }
     rescue StandardError
       'unknown'
     end

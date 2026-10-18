@@ -17,8 +17,9 @@ module RuboCopFuzz
     MAX_COMBOS_PER_CLUSTER = 200
     PACKED_EXCLUDED_COPS = %w[Style/MissingElse Style/StringHashKeys].freeze
 
-    def initialize(rubocop_dir: nil, target_ruby_version: RUBY_VERSION[/\d+\.\d+/])
+    def initialize(rubocop_dir: nil, plugins: {}, target_ruby_version: RUBY_VERSION[/\d+\.\d+/])
       @rubocop_dir = rubocop_dir
+      @plugins = plugins
       @target_ruby_version = target_ruby_version
     end
 
@@ -64,7 +65,11 @@ module RuboCopFuzz
     private
 
     def defaults
-      @defaults ||= YAML.unsafe_load_file(File.join(@rubocop_dir, 'config', 'default.yml'))
+      @defaults ||= [@rubocop_dir, *@plugins.values].map { |dir| default_yml(dir) }.reduce(:merge)
+    end
+
+    def default_yml(dir)
+      YAML.unsafe_load_file(File.join(dir, 'config', 'default.yml'))
     end
 
     def cop_entries
@@ -127,11 +132,17 @@ module RuboCopFuzz
 
     def all_cops_yaml
       <<~YAML.chomp
-        AllCops:
+        #{plugins_yaml}AllCops:
           NewCops: enable
           SuggestExtensions: false
           TargetRubyVersion: #{@target_ruby_version}
       YAML
+    end
+
+    def plugins_yaml
+      return '' if @plugins.empty?
+
+      "plugins:\n#{@plugins.keys.map { |name| "  - #{name}\n" }.join}"
     end
   end
 end
