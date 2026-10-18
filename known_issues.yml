@@ -4,7 +4,7 @@
 # Optional `cops` must all be present in the finding.
 
 - pr: 16113
-  status: open
+  status: merged
   note: "RaiseArgs: raise nested in another raise's arguments -> ClobberingError, both styles (samagotchi fake_http.rb; #43)"
   signature_regex: "^Style/RaiseArgs: Parser::ClobberingError"
 
