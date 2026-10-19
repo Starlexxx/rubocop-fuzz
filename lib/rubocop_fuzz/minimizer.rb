@@ -39,7 +39,7 @@ module RuboCopFuzz
 
     # Cop entries the config variant sets explicitly (everything except AllCops).
     def explicit_cop_configs(yaml)
-      (YAML.safe_load(yaml) || {}).except('AllCops')
+      (YAML.safe_load(yaml) || {}).except('AllCops', 'plugins')
         .transform_values { |conf| (conf || {}).except('Enabled') }
     rescue Psych::SyntaxError
       {}

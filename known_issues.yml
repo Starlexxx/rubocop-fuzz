@@ -616,6 +616,9 @@
   note: (koic, replaced 15739) MultilineMethodCallBraceLayout vs MethodCallWithArgsParentheses omit_parentheses same-pass clash
   signatures:
     - "syntax:syntax error, unexpected ')', expecting `end' or dummy end"
+  cops:
+    - Layout/MultilineMethodCallBraceLayout
+    - Style/MethodCallWithArgsParentheses
 
 - pr: 15717
   status: merged
@@ -681,6 +684,8 @@
   note: Layout/LineLength break after nested heredoc argument
   signatures:
     - "syntax:syntax error, unexpected `end'"
+  cops:
+    - Layout/LineLength
 
 - pr: 15675
   status: merged
