@@ -10,7 +10,7 @@
   signature_regex: "^Style/RaiseArgs: Parser::ClobberingError"
 
 - pr: 16112
-  status: open
+  status: merged
   note: "RedundantBegin: multiline begin as modifier-if condition -> ClobberingError (activeagent instrumentation.rb after RescueModifier expands `begin a rescue nil end`; 170 #43 hits, baseline)"
   signature_regex: "^Style/RedundantBegin: Parser::ClobberingError"
 
