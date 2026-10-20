@@ -15,7 +15,7 @@
   signature_regex: "^Style/RedundantBegin: Parser::ClobberingError"
 
 - pr: 16109
-  status: open
+  status: merged
   note: "ParenthesesAroundCondition (AllowSafeAssignment false) stripped parens around masgn in condition (rails-paradedb migration_helpers; #42)"
   signature_regex: "^syntax:syntax error, unexpected ',', expecting ('then'|'end' or dummy end|end-of-input)"
   cops:
