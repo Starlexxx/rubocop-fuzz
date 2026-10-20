@@ -105,4 +105,14 @@ RSpec.describe RuboCopFuzz::Triage do
       expect(triage.body).not_to include('rubocop#rubocop-performance')
     end
   end
+
+  context 'with a cops filter' do
+    it 'keeps only groups with a matching cop' do
+      triage = described_class.new(findings, known_path: nil, cops: /^Style\/C/)
+
+      expect(triage.grouped.map { |g| g[:signature] }).to eq(['loop:Style/C'])
+      expect(triage.body).to include('1 finding(s), 1 unique group(s)')
+      expect(triage.body).to include('| loop | `Style/C` | `loop:Style/C` |')
+    end
+  end
 end

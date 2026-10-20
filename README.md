@@ -36,6 +36,14 @@ rubocop-fuzz minimize --rubocop path/to/rubocop --findings fuzz-out/findings.jso
 
 Findings are written to `fuzz-out/findings.jsonl` and `fuzz-out/report.md`.
 
+```sh
+# collapse known findings and keep only groups that involve a plugin cop
+rubocop-fuzz triage --findings fuzz-out/findings.jsonl --known known_issues.yml --cops '^Performance/'
+```
+
+The `nightly` workflow fuzzes core; `nightly-plugins` fuzzes core together with
+the plugin checkouts and files its findings under the `nightly-plugins` label.
+
 ## Development
 
 ```sh

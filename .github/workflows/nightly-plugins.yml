@@ -1,0 +1,100 @@
+name: nightly-plugins
+
+on:
+  schedule:
+    - cron: '30 3 * * *'
+  workflow_dispatch:
+
+env:
+  PLUGINS: --plugin rubocop-performance=rubocop-performance
+
+jobs:
+  fuzz:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        slice: [0, 1, 2, 3]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: rubocop/rubocop
+          path: rubocop
+      - uses: actions/checkout@v4
+        with:
+          repository: rubocop/rubocop-performance
+          path: rubocop-performance
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.4'
+          bundler-cache: true
+      - name: Install rubocop dependencies
+        run: bundle install
+        working-directory: rubocop
+      - name: Fetch corpus
+        run: script/fetch-corpus corpus-gems
+      - name: Fetch fresh gems
+        run: script/fetch-fresh-corpus corpus-gems 100
+      - name: Scan (baseline)
+        run: |
+          ruby exe/rubocop-fuzz scan \
+            --rubocop rubocop $PLUGINS --gems-dir corpus-gems \
+            --tier baseline \
+            --shard-slice ${{ matrix.slice }}/4 \
+            --out fuzz-out/baseline
+      - name: Scan (plugin sweep)
+        run: |
+          ruby exe/rubocop-fuzz scan \
+            --rubocop rubocop $PLUGINS --gems-dir corpus-gems \
+            --tier sweep --config-filter '^Performance/' \
+            --shard-slice ${{ matrix.slice }}/4 \
+            --out fuzz-out/sweep
+      - name: Scan (packed)
+        run: |
+          ruby exe/rubocop-fuzz scan \
+            --rubocop rubocop $PLUGINS --gems-dir corpus-gems \
+            --tier packed \
+            --shard-slice ${{ matrix.slice }}/4 \
+            --out fuzz-out/packed
+      - name: Scan (interactions)
+        run: |
+          ruby exe/rubocop-fuzz scan \
+            --rubocop rubocop $PLUGINS --gems-dir corpus-gems \
+            --tier interactions --shards-per-config 2 \
+            --shard-slice ${{ matrix.slice }}/4 \
+            --out fuzz-out/interactions
+      - uses: actions/upload-artifact@v4
+        with:
+          name: plugin-findings-${{ matrix.slice }}
+          path: fuzz-out/
+          if-no-files-found: ignore
+
+  report:
+    needs: fuzz
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+      - name: Open issue when plugin findings exist
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          find artifacts -name findings.jsonl -exec cat {} + > all-findings.jsonl 2>/dev/null || true
+          if [ -s all-findings.jsonl ]; then
+            ruby exe/rubocop-fuzz triage \
+              --findings all-findings.jsonl --known known_issues.yml \
+              --cops '^Performance/' --out body.md
+            gh issue list --label nightly-plugins --state open --json number --jq '.[].number' \
+              | xargs -r -I{} gh issue close {} --comment "Superseded by the next nightly run."
+            gh issue create \
+              --title "Nightly plugin findings $(date -u +%F)" \
+              --body-file body.md \
+              --label nightly-plugins
+          fi

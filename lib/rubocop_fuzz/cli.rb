@@ -156,6 +156,7 @@ module RuboCopFuzz
         o.on('--findings PATH') { |v| opts[:findings] = v }
         o.on('--known PATH') { |v| opts[:known] = v }
         o.on('--out PATH') { |v| opts[:out] = v }
+        o.on('--cops REGEX', 'keep only findings with a matching cop') { |v| opts[:cops] = Regexp.new(v) }
       end.parse!(argv)
 
       unless File.exist?(opts[:findings])
@@ -164,7 +165,7 @@ module RuboCopFuzz
       end
 
       findings = File.readlines(opts[:findings]).reject { |l| l.strip.empty? }.map { |l| JSON.parse(l) }
-      body = Triage.new(findings, known_path: opts[:known]).body
+      body = Triage.new(findings, known_path: opts[:known], cops: opts[:cops]).body
       opts[:out] ? File.write(opts[:out], body) : puts(body)
       0
     end

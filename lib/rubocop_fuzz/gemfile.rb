@@ -5,7 +5,7 @@ require 'tmpdir'
 module RuboCopFuzz
   # Gemfile for the checkouts under test. Without plugins it is the core
   # checkout's own; with plugins a generated one that points bundler at
-  # every checkout by path, locked once up front so forked workers never
+  # every checkout by path, resolved once up front so forked workers never
   # race on resolution.
   class Gemfile
     def initialize(rubocop_dir:, plugins: {})
@@ -29,13 +29,21 @@ module RuboCopFuzz
       dir = Dir.mktmpdir('fuzz-gemfile-')
       gemfile = File.join(dir, 'Gemfile')
       File.write(gemfile, source)
-      raise Error, "bundle lock failed for #{gemfile}" unless lock(gemfile, '--local') || lock(gemfile)
+      raise Error, "bundle install failed for #{gemfile}" unless lock(gemfile) || install(gemfile)
 
       gemfile
     end
 
-    def lock(gemfile, *flags)
-      system({ 'BUNDLE_GEMFILE' => gemfile }, 'bundle', 'lock', *flags, out: File::NULL, err: File::NULL)
+    def lock(gemfile)
+      bundle(gemfile, 'lock', '--local')
+    end
+
+    def install(gemfile)
+      bundle(gemfile, 'install')
+    end
+
+    def bundle(gemfile, *args)
+      system({ 'BUNDLE_GEMFILE' => gemfile }, 'bundle', *args, out: File::NULL, err: File::NULL)
     end
   end
 end

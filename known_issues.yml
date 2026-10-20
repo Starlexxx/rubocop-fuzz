@@ -412,6 +412,9 @@
   note: (koic, replaces 15900) MutableConstant(Recursive) + TrailingCommaInHashLiteral same pass -> `},.freeze` (pry, jwt, vcr, activesupport)
   signatures:
     - "syntax:syntax error, unexpected '.'"
+  cops:
+    - Style/MutableConstant
+    - Style/TrailingCommaInHashLiteral
 
 - pr: 15899
   status: merged

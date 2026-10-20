@@ -9,8 +9,9 @@ module RuboCopFuzz
   class Triage
     Entry = Struct.new(:pr, :status, :note, :signatures, :signature_regex, :cops, keyword_init: true)
 
-    def initialize(findings, known_path:)
-      @findings = findings
+    def initialize(findings, known_path:, cops: nil)
+      @cops = cops
+      @findings = cops ? findings.select { |f| f['cops'].any? { |c| c.match?(cops) } } : findings
       @entries = load_entries(known_path)
     end
 
@@ -81,10 +82,11 @@ module RuboCopFuzz
     def section(title, groups)
       return [] if groups.empty?
 
-      lines = ["## #{title}", '', '| files | hits | type | signature |', '|---|---|---|---|']
+      lines = ["## #{title}", '', '| files | hits | type | cops | signature |', '|---|---|---|---|---|']
       groups.first(30).each do |g|
         pr = g[:entry] ? " (#{pr_ref(g[:entry].pr)})" : ''
-        lines << "| #{g[:files].size} | #{g[:count]} | #{g[:type]} | `#{truncate(g[:signature])}`#{pr} |"
+        lines << "| #{g[:files].size} | #{g[:count]} | #{g[:type]} | #{cops_cell(g[:cops])} | " \
+                 "`#{truncate(g[:signature])}`#{pr} |"
       end
       lines << "… #{groups.size - 30} more group(s) omitted" if groups.size > 30
       lines << ''
@@ -105,6 +107,13 @@ module RuboCopFuzz
       lines << ''
       lines << '</details>'
       lines
+    end
+
+    # Cops matching the filter when one is set, otherwise the first few.
+    def cops_cell(cops)
+      shown = @cops ? cops.grep(@cops) : cops
+      cell = shown.first(3).map { |c| "`#{c}`" }.join(', ')
+      shown.size > 3 ? "#{cell} +#{shown.size - 3}" : cell
     end
 
     def pr_ref(pr)
