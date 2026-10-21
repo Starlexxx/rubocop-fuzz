@@ -65,4 +65,12 @@ RSpec.describe RuboCopFuzz::Corpus do
     shard = described_class.new(@gems_dir).shards.first
     expect(shard.relative_files).to eq(['lib/a/b.rb'])
   end
+
+  it 'treats a directory without a version suffix as a project of its own' do
+    make_gem('myapp', 'app/models/user.rb' => 'x = 1', 'spec/models/user_spec.rb' => 'x = 2')
+
+    shards = described_class.new(@gems_dir).shards
+    expect(shards.map(&:name)).to eq(['myapp'])
+    expect(shards.first.relative_files).to eq(['app/models/user.rb', 'spec/models/user_spec.rb'])
+  end
 end

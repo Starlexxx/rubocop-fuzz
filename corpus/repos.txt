@@ -1,0 +1,31 @@
+# Rails applications and engines (app/, db/, config/ for rubocop-rails)
+mastodon/mastodon
+forem/forem
+chatwoot/chatwoot
+huginn/huginn
+lobsters/lobsters
+rubygems/rubygems.org
+openfoodfoundation/openfoodnetwork
+solidusio/solidus
+spree/spree
+activeadmin/activeadmin
+heartcombo/devise
+thoughtbot/administrate
+rails/rails
+# RSpec-heavy projects (spec/ for rubocop-rspec)
+rspec/rspec-core
+rspec/rspec-rails
+rspec/rspec-expectations
+teamcapybara/capybara
+thoughtbot/factory_bot
+ruby-grape/grape
+rubocop/rubocop
+# Minitest-heavy projects (test/ for rubocop-minitest)
+minitest/minitest
+ruby/rake
+rack/rack
+puma/puma
+sidekiq/sidekiq
+sinatra/sinatra
+shrinerb/shrine
+jeremyevans/sequel

@@ -1,2 +1,4 @@
 fuzz-out/
 Gemfile.lock
+corpus-repos/
+corpus-gems/

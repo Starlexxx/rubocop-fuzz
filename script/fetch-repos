@@ -1,0 +1,22 @@
+#!/bin/bash
+# Shallow-clones corpus projects (Rails apps, engines, spec/ and test/ heavy repos).
+# usage: script/fetch-repos DEST_DIR [LIST_FILE]
+set -euo pipefail
+
+DEST=${1:?usage: script/fetch-repos DEST_DIR [LIST_FILE]}
+LIST=$(cd "$(dirname "${2:-"$(dirname "$0")/../corpus/repos.txt"}")" && pwd)/$(basename "${2:-repos.txt}")
+
+mkdir -p "$DEST"
+cd "$DEST"
+
+while read -r repo; do
+  case "$repo" in ''|'#'*) continue ;; esac
+  name=${repo##*/}
+  if [ -d "$name" ]; then echo "have $name"; continue; fi
+  if git clone -q --depth 1 "https://github.com/$repo.git" "$name" 2> /dev/null; then
+    rm -rf "$name/.git"
+    echo "ok $name"
+  else
+    echo "skip $repo" >&2
+  fi
+done < "$LIST"

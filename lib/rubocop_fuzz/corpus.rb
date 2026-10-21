@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 module RuboCopFuzz
-  # Collects Ruby files from installed gems (latest version of each)
-  # and slices them into shards.
+  # Collects Ruby files from installed gems (latest version of each) and
+  # from cloned projects (directories without a version suffix), and
+  # slices them into shards.
   class Corpus
     Shard = Struct.new(:name, :root, :files, keyword_init: true) do
       def relative_files
@@ -30,10 +31,8 @@ module RuboCopFuzz
         next unless File.directory?(path)
 
         name, version = split_name_version(entry)
-        next unless version
-
         current = by_name[name]
-        by_name[name] = [version, path] if current.nil? || current[0] < version
+        by_name[name] = [version, path] if current.nil? || (version && current[0] && current[0] < version)
       end
       by_name.transform_values { |(_v, path)| path }
     end

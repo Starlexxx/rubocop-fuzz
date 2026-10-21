@@ -30,6 +30,9 @@ rubocop-fuzz scan --rubocop path/to/rubocop --plugin rubocop-performance=path/to
 # add the last day's newly published gems to a corpus
 script/fetch-fresh-corpus corpus-gems 100
 
+# shallow-clone Rails apps and spec/test heavy projects (corpus/repos.txt) for plugin cops
+script/fetch-repos corpus-repos
+
 # shrink findings to a minimal repro
 rubocop-fuzz minimize --rubocop path/to/rubocop --findings fuzz-out/findings.jsonl
 ```
