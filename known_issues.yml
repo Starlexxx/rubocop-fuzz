@@ -15,6 +15,21 @@
   signature_regex: "^syntax:syntax error, unexpected backslash"
   cops:
     - Style/MethodDefParentheses
+- pr: rubocop-performance#549
+  status: open
+  note: "MapCompact + SafeNavigation same pass: `x && x.map do … end.compact` -> `end&` (brakeman engine_configuration.rb, baseline)"
+  signature_regex: "^syntax:.*unexpected .?end"
+  cops:
+    - Performance/MapCompact
+    - Style/SafeNavigation
+
+- pr: rubocop-performance#549
+  status: open
+  note: "MapCompact + SingleLineBlockChain: `.compact` moved to its own line, removal leaves `, arg` / `.foo` dangling (globalid, rspec-core, kamal; packed)"
+  signature_regex: "^syntax:.*unexpected ('\\.'|',')"
+  cops:
+    - Performance/MapCompact
+    - Layout/SingleLineBlockChain
 
 - pr: 16113
   status: merged
