@@ -22,6 +22,20 @@ RSpec.describe RuboCopFuzz::Pool do
     expect(results[1]['error']).to match(/worker died/)
   end
 
+  it 'leaves skipped jobs unrun' do
+    results = described_class.new(size: 1).run([1, 2, 3], skip: ->(job) { job.even? }) do |job|
+      { 'job' => job }
+    end
+
+    expect(results).to eq([{ 'job' => 1 }, nil, { 'job' => 3 }])
+  end
+
+  it 'stops when every remaining job is skipped' do
+    results = described_class.new(size: 2).run([1, 2], skip: ->(_job) { true }) { |job| { 'job' => job } }
+
+    expect(results).to eq([nil, nil])
+  end
+
   it 'invokes the progress callback per finished job' do
     seen = []
     described_class.new(size: 2).run([1, 2], progress: ->(idx, _r) { seen << idx }) do |job|

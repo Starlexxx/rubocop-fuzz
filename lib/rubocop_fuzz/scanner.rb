@@ -8,6 +8,9 @@ module RuboCopFuzz
   # turns RuboCop output into findings.
   class Scanner
     RUBOCOP_ARGS = %w[-A --cache false --no-color -f json].freeze
+    # A shard that keeps hitting the timeout would otherwise burn the full
+    # timeout once per config and push its CI job past the 6-hour limit.
+    MAX_SHARD_TIMEOUTS = 2
 
     def initialize(rubocop_dir:, shards:, variants:, workers:, timeout:, shards_per_config: nil, gemfile: nil)
       @rubocop_dir = rubocop_dir
@@ -20,11 +23,21 @@ module RuboCopFuzz
     end
 
     def scan(progress: nil)
-      jobs = build_jobs
-      results = Pool.new(size: @workers).run(jobs, progress: progress) do |(variant, shard)|
+      timeouts = Hash.new(0)
+      track = lambda do |idx, result|
+        timeouts[result['shard']] += 1 if timed_out?(result)
+        progress&.call(idx, result)
+      end
+      skip = ->((_variant, shard)) { timeouts[shard.name] >= MAX_SHARD_TIMEOUTS }
+
+      results = Pool.new(size: @workers).run(build_jobs, progress: track, skip: skip) do |(variant, shard)|
         run_job(variant, shard)
       end
       results.flat_map { |r| r&.fetch('findings', []) || [] }
+    end
+
+    def timed_out?(result)
+      result.fetch('findings', []).any? { |f| f['type'] == 'timeout' }
     end
 
     # Rotating window over the corpus so a large variant set still touches
