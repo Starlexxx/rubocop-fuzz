@@ -15,6 +15,7 @@
   signature_regex: "^syntax:syntax error, unexpected backslash"
   cops:
     - Style/MethodDefParentheses
+
 - pr: rubocop-performance#549
   status: open
   note: "MapCompact + SafeNavigation same pass: `x && x.map do … end.compact` -> `end&` (brakeman engine_configuration.rb, baseline)"

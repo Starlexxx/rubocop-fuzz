@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        slice: [0, 1, 2, 3]
+        slice: [0, 1, 2, 3, 4, 5]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/checkout@v4
@@ -41,28 +41,28 @@ jobs:
           ruby exe/rubocop-fuzz scan \
             --rubocop rubocop $PLUGINS --gems-dir corpus-gems \
             --tier baseline \
-            --shard-slice ${{ matrix.slice }}/4 \
+            --shard-slice ${{ matrix.slice }}/6 \
             --out fuzz-out/baseline
       - name: Scan (plugin sweep)
         run: |
           ruby exe/rubocop-fuzz scan \
             --rubocop rubocop $PLUGINS --gems-dir corpus-gems \
             --tier sweep --config-filter '^Performance/' \
-            --shard-slice ${{ matrix.slice }}/4 \
+            --shard-slice ${{ matrix.slice }}/6 \
             --out fuzz-out/sweep
       - name: Scan (packed)
         run: |
           ruby exe/rubocop-fuzz scan \
             --rubocop rubocop $PLUGINS --gems-dir corpus-gems \
             --tier packed \
-            --shard-slice ${{ matrix.slice }}/4 \
+            --shard-slice ${{ matrix.slice }}/6 \
             --out fuzz-out/packed
       - name: Scan (interactions)
         run: |
           ruby exe/rubocop-fuzz scan \
             --rubocop rubocop $PLUGINS --gems-dir corpus-gems \
             --tier interactions --shards-per-config 2 \
-            --shard-slice ${{ matrix.slice }}/4 \
+            --shard-slice ${{ matrix.slice }}/6 \
             --out fuzz-out/interactions
       - uses: actions/upload-artifact@v4
         with:
