@@ -4,6 +4,18 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16125
+  status: open
+  note: "koic: RedundantCondition NoMethodError in CommentsHelp#find_end_line with nested modifier if (aws-sdk-s3control arn files, 273 #45 hits incl baseline; verified)"
+  signature_regex: "^Style/RedundantCondition: NoMethodError"
+
+- pr: 16124
+  status: open
+  note: "koic: MethodDefParentheses inserted ( after a `def name \\` line continuation (activerecord-spanner-adapter, ~100 #45 hits incl baseline; verified)"
+  signature_regex: "^syntax:syntax error, unexpected backslash"
+  cops:
+    - Style/MethodDefParentheses
+
 - pr: 16113
   status: merged
   note: "RaiseArgs: raise nested in another raise's arguments -> ClobberingError, both styles (samagotchi fake_http.rb; #43)"
