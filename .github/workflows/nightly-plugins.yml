@@ -5,16 +5,36 @@ on:
     - cron: '30 3 * * *'
   workflow_dispatch:
 
-env:
-  PLUGINS: --plugin rubocop-performance=rubocop-performance
-
 jobs:
   fuzz:
     runs-on: ubuntu-latest
+    timeout-minutes: 350
     strategy:
       fail-fast: false
       matrix:
+        plugin: [rubocop-performance, rubocop-rails, rubocop-rspec, rubocop-minitest]
         slice: [0, 1, 2, 3, 4, 5]
+        include:
+          - plugin: rubocop-performance
+            department: Performance
+            corpus: gems
+            tiers: baseline packed interactions
+            sweep_shards: ''
+          - plugin: rubocop-rails
+            department: Rails
+            corpus: repos
+            tiers: baseline packed
+            sweep_shards: --shards-per-config 10
+          - plugin: rubocop-rspec
+            department: RSpec
+            corpus: repos
+            tiers: baseline packed
+            sweep_shards: --shards-per-config 10
+          - plugin: rubocop-minitest
+            department: Minitest
+            corpus: repos
+            tiers: baseline packed
+            sweep_shards: --shards-per-config 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/checkout@v4
@@ -23,8 +43,8 @@ jobs:
           path: rubocop
       - uses: actions/checkout@v4
         with:
-          repository: rubocop/rubocop-performance
-          path: rubocop-performance
+          repository: rubocop/${{ matrix.plugin }}
+          path: plugin
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.4'
@@ -32,41 +52,32 @@ jobs:
       - name: Install rubocop dependencies
         run: bundle install
         working-directory: rubocop
-      - name: Fetch corpus
-        run: script/fetch-corpus corpus-gems
-      - name: Fetch fresh gems
-        run: script/fetch-fresh-corpus corpus-gems 100
-      - name: Scan (baseline)
+      - name: Fetch gem corpus
+        if: matrix.corpus == 'gems'
         run: |
-          ruby exe/rubocop-fuzz scan \
-            --rubocop rubocop $PLUGINS --gems-dir corpus-gems \
-            --tier baseline \
-            --shard-slice ${{ matrix.slice }}/6 \
-            --out fuzz-out/baseline
-      - name: Scan (plugin sweep)
+          script/fetch-corpus corpus
+          script/fetch-fresh-corpus corpus 100
+      - name: Fetch repo corpus
+        if: matrix.corpus == 'repos'
+        run: script/fetch-repos corpus
+      - name: Scan
         run: |
-          ruby exe/rubocop-fuzz scan \
-            --rubocop rubocop $PLUGINS --gems-dir corpus-gems \
-            --tier sweep --config-filter '^Performance/' \
-            --shard-slice ${{ matrix.slice }}/6 \
-            --out fuzz-out/sweep
-      - name: Scan (packed)
-        run: |
-          ruby exe/rubocop-fuzz scan \
-            --rubocop rubocop $PLUGINS --gems-dir corpus-gems \
-            --tier packed \
-            --shard-slice ${{ matrix.slice }}/6 \
-            --out fuzz-out/packed
-      - name: Scan (interactions)
-        run: |
-          ruby exe/rubocop-fuzz scan \
-            --rubocop rubocop $PLUGINS --gems-dir corpus-gems \
-            --tier interactions --shards-per-config 2 \
-            --shard-slice ${{ matrix.slice }}/6 \
-            --out fuzz-out/interactions
+          for tier in ${{ matrix.tiers }} sweep; do
+            extra=''
+            case $tier in
+              interactions) extra='--shards-per-config 2' ;;
+              sweep) extra="--config-filter ^${{ matrix.department }}/ ${{ matrix.sweep_shards }}" ;;
+            esac
+            ruby exe/rubocop-fuzz scan \
+              --rubocop rubocop --plugin ${{ matrix.plugin }}=plugin --gems-dir corpus \
+              --tier $tier $extra \
+              --shard-slice ${{ matrix.slice }}/6 \
+              --out fuzz-out/$tier
+          done
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: plugin-findings-${{ matrix.slice }}
+          name: plugin-findings-${{ matrix.plugin }}-${{ matrix.slice }}
           path: fuzz-out/
           if-no-files-found: ignore
 
@@ -86,11 +97,20 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
         run: |
-          find artifacts -name findings.jsonl -exec cat {} + > all-findings.jsonl 2>/dev/null || true
-          if [ -s all-findings.jsonl ]; then
+          : > body.md
+          for entry in rubocop-performance:Performance rubocop-rails:Rails rubocop-rspec:RSpec rubocop-minitest:Minitest; do
+            plugin=${entry%%:*}
+            department=${entry##*:}
+            find artifacts -path "*plugin-findings-$plugin-*" -name findings.jsonl -exec cat {} + > "$plugin.jsonl" 2>/dev/null || true
+            [ -s "$plugin.jsonl" ] || continue
+            echo "# $plugin" >> body.md
+            echo >> body.md
             ruby exe/rubocop-fuzz triage \
-              --findings all-findings.jsonl --known known_issues.yml \
-              --cops '^Performance/' --out body.md
+              --findings "$plugin.jsonl" --known known_issues.yml \
+              --cops "^$department/" | sed 's/^## /### /' >> body.md
+            echo >> body.md
+          done
+          if [ -s body.md ]; then
             gh issue list --label nightly-plugins --state open --json number --jq '.[].number' \
               | xargs -r -I{} gh issue close {} --comment "Superseded by the next nightly run."
             gh issue create \
