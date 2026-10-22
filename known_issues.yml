@@ -4,6 +4,11 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16134
+  status: open
+  note: "HashAlignment table/separator shifted a pair after a same-line double splat over the splat (deleted it / ClobberingError); net-connector settings.rb"
+  signature_regex: "^Layout/HashAlignment: Parser::ClobberingError"
+
 - pr: 16125
   status: open
   note: "koic: RedundantCondition NoMethodError in CommentsHelp#find_end_line with nested modifier if (aws-sdk-s3control arn files, 273 #45 hits incl baseline; verified)"
