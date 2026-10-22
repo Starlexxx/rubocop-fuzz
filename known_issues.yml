@@ -22,11 +22,11 @@
   signature_regex: "^syntax:syntax error, unexpected .*, expecting .\\)."
   cops: [Layout/HashAlignment]
 
-- pr: 15609
+- pr: 16138
   status: open
-  note: "AmbiguousEndlessMethodDefinition -> EndlessMethod loop reported under the cluster cop names (activejob test_adapter.rb, #49; converges on branch)"
-  signature_regex: "^loop:Layout/DefEndAlignment\\+Layout/EmptyLines\\+Layout/EmptyLinesAroundClassBody"
-  cops: [Style/EndlessMethod]
+  note: "(koic) EmptyLinesAroundClassBody loop with Layout indentation cops (nokogiri css/parser.rb packed:20261022:2, #49; converges on branch)"
+  signature_regex: "^loop:Layout/DefEndAlignment\+Layout/EmptyLines\+Layout/EmptyLinesAroundClassBody"
+  cops: [Layout/EmptyLinesAroundClassBody]
 
 - pr: 16139
   status: open
