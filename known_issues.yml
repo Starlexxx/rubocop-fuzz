@@ -4,6 +4,30 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16127
+  status: open
+  note: "(koic) ClassAndModuleChildren compact + DataInheritance produced `class A::B = Data.define` (proctolog owner/decision_record/fresh_sitting, #49; verified)"
+  signature_regex: "^syntax:syntax error, unexpected .=.$"
+  cops: [Style/ClassAndModuleChildren, Style/DataInheritance]
+
+- pr: 16137
+  status: open
+  note: "(koic) QuotedSymbols double_quotes turned :\\ into :\"\\\" (crass tokenizer.rb, #49; verified)"
+  signature_regex: "^syntax:syntax error, unexpected .\\]., expecting"
+  cops: [Style/QuotedSymbols]
+
+- pr: 16134
+  status: open
+  note: "HashAlignment table deleting a same-line double splat, syntax-error variant (net-connector progress.rb, #49; verified on branch)"
+  signature_regex: "^syntax:syntax error, unexpected .*, expecting .\\)."
+  cops: [Layout/HashAlignment]
+
+- pr: 15609
+  status: open
+  note: "AmbiguousEndlessMethodDefinition -> EndlessMethod loop reported under the cluster cop names (activejob test_adapter.rb, #49; converges on branch)"
+  signature_regex: "^loop:Layout/DefEndAlignment\\+Layout/EmptyLines\\+Layout/EmptyLinesAroundClassBody"
+  cops: [Style/EndlessMethod]
+
 - pr: 16139
   status: open
   note: "(koic) LineLength broke a line after a block brace on a heredoc opener line, pushing the rest into the heredoc body (proctolog layers.rb, 41 #49 hits incl baseline; verified)"
