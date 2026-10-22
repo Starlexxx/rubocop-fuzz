@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16139
+  status: open
+  note: "(koic) LineLength broke a line after a block brace on a heredoc opener line, pushing the rest into the heredoc body (proctolog layers.rb, 41 #49 hits incl baseline; verified)"
+  signature_regex: "^syntax:syntax error, unexpected .end."
+  cops: [Layout/LineLength]
+
 - pr: 16136
   status: open
   note: "(koic, replaced my #16135) ReduceToHash replaced selector..block end, dropping a heredoc body opened in the receiver (chat_sdk-state-mysql, 41 #49 hits incl defaults)"
