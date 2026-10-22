@@ -12,7 +12,7 @@
 
 - pr: 16137
   status: open
-  note: "(koic) QuotedSymbols double_quotes turned :\\ into :\"\\\" (crass tokenizer.rb, #49; verified)"
+  note: "(koic) QuotedSymbols double_quotes left a trailing backslash escaping the closing quote (crass tokenizer.rb, #49; verified)"
   signature_regex: "^syntax:syntax error, unexpected .\\]., expecting"
   cops: [Style/QuotedSymbols]
 
@@ -25,7 +25,7 @@
 - pr: 16138
   status: open
   note: "(koic) EmptyLinesAroundClassBody loop with Layout indentation cops (nokogiri css/parser.rb packed:20261022:2, #49; converges on branch)"
-  signature_regex: "^loop:Layout/DefEndAlignment\+Layout/EmptyLines\+Layout/EmptyLinesAroundClassBody"
+  signature_regex: '^loop:Layout/DefEndAlignment\+Layout/EmptyLines\+Layout/EmptyLinesAroundClassBody'
   cops: [Layout/EmptyLinesAroundClassBody]
 
 - pr: 16139
