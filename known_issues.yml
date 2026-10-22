@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16135
+  status: open
+  note: "ReduceToHash replaced selector..block end, dropping a heredoc body opened in the receiver (chat_sdk-state-mysql, 41 #49 hits incl defaults)"
+  signature_regex: "syntax:can.t find string \"[A-Za-z_]+\" anywhere before EOF"
+  cops: [Style/ReduceToHash]
+
 - pr: 16134
   status: open
   note: "HashAlignment table/separator shifted a pair after a same-line double splat over the splat (deleted it / ClobberingError); net-connector settings.rb"
