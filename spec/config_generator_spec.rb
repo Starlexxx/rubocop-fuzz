@@ -174,6 +174,17 @@ RSpec.describe RuboCopFuzz::ConfigGenerator do
                              'Style/Foo:EnforcedStyle=expanded')
     end
 
+    it 'merges plugin overrides of core cops into the core entry' do
+      File.write(File.join(@plugin_dir, 'config', 'default.yml'), <<~YAML)
+        Style/Foo:
+          EnforcedStyle: expanded
+      YAML
+
+      ids = generator.sweep_variants.map(&:id)
+      expect(ids).to include('Style/Foo:EnforcedStyle=compact', 'Style/Foo:AllowComments=true')
+      expect(ids).not_to include('Style/Foo:EnforcedStyle=expanded')
+    end
+
     it 'packs plugin cops with the core ones' do
       config = YAML.safe_load(generator.packed_variants(seed: 1).first.yaml)
       expect(config['Performance/Baz']).to include('Enabled' => true)

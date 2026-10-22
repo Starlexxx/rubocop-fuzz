@@ -66,7 +66,9 @@ module RuboCopFuzz
     private
 
     def defaults
-      @defaults ||= [@rubocop_dir, *@plugins.values].map { |dir| default_yml(dir) }.reduce(:merge)
+      @defaults ||= [@rubocop_dir, *@plugins.values].map { |dir| default_yml(dir) }.reduce do |merged, plugin|
+        merged.merge(plugin) { |_cop, core, over| core.is_a?(Hash) && over.is_a?(Hash) ? core.merge(over) : over }
+      end
     end
 
     def default_yml(dir)
