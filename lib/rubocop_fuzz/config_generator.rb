@@ -15,7 +15,9 @@ module RuboCopFuzz
 
     SKIP_BOOLEAN_KEYS = %w[Enabled Safe SafeAutoCorrect AutoCorrect Include Exclude].freeze
     MAX_COMBOS_PER_CLUSTER = 200
-    PACKED_EXCLUDED_COPS = %w[Style/MissingElse Style/StringHashKeys].freeze
+    PACKED_EXCLUDED_COPS = %w[
+      Style/MissingElse Style/StringHashKeys RSpec/AlignLeftLetBrace RSpec/AlignRightLetBrace
+    ].freeze
     TARGET_RAILS_VERSION = 8.0
 
     def initialize(rubocop_dir: nil, plugins: {}, target_ruby_version: RUBY_VERSION[/\d+\.\d+/])
