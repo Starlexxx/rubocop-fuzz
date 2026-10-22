@@ -48,6 +48,9 @@ module RuboCopFuzz
     def repro_yaml(cops, cop_configs)
       config = { 'AllCops' => { 'DisabledByDefault' => true, 'SuggestExtensions' => false } }
       config = { 'plugins' => @plugins.keys }.merge(config) unless @plugins.empty?
+      if @plugins.key?('rubocop-rails')
+        config['AllCops']['TargetRailsVersion'] = ConfigGenerator::TARGET_RAILS_VERSION
+      end
       cops.sort.each do |cop|
         config[cop] = { 'Enabled' => true }.merge(cop_configs[cop] || {})
       end

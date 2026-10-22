@@ -181,6 +181,16 @@ RSpec.describe RuboCopFuzz::ConfigGenerator do
     end
   end
 
+  it 'pins TargetRailsVersion when rubocop-rails is loaded' do
+    generator = described_class.new(rubocop_dir: @rubocop_dir, plugins: { 'rubocop-rails' => @rubocop_dir },
+                                    target_ruby_version: '3.3')
+    expect(YAML.safe_load(generator.baseline.yaml)['AllCops']).to include('TargetRailsVersion' => 8.0)
+  end
+
+  it 'omits TargetRailsVersion without rubocop-rails' do
+    expect(YAML.safe_load(generator.baseline.yaml)['AllCops']).not_to have_key('TargetRailsVersion')
+  end
+
   it 'omits the plugins key without plugins' do
     expect(YAML.safe_load(generator.baseline.yaml)).not_to have_key('plugins')
   end

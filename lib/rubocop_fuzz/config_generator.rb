@@ -16,6 +16,7 @@ module RuboCopFuzz
     SKIP_BOOLEAN_KEYS = %w[Enabled Safe SafeAutoCorrect AutoCorrect Include Exclude].freeze
     MAX_COMBOS_PER_CLUSTER = 200
     PACKED_EXCLUDED_COPS = %w[Style/MissingElse Style/StringHashKeys].freeze
+    TARGET_RAILS_VERSION = 8.0
 
     def initialize(rubocop_dir: nil, plugins: {}, target_ruby_version: RUBY_VERSION[/\d+\.\d+/])
       @rubocop_dir = rubocop_dir
@@ -135,8 +136,14 @@ module RuboCopFuzz
         #{plugins_yaml}AllCops:
           NewCops: enable
           SuggestExtensions: false
-          TargetRubyVersion: #{@target_ruby_version}
+          TargetRubyVersion: #{@target_ruby_version}#{rails_yaml}
       YAML
+    end
+
+    # Copied shards have no Gemfile.lock, so rubocop-rails would fall back
+    # to Rails 5.0 and skip every cop gated on a newer version.
+    def rails_yaml
+      @plugins.key?('rubocop-rails') ? "\n  TargetRailsVersion: #{TARGET_RAILS_VERSION}" : ''
     end
 
     def plugins_yaml
