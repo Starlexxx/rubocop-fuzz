@@ -4,6 +4,11 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16142
+  status: open
+  note: "EndAlignment variable style: check aligned end with class/module keyword in `X = class ...`, autocorrect with X (cmdx.rb, #52)"
+  signature_regex: '^loop:Layout/EndAlignment$'
+
 - pr: 16127
   status: open
   note: "(koic) ClassAndModuleChildren compact + DataInheritance produced `class A::B = Data.define` (proctolog owner/decision_record/fresh_sitting, #49; verified)"
