@@ -4,6 +4,11 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16138
+  status: open
+  note: "(koic) ClassStructure-led variant of the EmptyLinesAroundClassBody loop (sidekiq metrics/query.rb, #52; converges on branch)"
+  signature_regex: '^loop:Layout/ClassStructure\+Layout/DefEndAlignment\+Layout/EmptyLines'
+
 - pr: 16145
   status: open
   note: "(koic) SpaceInsideRangeLiteral on an outer range stripped the space of a nested endless range `x[ 1.. ]` (udb csr_field.rb, #52; verified)"
