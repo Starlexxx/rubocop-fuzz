@@ -4,6 +4,11 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16152
+  status: open
+  note: "IfUnlessModifier wrapped the modifier form in parens without the inner spaces SpaceInsideParens space adds, so the line passed the length check and then overflowed; MultilineMemoization/RedundantBegin kept the cycle (activerecord encryption/scheme.rb, #53/#54 #15846-sig)"
+  signature_regex: '^loop:.*Style/IfUnlessModifier.*Style/MultilineMemoization'
+
 - pr: 16147
   status: open
   note: "(koic) RedundantCopDisableDirective false negative when autocorrection shifts lines; second -A pass changed the file (canon comparison/pipeline.rb, #53/#54; verified idempotent on branch)"
@@ -16,7 +21,7 @@
   cops: [Style/AndOr]
 
 - pr: 16128
-  status: open
+  status: merged
   note: "(koic) ExtraSpacing ForceEqualSignAlignment padded `=` inside one-line blocks past LineLength; RedundantLineBreak rejoined (bitfab replay_registry.rb, #52 #16095-sig; converges on branch)"
   signature_regex: '^loop:Layout/BlockAlignment\+Layout/BlockEndNewline\+Layout/ExtraSpacing'
   cops: [Layout/ExtraSpacing, Layout/RedundantLineBreak]
@@ -27,7 +32,7 @@
   signature_regex: '^loop:Layout/BlockAlignment\+Layout/ClassStructure\+Layout/IndentationWidth\+Layout/SpaceInsid'
 
 - pr: 16138
-  status: open
+  status: merged
   note: "(koic) ClassStructure-led variant of the EmptyLinesAroundClassBody loop (sidekiq metrics/query.rb, #52; converges on branch)"
   signature_regex: '^loop:Layout/ClassStructure\+Layout/DefEndAlignment\+Layout/EmptyLines'
 
@@ -53,7 +58,7 @@
   signature_regex: '^loop:.*Layout/LineContinuationSpacing.*Layout/SpaceAroundOperators'
 
 - pr: 16142
-  status: open
+  status: merged
   note: "EndAlignment variable style: check aligned end with class/module keyword in `X = class ...`, autocorrect with X (cmdx.rb, #52)"
   signature_regex: '^loop:Layout/EndAlignment$'
 
@@ -64,7 +69,7 @@
   cops: [Style/ClassAndModuleChildren, Style/DataInheritance]
 
 - pr: 16137
-  status: open
+  status: merged
   note: "(koic) QuotedSymbols double_quotes left a trailing backslash escaping the closing quote (crass tokenizer.rb, #49; verified)"
   signature_regex: "^syntax:syntax error, unexpected .\\]., expecting"
   cops: [Style/QuotedSymbols]
@@ -76,19 +81,19 @@
   cops: [Layout/HashAlignment]
 
 - pr: 16138
-  status: open
+  status: merged
   note: "(koic) EmptyLinesAroundClassBody loop with Layout indentation cops (nokogiri css/parser.rb packed:20261022:2, #49; converges on branch)"
   signature_regex: '^loop:Layout/DefEndAlignment\+Layout/EmptyLines\+Layout/EmptyLinesAroundClassBody'
   cops: [Layout/EmptyLinesAroundClassBody]
 
 - pr: 16139
-  status: open
+  status: merged
   note: "(koic) LineLength broke a line after a block brace on a heredoc opener line, pushing the rest into the heredoc body (proctolog layers.rb, 41 #49 hits incl baseline; verified)"
   signature_regex: "^syntax:syntax error, unexpected .end."
   cops: [Layout/LineLength]
 
 - pr: 16136
-  status: open
+  status: merged
   note: "(koic, replaced my #16135) ReduceToHash replaced selector..block end, dropping a heredoc body opened in the receiver (chat_sdk-state-mysql, 41 #49 hits incl defaults)"
   signature_regex: "syntax:can.t find string \"[A-Za-z_]+\" anywhere before EOF"
   cops: [Style/ReduceToHash]
