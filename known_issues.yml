@@ -4,9 +4,9 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
-- pr: 16152
+- pr: 16153
   status: open
-  note: "IfUnlessModifier wrapped the modifier form in parens without the inner spaces SpaceInsideParens space adds, so the line passed the length check and then overflowed; MultilineMemoization/RedundantBegin kept the cycle (activerecord encryption/scheme.rb, #53/#54 #15846-sig)"
+  note: "(koic, replaced my #16152; also covers RedundantBegin length check and already-parenthesized modifiers) IfUnlessModifier wrapped the modifier form in parens without the inner spaces SpaceInsideParens space adds, so the line passed the length check and then overflowed; MultilineMemoization/RedundantBegin kept the cycle (activerecord encryption/scheme.rb, #53/#54 #15846-sig)"
   signature_regex: '^loop:.*Style/IfUnlessModifier.*Style/MultilineMemoization'
 
 - pr: 16147
