@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16143
+  status: open
+  note: "(koic) ParenthesesAsGroupedExpression removed the space in `key? (t = y.delete_prefix (str))`, making an invalid command-call argument (asciidoctor-dita-topic, #52 baseline; verified)"
+  signature_regex: "^syntax:syntax error, unexpected string literal, expecting .\\).$"
+  cops: [Lint/ParenthesesAsGroupedExpression]
+
 - pr: 16144
   status: open
   note: "(koic) SpaceInsideBlockBraces loop with BlockAlignment (fog-aws get_bucket/list_objects_v2, #52; verified on branch)"
