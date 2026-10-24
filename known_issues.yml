@@ -4,6 +4,11 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16144
+  status: open
+  note: "(koic) SpaceInsideBlockBraces loop with BlockAlignment (fog-aws get_bucket/list_objects_v2, #52; verified on branch)"
+  signature_regex: '^loop:Layout/BlockAlignment\+Layout/SpaceInsideBlockBraces'
+
 - pr: 16148
   status: open
   note: "SpaceAroundOperators re-added the space LineContinuationSpacing no_space removed in `x = \\` (masked inside fog-aws get_bucket.rb BlockAlignment loop, #52)"
