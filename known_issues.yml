@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16128
+  status: open
+  note: "(koic) ExtraSpacing ForceEqualSignAlignment padded `=` inside one-line blocks past LineLength; RedundantLineBreak rejoined (bitfab replay_registry.rb, #52 #16095-sig; converges on branch)"
+  signature_regex: '^loop:Layout/BlockAlignment\+Layout/BlockEndNewline\+Layout/ExtraSpacing'
+  cops: [Layout/ExtraSpacing, Layout/RedundantLineBreak]
+
 - pr: 16144
   status: open
   note: "(koic) BlockAlignment+ClassStructure variant of the SpaceInsideBlockBraces loop (aspera-cli agent/factory.rb, #52; converges on branch)"
