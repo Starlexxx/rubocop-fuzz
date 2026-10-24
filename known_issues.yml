@@ -4,6 +4,11 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16144
+  status: open
+  note: "(koic) BlockAlignment+ClassStructure variant of the SpaceInsideBlockBraces loop (aspera-cli agent/factory.rb, #52; converges on branch)"
+  signature_regex: '^loop:Layout/BlockAlignment\+Layout/ClassStructure\+Layout/IndentationWidth\+Layout/SpaceInsid'
+
 - pr: 16138
   status: open
   note: "(koic) ClassStructure-led variant of the EmptyLinesAroundClassBody loop (sidekiq metrics/query.rb, #52; converges on branch)"
