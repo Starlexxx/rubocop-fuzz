@@ -4,6 +4,11 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16145
+  status: open
+  note: "(koic) SpaceInsideRangeLiteral on an outer range stripped the space of a nested endless range `x[ 1.. ]` (udb csr_field.rb, #52; verified)"
+  signature_regex: '^loop:.*Layout/SpaceInsideRangeLiteral'
+
 - pr: 16143
   status: open
   note: "(koic) ParenthesesAsGroupedExpression removed the space in `key? (t = y.delete_prefix (str))`, making an invalid command-call argument (asciidoctor-dita-topic, #52 baseline; verified)"
