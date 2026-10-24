@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16150
+  status: open
+  note: "AndOr (always) did not parenthesize a command-call operand that takes a do block: `a and x.title type: 1 do ... end` -> invalid `a && x.title type: 1 do` (metanorma-un converter.rb, #53)"
+  signature_regex: "^syntax:syntax error, unexpected label, expecting .end. or dummy end"
+  cops: [Style/AndOr]
+
 - pr: 16128
   status: open
   note: "(koic) ExtraSpacing ForceEqualSignAlignment padded `=` inside one-line blocks past LineLength; RedundantLineBreak rejoined (bitfab replay_registry.rb, #52 #16095-sig; converges on branch)"
