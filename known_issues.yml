@@ -4,6 +4,11 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16148
+  status: open
+  note: "SpaceAroundOperators re-added the space LineContinuationSpacing no_space removed in `x = \\` (masked inside fog-aws get_bucket.rb BlockAlignment loop, #52)"
+  signature_regex: '^loop:.*Layout/LineContinuationSpacing.*Layout/SpaceAroundOperators'
+
 - pr: 16142
   status: open
   note: "EndAlignment variable style: check aligned end with class/module keyword in `X = class ...`, autocorrect with X (cmdx.rb, #52)"
