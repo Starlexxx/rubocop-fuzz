@@ -10,7 +10,7 @@
   signature_regex: '^loop:Layout/EndAlignment$'
 
 - pr: 16127
-  status: open
+  status: merged
   note: "(koic) ClassAndModuleChildren compact + DataInheritance produced `class A::B = Data.define` (proctolog owner/decision_record/fresh_sitting, #49; verified)"
   signature_regex: "^syntax:syntax error, unexpected .=.$"
   cops: [Style/ClassAndModuleChildren, Style/DataInheritance]
