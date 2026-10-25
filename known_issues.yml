@@ -114,6 +114,12 @@
   cops:
     - Minitest/GlobalExpectations
 
+- pr: 16165
+  status: open
+  note: "EvalWithLocation + EmptyLinesAround{Block,Class,Module}Body empty_lines inserted at the same point, leaving `, __FILE__, __LINE__` on its own line (webmock em_http adapter, yard cli/graph.rb, #56)"
+  signature_regex: "^syntax:syntax error, unexpected .,.$"
+  cops: [Style/EvalWithLocation]
+
 - pr: 16162
   status: open
   note: "(koic) RedundantBegin + MethodCallWithArgsParentheses on `@r = @r ? @r : begin ... end` left an unparsable `||` chain (llm.rb function/sequential/task.rb, #56; verified on branch)"
