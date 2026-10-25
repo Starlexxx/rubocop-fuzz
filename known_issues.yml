@@ -114,6 +114,12 @@
   cops:
     - Minitest/GlobalExpectations
 
+- pr: 16157
+  status: open
+  note: "StringConcatenation joined `\"#\" + \"{\"` into `\"#{\"` (also #@ / #$); rails-ai-context get_env.rb, 38 #56 hits incl baseline"
+  signature_regex: "^syntax:syntax error, unexpected local variable or method, expecting end-of-input or .}.$"
+  cops: [Style/StringConcatenation]
+
 - pr: 16153
   status: open
   note: "(koic, replaced my #16152; also covers RedundantBegin length check and already-parenthesized modifiers) IfUnlessModifier wrapped the modifier form in parens without the inner spaces SpaceInsideParens space adds, so the line passed the length check and then overflowed; MultilineMemoization/RedundantBegin kept the cycle (activerecord encryption/scheme.rb, #53/#54 #15846-sig)"
