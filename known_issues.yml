@@ -114,6 +114,12 @@
   cops:
     - Minitest/GlobalExpectations
 
+- pr: 16160
+  status: open
+  note: "(koic) SingleLineBlockChain + MapToSet same pass: `x.map { }.to_set | y` left `| y` on its own line (rails-ai-context action_filters.rb, #56)"
+  signature_regex: "^syntax:syntax error, unexpected .\\|.$"
+  cops: [Style/MapToSet, Layout/SingleLineBlockChain]
+
 - pr: 16158
   status: open
   note: "NumericPredicate (comparison) ClobberingError for a predicate inside the receiver of another, e.g. `keys.count do ... x.positive? ... end.positive?` (rails-ai-context install/program.rb, #56)"
