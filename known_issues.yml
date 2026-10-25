@@ -4,6 +4,116 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: rubocop-rails#1671
+  status: open
+  note: "WhereEquals: `where \"1 = ?\", 1` -> `where(1: 1)` (rails activerecord test models)"
+  signature_regex: "^syntax:.*unexpected ':'"
+  cops:
+    - Rails/WhereEquals
+
+- pr: rubocop-rails#1672
+  status: open
+  note: "HttpPositionalArguments: `get('/', &block)` -> `params: &block` (sinatra tests)"
+  signature_regex: "^syntax:.*unexpected &"
+  cops:
+    - Rails/HttpPositionalArguments
+
+- pr: rubocop-rails#1673
+  status: open
+  note: "ActiveRecordCallbacksOrder + EmptyLines same pass: two callbacks on one line (solidus product.rb)"
+  signature_regex: "^syntax:"
+  cops:
+    - Rails/ActiveRecordCallbacksOrder
+    - Layout/EmptyLines
+
+- pr: rubocop-rails#1674
+  status: open
+  note: "FilePath: raw `\"` from a %{} literal copied into join(\"...\") (railties tests, after InterpolationCheck)"
+  signature_regex: "^syntax:"
+  cops:
+    - Rails/FilePath
+    - Lint/InterpolationCheck
+
+- pr: rubocop-rails#1675
+  status: open
+  note: "RedirectBackOrTo + MethodCallWithArgsParentheses same pass -> `redirect_back_or_to(x))`"
+  signature_regex: "^syntax:.*unexpected '\\)'"
+  cops:
+    - Rails/RedirectBackOrTo
+    - Style/MethodCallWithArgsParentheses
+
+- pr: rubocop-rails#1676
+  status: open
+  note: "RedundantForeignKey after `, ` + newline leaves `, ,` (MMALB/LineLength layout; rails, spree, solidus)"
+  signature_regex: "^syntax:.*unexpected ','"
+  cops:
+    - Rails/RedundantForeignKey
+
+- pr: rubocop-rails#1677
+  status: open
+  note: "SquishedSQLHeredocs + TrailingCommaInArguments same pass -> `<<~SQL,.squish` (forem, huginn migrations)"
+  signature_regex: "^syntax:.*unexpected '\\.'"
+  cops:
+    - Rails/SquishedSQLHeredocs
+    - Style/TrailingCommaInArguments
+
+- pr: rubocop-rails#1678
+  status: open
+  note: "RedundantActiveRecordAllMethod + DotPosition(trailing) same pass -> lone `.` (huginn agent.rb)"
+  signature_regex: "^syntax:.*unexpected '\\.'"
+  cops:
+    - Rails/RedundantActiveRecordAllMethod
+    - Layout/DotPosition
+
+- pr: rubocop-rails#1679
+  status: open
+  note: "FilePath join args after `, ` + newline -> `join(\"a/b\", , )` (mastodon reaction_validator.rb)"
+  signature_regex: "^syntax:.*unexpected ','"
+  cops:
+    - Rails/FilePath
+
+- pr: rubocop-rails#1680
+  status: open
+  note: "DotSeparatedKeys after `, ` + newline leaves `t(\"a.b.key\", , ...)` (solidus coupon_code_spec.rb, after LineLength)"
+  signature_regex: "^syntax:.*unexpected ','"
+  cops:
+    - Rails/DotSeparatedKeys
+
+- pr: rubocop-rspec#2257
+  status: open
+  note: "Output removed `p` without args (a let) -> `[, c]` (openfoodnetwork enterprise_spec.rb)"
+  signature_regex: "^syntax:.*unexpected ','"
+  cops:
+    - RSpec/Output
+
+- pr: rubocop-rspec#2258
+  status: open
+  note: "Output removed the body of `puts x unless c` (forem, rspec-expectations)"
+  signature_regex: "^syntax:.*unexpected end-of-input"
+  cops:
+    - RSpec/Output
+
+- pr: rubocop-rspec#2259
+  status: open
+  note: "ExcessiveDocstringSpacing wrote values between mixed quotes / dropped escapes (openfoodnetwork ability_spec.rb)"
+  signature_regex: "^syntax:.*unexpected (local variable or method|constant)"
+  cops:
+    - RSpec/ExcessiveDocstringSpacing
+
+- pr: rubocop-rspec#2260
+  status: open
+  note: "MetadataStyle after `, ` + newline leaves `:key,  do` (rspec-core rspec_matchers_spec.rb, after LineLength)"
+  signature_regex: "^syntax:.*unexpected .do'"
+  cops:
+    - RSpec/MetadataStyle
+
+- pr: rubocop-minitest#370
+  status: open
+  note: "GlobalExpectations ClobberingError on `lambda { x.must_equal 1 }.must_raise(E)` (rack spec_lint.rb)"
+  signature_regex: "^(unreproduced:)?Minitest/GlobalExpectations"
+  cops:
+    - Minitest/GlobalExpectations
+
 - pr: 16153
   status: open
   note: "(koic, replaced my #16152; also covers RedundantBegin length check and already-parenthesized modifiers) IfUnlessModifier wrapped the modifier form in parens without the inner spaces SpaceInsideParens space adds, so the line passed the length check and then overflowed; MultilineMemoization/RedundantBegin kept the cycle (activerecord encryption/scheme.rb, #53/#54 #15846-sig)"
