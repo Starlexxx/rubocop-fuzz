@@ -10,7 +10,7 @@
   signature_regex: '^loop:.*Style/IfUnlessModifier.*Style/MultilineMemoization'
 
 - pr: 16147
-  status: open
+  status: merged
   note: "(koic) RedundantCopDisableDirective false negative when autocorrection shifts lines; second -A pass changed the file (canon comparison/pipeline.rb, #53/#54; verified idempotent on branch)"
   signature_regex: '^nonidem:.*Lint/RedundantCopDisableDirective'
 
