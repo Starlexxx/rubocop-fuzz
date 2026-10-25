@@ -114,6 +114,12 @@
   cops:
     - Minitest/GlobalExpectations
 
+- pr: 16162
+  status: open
+  note: "(koic) RedundantBegin + MethodCallWithArgsParentheses on `@r = @r ? @r : begin ... end` left an unparsable `||` chain (llm.rb function/sequential/task.rb, #56; verified on branch)"
+  signature_regex: "^syntax:syntax error, unexpected constant, expecting .end. or dummy end"
+  cops: [Style/RedundantBegin, Style/MethodCallWithArgsParentheses]
+
 - pr: 16160
   status: open
   note: "(koic) SingleLineBlockChain + MapToSet same pass: `x.map { }.to_set | y` left `| y` on its own line (rails-ai-context action_filters.rb, #56)"
