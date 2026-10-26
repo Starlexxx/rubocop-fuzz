@@ -114,6 +114,12 @@
   cops:
     - Minitest/GlobalExpectations
 
+- pr: 16169
+  status: open
+  note: "RaiseArgs replaced the whole multiline raise(...) and dropped the heredoc message body, both styles (waterdrop producer/transactions.rb, #58)"
+  signature_regex: "^syntax:can.t find string \"ERROR_MSG\""
+  cops: [Style/RaiseArgs]
+
 - pr: 16167
   status: open
   note: "HashAsLastArrayItem no_braces + MultilineArrayBraceLayout same_line edit around the same `}` in one pass; nested hashes left `,` on its own line (faker default/x.rb, #58)"
