@@ -127,7 +127,7 @@
   cops: [Style/HashAsLastArrayItem, Layout/MultilineArrayBraceLayout]
 
 - pr: 16159
-  status: open
+  status: merged
   note: "(koic) ParenthesesAroundCondition dropped parens around a command-call assignment `if (w = worker_at 0)` (puma cluster.rb, #56 #16023-sig; verified on branch)"
   signature_regex: "^syntax:syntax error, unexpected integer literal, expecting .do. or .\\{. or .\\(."
   cops: [Style/ParenthesesAroundCondition]
@@ -138,9 +138,9 @@
   signature_regex: "^syntax:syntax error, unexpected .\\)., expecting .\\}."
   cops: [Style/MethodCallWithArgsParentheses]
 
-- pr: 16165
+- pr: 16172
   status: open
-  note: "EvalWithLocation + EmptyLinesAround{Block,Class,Module}Body empty_lines inserted at the same point, leaving `, __FILE__, __LINE__` on its own line (webmock em_http adapter, yard cli/graph.rb, #56)"
+  note: "(koic, closed my #16165) EmptyLineCorrector now replaces the line break; EvalWithLocation + EmptyLinesAround{Block,Class,Module}Body empty_lines inserted at the same point, leaving `, __FILE__, __LINE__` on its own line (webmock em_http adapter, yard cli/graph.rb, #56)"
   signature_regex: "^syntax:syntax error, unexpected .,.$"
   cops: [Style/EvalWithLocation]
 
@@ -151,7 +151,7 @@
   cops: [Style/RedundantBegin, Style/MethodCallWithArgsParentheses]
 
 - pr: 16160
-  status: open
+  status: merged
   note: "(koic) SingleLineBlockChain + MapToSet same pass: `x.map { }.to_set | y` left `| y` on its own line (rails-ai-context action_filters.rb, #56)"
   signature_regex: "^syntax:syntax error, unexpected .\\|.$"
   cops: [Style/MapToSet, Layout/SingleLineBlockChain]
