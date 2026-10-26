@@ -114,6 +114,12 @@
   cops:
     - Minitest/GlobalExpectations
 
+- pr: 16167
+  status: open
+  note: "HashAsLastArrayItem no_braces + MultilineArrayBraceLayout same_line edit around the same `}` in one pass; nested hashes left `,` on its own line (faker default/x.rb, #58)"
+  signature_regex: "^syntax:syntax error, unexpected .,., expecting .\\}."
+  cops: [Style/HashAsLastArrayItem, Layout/MultilineArrayBraceLayout]
+
 - pr: 16159
   status: open
   note: "(koic) ParenthesesAroundCondition dropped parens around a command-call assignment `if (w = worker_at 0)` (puma cluster.rb, #56 #16023-sig; verified on branch)"
