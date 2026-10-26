@@ -145,7 +145,7 @@
   cops: [Style/MapToSet, Layout/SingleLineBlockChain]
 
 - pr: 16158
-  status: open
+  status: merged
   note: "NumericPredicate (comparison) ClobberingError for a predicate inside the receiver of another, e.g. `keys.count do ... x.positive? ... end.positive?` (rails-ai-context install/program.rb, #56)"
   signature_regex: "^Style/NumericPredicate: Parser::ClobberingError"
 
