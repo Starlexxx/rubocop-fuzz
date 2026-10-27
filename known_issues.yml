@@ -133,7 +133,7 @@
   cops: [Style/ParenthesesAroundCondition]
 
 - pr: 16163
-  status: open
+  status: merged
   note: "(koic) MethodCallWithArgsParentheses + HeredocArgumentClosingParenthesis left a stray `)` after a heredoc argument (pandorga test-git-chronology.rb, #56 #15777-sig; verified on branch)"
   signature_regex: "^syntax:syntax error, unexpected .\\)., expecting .\\}."
   cops: [Style/MethodCallWithArgsParentheses]
@@ -145,7 +145,7 @@
   cops: [Style/EvalWithLocation]
 
 - pr: 16162
-  status: open
+  status: merged
   note: "(koic) RedundantBegin + MethodCallWithArgsParentheses on `@r = @r ? @r : begin ... end` left an unparsable `||` chain (llm.rb function/sequential/task.rb, #56; verified on branch)"
   signature_regex: "^syntax:syntax error, unexpected constant, expecting .end. or dummy end"
   cops: [Style/RedundantBegin, Style/MethodCallWithArgsParentheses]
@@ -178,7 +178,7 @@
   signature_regex: '^nonidem:.*Lint/RedundantCopDisableDirective'
 
 - pr: 16150
-  status: open
+  status: merged
   note: "AndOr (always) did not parenthesize a command-call operand that takes a do block: `a and x.title type: 1 do ... end` -> invalid `a && x.title type: 1 do` (metanorma-un converter.rb, #53)"
   signature_regex: "^syntax:syntax error, unexpected label, expecting .end. or dummy end"
   cops: [Style/AndOr]
@@ -238,7 +238,7 @@
   cops: [Style/QuotedSymbols]
 
 - pr: 16134
-  status: open
+  status: merged
   note: "HashAlignment table deleting a same-line double splat, syntax-error variant (net-connector progress.rb, #49; verified on branch)"
   signature_regex: "^syntax:syntax error, unexpected .*, expecting .\\)."
   cops: [Layout/HashAlignment]
@@ -560,7 +560,7 @@
   signature_regex: "^loop:.*Style/RequireOrder"
 
 - pr: 16002
-  status: open
+  status: merged
   note: "SpaceBeforeBlockBraces no_space left backslash before brace after line continuation (captive-release)"
   signature_regex: "^syntax:syntax error, unexpected backslash"
   cops:
