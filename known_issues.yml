@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16180
+  status: open
+  note: "InterpolationCheck turned a non-leading split-string part into %{...}, parsed as `%` operator (rails-ai-context workspace_server.rb, #60, 20 groups)"
+  signature_regex: "^syntax:syntax error, unexpected .rescue., expecting .\\}."
+  cops: [Lint/InterpolationCheck]
+
 - pr: rubocop-rails#1671
   status: open
   note: "WhereEquals: `where \"1 = ?\", 1` -> `where(1: 1)` (rails activerecord test models)"
