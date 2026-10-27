@@ -262,7 +262,7 @@
   cops: [Style/ReduceToHash]
 
 - pr: 16134
-  status: open
+  status: merged
   note: "HashAlignment table/separator shifted a pair after a same-line double splat over the splat (deleted it / ClobberingError); net-connector settings.rb"
   signature_regex: "^Layout/HashAlignment: Parser::ClobberingError"
 
