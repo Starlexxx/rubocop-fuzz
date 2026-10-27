@@ -87,7 +87,7 @@
     - RSpec/Output
 
 - pr: rubocop-rspec#2258
-  status: open
+  status: merged
   note: "Output removed the body of `puts x unless c` (forem, rspec-expectations)"
   signature_regex: "^syntax:.*unexpected end-of-input"
   cops:
