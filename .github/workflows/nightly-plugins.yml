@@ -36,6 +36,8 @@ jobs:
             tiers: baseline packed
             sweep_shards: --shards-per-config 10
     steps:
+      - name: Set scan deadline
+        run: echo "SCAN_DEADLINE=$(( $(date +%s) + 315 * 60 ))" >> "$GITHUB_ENV"
       - uses: actions/checkout@v4
       - uses: actions/checkout@v4
         with:
@@ -68,7 +70,7 @@ jobs:
               interactions) extra='--shards-per-config 2' ;;
               sweep) extra="--config-filter ^${{ matrix.department }}/ ${{ matrix.sweep_shards }}" ;;
             esac
-            ruby exe/rubocop-fuzz scan \
+            ruby exe/rubocop-fuzz scan --deadline "$SCAN_DEADLINE" \
               --rubocop rubocop --plugin ${{ matrix.plugin }}=plugin --gems-dir corpus \
               --tier $tier $extra \
               --shard-slice ${{ matrix.slice }}/6 \

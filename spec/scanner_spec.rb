@@ -19,4 +19,12 @@ RSpec.describe RuboCopFuzz::Scanner do
     expect(findings.count { |f| f['shard'] == 'slow' }).to eq(described_class::MAX_SHARD_TIMEOUTS)
     expect(findings.count { |f| f['shard'] == 'fast' }).to eq(5)
   end
+
+  it 'starts no new jobs once the deadline has passed' do
+    scanner = described_class.new(rubocop_dir: '/r', shards: shards, variants: variants, workers: 1, timeout: 1,
+                                  deadline: Time.now - 1)
+    allow(scanner).to receive(:run_job).and_return({ 'findings' => [{ 'type' => 'loop' }] })
+
+    expect(scanner.scan).to be_empty
+  end
 end

@@ -12,7 +12,8 @@ module RuboCopFuzz
     # timeout once per config and push its CI job past the 6-hour limit.
     MAX_SHARD_TIMEOUTS = 2
 
-    def initialize(rubocop_dir:, shards:, variants:, workers:, timeout:, shards_per_config: nil, gemfile: nil)
+    def initialize(rubocop_dir:, shards:, variants:, workers:, timeout:, shards_per_config: nil, gemfile: nil,
+                   deadline: nil)
       @rubocop_dir = rubocop_dir
       @gemfile = gemfile
       @shards = shards
@@ -20,6 +21,7 @@ module RuboCopFuzz
       @workers = workers
       @timeout = timeout
       @shards_per_config = shards_per_config
+      @deadline = deadline
     end
 
     def scan(progress: nil)
@@ -28,12 +30,16 @@ module RuboCopFuzz
         timeouts[result['shard']] += 1 if timed_out?(result)
         progress&.call(idx, result)
       end
-      skip = ->((_variant, shard)) { timeouts[shard.name] >= MAX_SHARD_TIMEOUTS }
+      skip = ->((_variant, shard)) { past_deadline? || timeouts[shard.name] >= MAX_SHARD_TIMEOUTS }
 
       results = Pool.new(size: @workers).run(build_jobs, progress: track, skip: skip) do |(variant, shard)|
         run_job(variant, shard)
       end
       results.flat_map { |r| r&.fetch('findings', []) || [] }
+    end
+
+    def past_deadline?
+      @deadline && Time.now >= @deadline
     end
 
     def timed_out?(result)

@@ -13,6 +13,8 @@ jobs:
       matrix:
         slice: [0, 1, 2, 3, 4, 5]
     steps:
+      - name: Set scan deadline
+        run: echo "SCAN_DEADLINE=$(( $(date +%s) + 315 * 60 ))" >> "$GITHUB_ENV"
       - uses: actions/checkout@v4
       - uses: actions/checkout@v4
         with:
@@ -31,21 +33,21 @@ jobs:
         run: script/fetch-fresh-corpus corpus-gems 100
       - name: Scan (baseline)
         run: |
-          ruby exe/rubocop-fuzz scan \
+          ruby exe/rubocop-fuzz scan --deadline "$SCAN_DEADLINE" \
             --rubocop rubocop --gems-dir corpus-gems \
             --tier baseline \
             --shard-slice ${{ matrix.slice }}/6 \
             --out fuzz-out/baseline
       - name: Scan (packed)
         run: |
-          ruby exe/rubocop-fuzz scan \
+          ruby exe/rubocop-fuzz scan --deadline "$SCAN_DEADLINE" \
             --rubocop rubocop --gems-dir corpus-gems \
             --tier packed \
             --shard-slice ${{ matrix.slice }}/6 \
             --out fuzz-out/packed
       - name: Scan (interactions)
         run: |
-          ruby exe/rubocop-fuzz scan \
+          ruby exe/rubocop-fuzz scan --deadline "$SCAN_DEADLINE" \
             --rubocop rubocop --gems-dir corpus-gems \
             --tier interactions --shards-per-config 2 \
             --shard-slice ${{ matrix.slice }}/6 \

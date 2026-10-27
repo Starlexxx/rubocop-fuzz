@@ -71,8 +71,10 @@ module RuboCopFuzz
       scanner = Scanner.new(rubocop_dir: File.expand_path(opts[:rubocop_dir]),
                             shards: shards, variants: variants,
                             workers: opts[:workers], timeout: opts[:timeout],
-                            shards_per_config: opts[:shards_per_config], gemfile: gemfile)
+                            shards_per_config: opts[:shards_per_config], gemfile: gemfile,
+                            deadline: opts[:deadline])
       findings = scanner.scan(progress: progress)
+      puts "deadline reached, remaining jobs skipped" if scanner.past_deadline?
 
       files = Report.new(findings, out_dir: opts[:out_dir],
                          rubocop_dir: File.expand_path(opts[:rubocop_dir]), plugins: opts[:plugins]).write
@@ -94,6 +96,7 @@ module RuboCopFuzz
         o.on('--tier TIERS', 'baseline,sweep,packed,interactions') { |v| opts[:tiers] = v.split(',') }
         o.on('--seed N', Integer, 'shuffles the packed tier (default: today, YYYYMMDD)') { |v| opts[:seed] = v }
         o.on('--shards-per-config N', Integer) { |v| opts[:shards_per_config] = v }
+        o.on('--deadline EPOCH', Integer, 'start no new jobs after this Unix time') { |v| opts[:deadline] = Time.at(v) }
         o.on('--config-filter REGEX') { |v| opts[:config_filter] = Regexp.new(v) }
         o.on('--shard-slice I/N', %r{\A\d+/\d+\z}, 'take shard subset i of n') do |v|
           i, n = v.split('/').map(&:to_i)
