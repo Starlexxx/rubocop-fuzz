@@ -4,6 +4,13 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16182
+  status: open
+  note: "EmptyLinesAfterModuleInclusion took the other operand of `&&` as next statement; at end of method body EmptyLinesAroundMethodBody removed the line (sequenceserver sequence.rb, #62)"
+  signatures:
+    - 'loop:Layout/EmptyLinesAfterModuleInclusion+Layout/EmptyLinesAroundMethodBody'
+    - 'loop:Layout/EmptyLinesAfterModuleInclusion+Layout/EmptyLinesAroundMethodBody+Style/DisableCopsWithinSourceCodeDirective'
+
 - pr: 16181
   status: open
   note: "(koic) MultilineHashBraceLayout same_line with an own-line comment before `},` joined the comma into the comment (aidp harness/config_schema.rb, #60; my branch dropped)"
