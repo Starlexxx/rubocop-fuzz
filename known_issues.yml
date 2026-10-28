@@ -133,7 +133,7 @@
   cops: [Style/RaiseArgs]
 
 - pr: 16167
-  status: open
+  status: merged
   note: "HashAsLastArrayItem no_braces + MultilineArrayBraceLayout same_line edit around the same `}` in one pass; nested hashes left `,` on its own line (faker default/x.rb, #58)"
   signature_regex: "^syntax:syntax error, unexpected .,., expecting .\\}."
   cops: [Style/HashAsLastArrayItem, Layout/MultilineArrayBraceLayout]
@@ -959,7 +959,7 @@
   signature_regex: '^$never'
 
 - pr: 15609
-  status: open
+  status: merged
   note: Style/EndlessMethod vs Style/AmbiguousEndlessMethodDefinition loop
   signature_regex: 'loop:.*Style/AmbiguousEndlessMethodDefinition\+.*Style/EndlessMethod'
 
