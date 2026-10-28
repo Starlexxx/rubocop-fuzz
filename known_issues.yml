@@ -290,6 +290,12 @@
   cops:
     - Style/MethodDefParentheses
 
+- pr: rubocop-performance#553
+  status: open
+  note: "BindCall + Style/ExplicitBlockArgument same pass: bind_call(page)(&block) (fog-aws rds snapshots.rb, log_files.rb, plugin #61)"
+  signature_regex: "^syntax:syntax error, unexpected .\\(., expecting .end."
+  cops: [Performance/BindCall]
+
 - pr: rubocop-performance#549
   status: open
   note: "MapCompact + SafeNavigation same pass: `x && x.map do … end.compact` -> `end&` (brakeman engine_configuration.rb, baseline)"
