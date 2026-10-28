@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16181
+  status: open
+  note: "(koic) MultilineHashBraceLayout same_line with an own-line comment before `},` joined the comma into the comment (aidp harness/config_schema.rb, #60; my branch dropped)"
+  signature_regex: "^syntax:syntax error, unexpected local variable or method, expecting .\\}.$"
+  cops: [Layout/MultilineHashBraceLayout]
+
 - pr: 16180
   status: open
   note: "InterpolationCheck turned a non-leading split-string part into %{...}, parsed as `%` operator (rails-ai-context workspace_server.rb, #60, 20 groups)"
@@ -145,7 +151,7 @@
   cops: [Style/MethodCallWithArgsParentheses]
 
 - pr: 16172
-  status: open
+  status: merged
   note: "(koic, closed my #16165) EmptyLineCorrector now replaces the line break; EvalWithLocation + EmptyLinesAround{Block,Class,Module}Body empty_lines inserted at the same point, leaving `, __FILE__, __LINE__` on its own line (webmock em_http adapter, yard cli/graph.rb, #56)"
   signature_regex: "^syntax:syntax error, unexpected .,.$"
   cops: [Style/EvalWithLocation]
