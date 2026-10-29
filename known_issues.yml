@@ -4,6 +4,13 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16188
+  status: open
+  note: "InterpolationCheck turned 'A #{yield}' into a double-quoted string outside a method -> Invalid yield (sinatra test/*_test.rb, plugin #63 minitest bucket)"
+  signatures:
+    - 'syntax:Invalid yield'
+  cops: [Lint/InterpolationCheck]
+
 - pr: 16183
   status: merged
   note: "(koic) RescueEnsureAlignment NoMethodError `name` for Map::Send on index or-assignment `x[k] ||= ... do ... rescue` (dependabot-python pipenv_version_resolver.rb, #62)"
