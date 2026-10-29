@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16183
+  status: merged
+  note: "(koic) RescueEnsureAlignment NoMethodError `name` for Map::Send on index or-assignment `x[k] ||= ... do ... rescue` (dependabot-python pipenv_version_resolver.rb, #62)"
+  signature_regex: "^Layout/RescueEnsureAlignment: NoMethodError: .*alignment_source"
+  cops: [Layout/RescueEnsureAlignment]
+
 - pr: 16182
   status: merged
   note: "EmptyLinesAfterModuleInclusion took the other operand of `&&` as next statement; at end of method body EmptyLinesAroundMethodBody removed the line (sequenceserver sequence.rb, #62)"
