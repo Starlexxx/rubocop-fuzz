@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16196
+  status: open
+  note: "OperatorMethodCall dropped the dot of `pool.<< [1, 2] do ... end` -> `pool << [1, 2] do` (puma test_thread_pool.rb, plugin #63 minitest bucket)"
+  signature_regex: "^syntax:syntax error, unexpected .do., expecting .end."
+  cops: [Style/OperatorMethodCall]
+
 - pr: 16192
   status: open
   note: "MCWAP omit_parentheses + ParenthesesAroundCondition (AllowSafeAssignment false) same pass: `if x = groups.delete nil` (dalli, pry, sequel, actionpack..., #64)"
