@@ -5,7 +5,7 @@
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
 - pr: 16182
-  status: open
+  status: merged
   note: "EmptyLinesAfterModuleInclusion took the other operand of `&&` as next statement; at end of method body EmptyLinesAroundMethodBody removed the line (sequenceserver sequence.rb, #62)"
   signatures:
     - 'loop:Layout/EmptyLinesAfterModuleInclusion+Layout/EmptyLinesAroundMethodBody'
@@ -18,7 +18,7 @@
   cops: [Layout/MultilineHashBraceLayout]
 
 - pr: 16180
-  status: open
+  status: merged
   note: "InterpolationCheck turned a non-leading split-string part into %{...}, parsed as `%` operator (rails-ai-context workspace_server.rb, #60, 20 groups)"
   signature_regex: "^syntax:syntax error, unexpected .rescue., expecting .\\}."
   cops: [Lint/InterpolationCheck]
@@ -134,7 +134,7 @@
     - Minitest/GlobalExpectations
 
 - pr: 16169
-  status: open
+  status: merged
   note: "RaiseArgs replaced the whole multiline raise(...) and dropped the heredoc message body, both styles (waterdrop producer/transactions.rb, #58)"
   signature_regex: "^syntax:can.t find string \"ERROR_MSG\""
   cops: [Style/RaiseArgs]
@@ -235,7 +235,7 @@
   signature_regex: '^loop:Layout/BlockAlignment\+Layout/SpaceInsideBlockBraces'
 
 - pr: 16148
-  status: open
+  status: merged
   note: "SpaceAroundOperators re-added the space LineContinuationSpacing no_space removed in `x = \\` (masked inside fog-aws get_bucket.rb BlockAlignment loop, #52)"
   signature_regex: '^loop:.*Layout/LineContinuationSpacing.*Layout/SpaceAroundOperators'
 
