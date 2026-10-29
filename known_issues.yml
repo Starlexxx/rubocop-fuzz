@@ -11,7 +11,7 @@
   cops: [Style/OperatorMethodCall]
 
 - pr: 16192
-  status: open
+  status: merged
   note: "MCWAP omit_parentheses + ParenthesesAroundCondition (AllowSafeAssignment false) same pass: `if x = groups.delete nil` (dalli, pry, sequel, actionpack..., #64)"
   signature_regex: "^syntax:syntax error, unexpected .*, expecting .(then|do)."
   cops: [Style/MethodCallWithArgsParentheses, Style/ParenthesesAroundCondition]
