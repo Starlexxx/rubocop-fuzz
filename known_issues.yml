@@ -4,6 +4,18 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: rubocop-performance#556
+  status: open
+  note: "MapCompact: call taking `map do..end.compact` as argument treated as chained method, whole `end.compact` line removed (aws-sdk-s3 multipart_file_uploader.rb, plugin #65)"
+  signature_regex: "^syntax:syntax error, unexpected .\\)., expecting .end."
+  cops: [Performance/MapCompact]
+
+- pr: rubocop-rails#1683
+  status: open
+  note: "Rails/IndexBy + Layout/SingleLineBlockChain same pass: newline left before `do` of `for ... in x.index_by {...}` (rspec-rails lib/rspec-rails.rb, plugin #65)"
+  signature_regex: "^syntax:syntax error, unexpected .do.$"
+  cops: [Rails/IndexBy, Layout/SingleLineBlockChain]
+
 - pr: 16196
   status: open
   note: "OperatorMethodCall dropped the dot of `pool.<< [1, 2] do ... end` -> `pool << [1, 2] do` (puma test_thread_pool.rb, plugin #63 minitest bucket)"
