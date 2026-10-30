@@ -37,7 +37,7 @@
     - 'loop:Layout/EmptyLinesAfterModuleInclusion+Layout/EmptyLinesAroundMethodBody+Style/DisableCopsWithinSourceCodeDirective'
 
 - pr: 16181
-  status: open
+  status: merged
   note: "(koic) MultilineHashBraceLayout same_line with an own-line comment before `},` joined the comma into the comment (aidp harness/config_schema.rb, #60; my branch dropped)"
   signature_regex: "^syntax:syntax error, unexpected local variable or method, expecting .\\}.$"
   cops: [Layout/MultilineHashBraceLayout]
