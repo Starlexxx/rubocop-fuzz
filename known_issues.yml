@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16207
+  status: open
+  note: "(koic) EmptyLineAfterGuardClause with a multiline guard clause loops with EmptyLinesAroundBlockBody + LineLength (typr lib/browser.rb, #68; verified on branch)"
+  signatures:
+    - 'loop:Layout/EmptyLineAfterGuardClause+Layout/EmptyLinesAroundBlockBody+Layout/LineLength'
+
 - pr: rubocop-performance#556
   status: open
   note: "MapCompact: call taking `map do..end.compact` as argument treated as chained method, whole `end.compact` line removed (aws-sdk-s3 multipart_file_uploader.rb, plugin #65)"
