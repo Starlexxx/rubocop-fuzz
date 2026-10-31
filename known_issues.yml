@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16209
+  status: open
+  note: "(koic) MapIntoArray unwraps `x.push(...)` while TrailingCommaInArguments adds `,` after the argument in the same pass (testcentricity_web media.rb, #68; verified on branch)"
+  signature_regex: "^syntax:syntax error, unexpected .,., expecting .end."
+  cops: [Style/MapIntoArray, Style/TrailingCommaInArguments]
+
 - pr: 16206
   status: open
   note: "(koic) SpaceInsideArrayLiteralBrackets compact vs MultilineArrayBraceLayout new_line `]\\n]` <-> `]]` loop; compact now defers to new_line (22+ gems in #68; verified on branch; my duplicate #16211 closed)"
