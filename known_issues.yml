@@ -4,6 +4,11 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16206
+  status: open
+  note: "(koic) SpaceInsideArrayLiteralBrackets compact vs MultilineArrayBraceLayout new_line `]\\n]` <-> `]]` loop; compact now defers to new_line (22+ gems in #68; verified on branch; my duplicate #16211 closed)"
+  signature_regex: '^loop:.*Layout/MultilineArrayBraceLayout.*Layout/SpaceInsideArrayLiteralBrackets'
+
 - pr: 16207
   status: open
   note: "(koic) EmptyLineAfterGuardClause with a multiline guard clause loops with EmptyLinesAroundBlockBody + LineLength (typr lib/browser.rb, #68; verified on branch)"
