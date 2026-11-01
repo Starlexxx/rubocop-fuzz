@@ -16,7 +16,7 @@
   signature_regex: '^loop:.*Layout/MultilineArrayBraceLayout.*Layout/SpaceInsideArrayLiteralBrackets'
 
 - pr: 16207
-  status: open
+  status: merged
   note: "(koic) EmptyLineAfterGuardClause with a multiline guard clause loops with EmptyLinesAroundBlockBody + LineLength (typr lib/browser.rb, #68; verified on branch)"
   signatures:
     - 'loop:Layout/EmptyLineAfterGuardClause+Layout/EmptyLinesAroundBlockBody+Layout/LineLength'
