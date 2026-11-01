@@ -27,6 +27,12 @@
   signature_regex: "^syntax:syntax error, unexpected .\\)., expecting .end."
   cops: [Performance/MapCompact]
 
+- pr: 16191
+  status: open
+  note: "(maoxor) Lint/NumberConversion turned `receive(:to_i) { 1 }` into `receive { |i| Integer(i, 10) } { 1 }` (huginn spec/lib/utils_spec.rb, plugin #71; verified on branch)"
+  signature_regex: '^syntax:syntax error, unexpected .\{., expecting .end. or dummy end$'
+  cops: [Lint/NumberConversion]
+
 - pr: rubocop-rails#1685
   status: open
   note: "Rails/RedundantReceiverInWithOptions NoMethodError lvar_type? for nil: receiverless call in `it`/_1 with_options block (rails activesupport option_merger_test.rb, plugin #71)"
