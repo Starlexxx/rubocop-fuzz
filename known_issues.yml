@@ -11,7 +11,7 @@
   cops: [Style/MapIntoArray, Style/TrailingCommaInArguments]
 
 - pr: 16206
-  status: open
+  status: merged
   note: "(koic) SpaceInsideArrayLiteralBrackets compact vs MultilineArrayBraceLayout new_line `]\\n]` <-> `]]` loop; compact now defers to new_line (22+ gems in #68; verified on branch; my duplicate #16211 closed)"
   signature_regex: '^loop:.*Layout/MultilineArrayBraceLayout.*Layout/SpaceInsideArrayLiteralBrackets'
 
