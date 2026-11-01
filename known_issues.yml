@@ -27,6 +27,12 @@
   signature_regex: "^syntax:syntax error, unexpected .\\)., expecting .end."
   cops: [Performance/MapCompact]
 
+- pr: rubocop-rails#1685
+  status: open
+  note: "Rails/RedundantReceiverInWithOptions NoMethodError lvar_type? for nil: receiverless call in `it`/_1 with_options block (rails activesupport option_merger_test.rb, plugin #71)"
+  signature_regex: '^Rails/RedundantReceiverInWithOptions: NoMethodError: .*lvar_type. for nil'
+  cops: [Rails/RedundantReceiverInWithOptions]
+
 - pr: rubocop-rails#1683
   status: open
   note: "Rails/IndexBy + Layout/SingleLineBlockChain same pass: newline left before `do` of `for ... in x.index_by {...}` (rspec-rails lib/rspec-rails.rb, plugin #65)"
