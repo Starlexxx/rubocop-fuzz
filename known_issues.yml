@@ -27,6 +27,12 @@
   signature_regex: "^syntax:syntax error, unexpected .\\)., expecting .end."
   cops: [Performance/MapCompact]
 
+- pr: 16214
+  status: open
+  note: "Style/EmptyClassDefinition: `::Foo = Class.new(Bar)` -> `class ::::Foo < Bar` (cbase namespace source already `::`; sequel class_table_inheritance_spec.rb, plugin #71)"
+  signature_regex: '^syntax:syntax error, unexpected :: at EXPR_BEG'
+  cops: [Style/EmptyClassDefinition]
+
 - pr: 16191
   status: open
   note: "(maoxor) Lint/NumberConversion turned `receive(:to_i) { 1 }` into `receive { |i| Integer(i, 10) } { 1 }` (huginn spec/lib/utils_spec.rb, plugin #71; verified on branch)"
