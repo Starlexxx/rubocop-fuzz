@@ -30,7 +30,7 @@
 - pr: rubocop-rails#1685
   status: open
   note: "Rails/RedundantReceiverInWithOptions NoMethodError lvar_type? for nil: receiverless call in `it`/_1 with_options block (rails activesupport option_merger_test.rb, plugin #71)"
-  signature_regex: '^Rails/RedundantReceiverInWithOptions: NoMethodError: .*lvar_type. for nil'
+  signature_regex: '^Rails/RedundantReceiverInWithOptions: NoMethodError: .*lvar_type.*for nil'
   cops: [Rails/RedundantReceiverInWithOptions]
 
 - pr: rubocop-rails#1683
