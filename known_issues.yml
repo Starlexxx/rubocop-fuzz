@@ -27,6 +27,12 @@
   signature_regex: "^syntax:syntax error, unexpected .\\)., expecting .end."
   cops: [Performance/MapCompact]
 
+- pr: 16219
+  status: open
+  note: "RedundantFilterChain + SingleLineBlockChain same pass: `.empty?` moved to next line then removed, newline left before `,` (lobsters notification.rb, plugin #71 artifacts)"
+  signature_regex: "^syntax:syntax error, unexpected ','"
+  cops: [Style/RedundantFilterChain, Layout/SingleLineBlockChain]
+
 - pr: 16218
   status: open
   note: "Style/SendWithLiteralMethodName ArgumentError invalid byte sequence on `send(\"\xF8\")` (rspec-core bisect/utilities_spec.rb, plugin #71 artifacts)"
