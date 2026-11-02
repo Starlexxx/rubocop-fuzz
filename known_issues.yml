@@ -27,6 +27,12 @@
   signature_regex: "^syntax:syntax error, unexpected .\\)., expecting .end."
   cops: [Performance/MapCompact]
 
+- pr: 16217
+  status: open
+  note: "Style/RedundantArrayConstructor ClobberingError on nested `Array[Array[X]]` (whole-node replace overlapped; grape specs/benchmark, plugin #71 artifacts — core crash not shown in plugin issue)"
+  signature_regex: '^Style/RedundantArrayConstructor: Parser::ClobberingError'
+  cops: [Style/RedundantArrayConstructor]
+
 - pr: 16215
   status: open
   note: "Style/SingleLineMethods endless correction dropped parens of singleton receiver: `def (db.db).x(*); 1 end` -> `def db.db.x(*) = 1` (sequel date_arithmetic/auto_validations specs, plugin #71)"
