@@ -45,6 +45,18 @@
   signature_regex: "^Style/StringConcatenation: NoMethodError: undefined method .begin. for an instance of Parser::Source::Map::Heredoc"
   cops: [Style/StringConcatenation]
 
+- pr: 16236
+  status: open
+  note: "HeredocDelimiterCase: quote inside quoted delimiter `<<~'EDGE\"CASE'` -> closing rewritten to `edge` (snippet corpus)"
+  signature_regex: "^syntax:can't find string"
+  cops: [Naming/HeredocDelimiterCase]
+
+- pr: 16232
+  status: open
+  note: "(koic) RedundantInitialize/DigChain NoMethodError line for nil (node without end location; snippet corpus `def initialize; foo?; end`)"
+  signature_regex: "^Style/(RedundantInitialize|DigChain): NoMethodError"
+  cops: []
+
 - pr: 16221
   status: open
   note: "SendWithMixinArgument dropped parens outside statement position: `[Foo.send(:extend, Bar)]` -> `[Foo.extend Bar]` (snippet corpus)"
