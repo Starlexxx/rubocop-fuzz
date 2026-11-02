@@ -5,7 +5,7 @@
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
 - pr: 16209
-  status: open
+  status: merged
   note: "(koic) MapIntoArray unwraps `x.push(...)` while TrailingCommaInArguments adds `,` after the argument in the same pass (testcentricity_web media.rb, #68; verified on branch)"
   signature_regex: "^syntax:syntax error, unexpected .,., expecting .end."
   cops: [Style/MapIntoArray, Style/TrailingCommaInArguments]
