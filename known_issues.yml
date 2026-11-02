@@ -27,6 +27,12 @@
   signature_regex: "^syntax:syntax error, unexpected .\\)., expecting .end."
   cops: [Performance/MapCompact]
 
+- pr: 16218
+  status: open
+  note: "Style/SendWithLiteralMethodName ArgumentError invalid byte sequence on `send(\"\xF8\")` (rspec-core bisect/utilities_spec.rb, plugin #71 artifacts)"
+  signature_regex: '^Style/SendWithLiteralMethodName: ArgumentError: invalid byte sequence'
+  cops: [Style/SendWithLiteralMethodName]
+
 - pr: 16217
   status: open
   note: "Style/RedundantArrayConstructor ClobberingError on nested `Array[Array[X]]` (whole-node replace overlapped; grape specs/benchmark, plugin #71 artifacts — core crash not shown in plugin issue)"
