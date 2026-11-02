@@ -27,6 +27,12 @@
   signature_regex: "^syntax:syntax error, unexpected .\\)., expecting .end."
   cops: [Performance/MapCompact]
 
+- pr: 16220
+  status: open
+  note: "ExplicitBlockArgument appended `&block` after an unparenthesized call in the last arg (block moved to inner call; with MCWAP `.new((/./, &))`); minitest metametameta.rb, plugin #71 artifacts"
+  signature_regex: "^syntax:syntax error, unexpected ','"
+  cops: [Style/ExplicitBlockArgument]
+
 - pr: 16219
   status: open
   note: "RedundantFilterChain + SingleLineBlockChain same pass: `.empty?` moved to next line then removed, newline left before `,` (lobsters notification.rb, plugin #71 artifacts)"
