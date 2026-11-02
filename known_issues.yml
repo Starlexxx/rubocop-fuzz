@@ -27,6 +27,12 @@
   signature_regex: "^syntax:syntax error, unexpected .\\)., expecting .end."
   cops: [Performance/MapCompact]
 
+- pr: 16224
+  status: open
+  note: "LiteralAsCondition ClobberingError: `||`/`&&` literal operand in an elsif of an `if false` replaced same pass (EmptyCaseCondition output; snippet corpus)"
+  signature_regex: '^Lint/LiteralAsCondition: Parser::ClobberingError'
+  cops: [Lint/LiteralAsCondition]
+
 - pr: 16223
   status: open
   note: "EndlessMethod require_single_line ClobberingError for a def nested in a multiline endless def (snippet corpus)"
