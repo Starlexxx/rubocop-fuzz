@@ -27,6 +27,12 @@
   signature_regex: "^syntax:syntax error, unexpected .\\)., expecting .end."
   cops: [Performance/MapCompact]
 
+- pr: 16223
+  status: open
+  note: "EndlessMethod require_single_line ClobberingError for a def nested in a multiline endless def (snippet corpus)"
+  signature_regex: '^Style/EndlessMethod: Parser::ClobberingError'
+  cops: [Style/EndlessMethod]
+
 - pr: 16222
   status: open
   note: "StringConcatenation NoMethodError on parenthesized heredoc `(<<-STRING) + 'bar'` (snippet corpus)"
