@@ -27,20 +27,20 @@
   signature_regex: "^syntax:syntax error, unexpected .\\)., expecting .end."
   cops: [Performance/MapCompact]
 
-- pr: 16224
+- pr: 16226
   status: open
-  note: "LiteralAsCondition ClobberingError: `||`/`&&` literal operand in an elsif of an `if false` replaced same pass (EmptyCaseCondition output; snippet corpus)"
+  note: "(koic, replaced my #16224) LiteralAsCondition ClobberingError: `||`/`&&` literal operand in an elsif of an `if false` replaced same pass (EmptyCaseCondition output; snippet corpus)"
   signature_regex: '^Lint/LiteralAsCondition: Parser::ClobberingError'
   cops: [Lint/LiteralAsCondition]
 
-- pr: 16223
+- pr: 16225
   status: open
-  note: "EndlessMethod require_single_line ClobberingError for a def nested in a multiline endless def (snippet corpus)"
+  note: "(koic, replaced my #16223) EndlessMethod require_single_line ClobberingError for a def nested in a multiline endless def (snippet corpus)"
   signature_regex: '^Style/EndlessMethod: Parser::ClobberingError'
   cops: [Style/EndlessMethod]
 
 - pr: 16222
-  status: open
+  status: merged
   note: "StringConcatenation NoMethodError on parenthesized heredoc `(<<-STRING) + 'bar'` (snippet corpus)"
   signature_regex: "^Style/StringConcatenation: NoMethodError: undefined method .begin. for an instance of Parser::Source::Map::Heredoc"
   cops: [Style/StringConcatenation]
