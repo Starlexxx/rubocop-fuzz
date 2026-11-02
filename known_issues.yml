@@ -27,6 +27,12 @@
   signature_regex: "^syntax:syntax error, unexpected .\\)., expecting .end."
   cops: [Performance/MapCompact]
 
+- pr: 16215
+  status: open
+  note: "Style/SingleLineMethods endless correction dropped parens of singleton receiver: `def (db.db).x(*); 1 end` -> `def db.db.x(*) = 1` (sequel date_arithmetic/auto_validations specs, plugin #71)"
+  signature_regex: "^syntax:syntax error, unexpected '.', expecting"
+  cops: [Style/SingleLineMethods]
+
 - pr: 16214
   status: open
   note: "Style/EmptyClassDefinition: `::Foo = Class.new(Bar)` -> `class ::::Foo < Bar` (cbase namespace source already `::`; sequel class_table_inheritance_spec.rb, plugin #71)"
