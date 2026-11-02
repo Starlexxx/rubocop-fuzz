@@ -40,19 +40,19 @@
   cops: [Style/SendWithLiteralMethodName]
 
 - pr: 16217
-  status: open
+  status: merged
   note: "Style/RedundantArrayConstructor ClobberingError on nested `Array[Array[X]]` (whole-node replace overlapped; grape specs/benchmark, plugin #71 artifacts — core crash not shown in plugin issue)"
   signature_regex: '^Style/RedundantArrayConstructor: Parser::ClobberingError'
   cops: [Style/RedundantArrayConstructor]
 
 - pr: 16215
-  status: open
+  status: merged
   note: "Style/SingleLineMethods endless correction dropped parens of singleton receiver: `def (db.db).x(*); 1 end` -> `def db.db.x(*) = 1` (sequel date_arithmetic/auto_validations specs, plugin #71)"
   signature_regex: "^syntax:syntax error, unexpected '.', expecting"
   cops: [Style/SingleLineMethods]
 
 - pr: 16214
-  status: open
+  status: merged
   note: "Style/EmptyClassDefinition: `::Foo = Class.new(Bar)` -> `class ::::Foo < Bar` (cbase namespace source already `::`; sequel class_table_inheritance_spec.rb, plugin #71)"
   signature_regex: '^syntax:syntax error, unexpected :: at EXPR_BEG'
   cops: [Style/EmptyClassDefinition]
