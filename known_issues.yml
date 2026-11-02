@@ -27,6 +27,12 @@
   signature_regex: "^syntax:syntax error, unexpected .\\)., expecting .end."
   cops: [Performance/MapCompact]
 
+- pr: 16222
+  status: open
+  note: "StringConcatenation NoMethodError on parenthesized heredoc `(<<-STRING) + 'bar'` (snippet corpus)"
+  signature_regex: "^Style/StringConcatenation: NoMethodError: undefined method .begin. for an instance of Parser::Source::Map::Heredoc"
+  cops: [Style/StringConcatenation]
+
 - pr: 16221
   status: open
   note: "SendWithMixinArgument dropped parens outside statement position: `[Foo.send(:extend, Bar)]` -> `[Foo.extend Bar]` (snippet corpus)"
