@@ -27,6 +27,15 @@ jobs:
       - name: Install rubocop dependencies
         run: bundle install
         working-directory: rubocop
+      - name: Extract spec snippets
+        run: script/extract-spec-snippets --wrappers 2 corpus-snippets/spec-snippets rubocop/spec/rubocop/cop rubocop/spec/rubocop/cli
+      - name: Scan (spec snippets)
+        run: |
+          ruby exe/rubocop-fuzz scan --deadline "$SCAN_DEADLINE" \
+            --rubocop rubocop --gems-dir corpus-snippets \
+            --tier baseline,packed \
+            --shard-slice ${{ matrix.slice }}/6 \
+            --out fuzz-out/snippets
       - name: Fetch corpus
         run: script/fetch-corpus corpus-gems
       - name: Fetch fresh gems

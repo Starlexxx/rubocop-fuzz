@@ -1,0 +1,82 @@
+name: snippets
+
+on:
+  schedule:
+    - cron: '17 */4 * * *'
+  workflow_dispatch:
+
+jobs:
+  fuzz:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        slice: [0, 1, 2, 3, 4, 5]
+    steps:
+      - name: Set scan deadline and seed
+        run: |
+          echo "SCAN_DEADLINE=$(( $(date +%s) + 45 * 60 ))" >> "$GITHUB_ENV"
+          echo "SEED=$(date -u +%Y%m%d%H)" >> "$GITHUB_ENV"
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: rubocop/rubocop
+          path: rubocop
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.4'
+          bundler-cache: true
+      - name: Install rubocop dependencies
+        run: bundle install
+        working-directory: rubocop
+      - name: Extract spec snippets
+        run: |
+          script/extract-spec-snippets --wrappers 2 --seed "$SEED" \
+            corpus-snippets/spec-snippets rubocop/spec/rubocop/cop rubocop/spec/rubocop/cli
+      - name: Scan
+        run: |
+          ruby exe/rubocop-fuzz scan --deadline "$SCAN_DEADLINE" \
+            --rubocop rubocop --gems-dir corpus-snippets \
+            --tier baseline,packed --seed "$SEED" \
+            --shard-slice ${{ matrix.slice }}/6 \
+            --out fuzz-out/snippets
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: snippet-findings-${{ matrix.slice }}
+          path: fuzz-out/
+          if-no-files-found: ignore
+
+  report:
+    needs: fuzz
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+      - name: Open issue when new findings exist
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          find artifacts -name findings.jsonl -exec cat {} + > all-findings.jsonl 2>/dev/null || true
+          [ -s all-findings.jsonl ] || exit 0
+          ruby exe/rubocop-fuzz triage \
+            --findings all-findings.jsonl --known known_issues.yml --out body.md
+          if head -1 body.md | grep -q ' 0 new,'; then
+            exit 0
+          fi
+          gh label create snippet-findings --color FBCA04 --force
+          gh issue list --label snippet-findings --state open --json number --jq '.[].number' \
+            | xargs -r -I{} gh issue close {} --comment "Superseded by the next snippet run."
+          gh issue create \
+            --title "Snippet findings $(date -u '+%F %H:00')" \
+            --body-file body.md \
+            --label snippet-findings

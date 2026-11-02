@@ -13,6 +13,7 @@ require_relative 'rubocop_fuzz/scanner'
 require_relative 'rubocop_fuzz/minimizer'
 require_relative 'rubocop_fuzz/report'
 require_relative 'rubocop_fuzz/triage'
+require_relative 'rubocop_fuzz/snippets'
 
 module RuboCopFuzz
   class Error < StandardError; end

@@ -9,9 +9,11 @@ module RuboCopFuzz
   class Triage
     Entry = Struct.new(:pr, :status, :note, :signatures, :signature_regex, :cops, keyword_init: true)
 
-    def initialize(findings, known_path:, cops: nil)
+    def initialize(findings, known_path:, cops: nil, exclude_cops: nil)
       @cops = cops
-      @findings = cops ? findings.select { |f| f['cops'].any? { |c| c.match?(cops) } } : findings
+      @findings = findings
+      @findings = @findings.select { |f| f['cops'].any? { |c| c.match?(cops) } } if cops
+      @findings = @findings.reject { |f| f['cops'].any? { |c| c.match?(exclude_cops) } } if exclude_cops
       @entries = load_entries(known_path)
     end
 
@@ -109,11 +111,13 @@ module RuboCopFuzz
       lines
     end
 
-    # Cops matching the filter when one is set, otherwise the first few.
+    # Cops matching the filter when one is set, otherwise the first few. The
+    # count includes the filtered-out cops, which may hold the actual cause.
     def cops_cell(cops)
-      shown = @cops ? cops.grep(@cops) : cops
-      cell = shown.first(3).map { |c| "`#{c}`" }.join(', ')
-      shown.size > 3 ? "#{cell} +#{shown.size - 3}" : cell
+      shown = (@cops ? cops.grep(@cops) : cops).first(3)
+      cell = shown.map { |c| "`#{c}`" }.join(', ')
+      hidden = cops.size - shown.size
+      hidden.positive? ? "#{cell} +#{hidden}" : cell
     end
 
     def pr_ref(pr)

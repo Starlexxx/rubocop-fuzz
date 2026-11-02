@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'optparse'
+require_relative '../lib/rubocop_fuzz'
+
+opts = { wrappers: 0, seed: Time.now.utc.strftime('%Y%m%d').to_i }
+OptionParser.new do |o|
+  o.banner = 'usage: script/extract-spec-snippets DEST_DIR SPEC_DIR [SPEC_DIR ...]'
+  o.on('--wrappers N', Integer, 'wrapped copies per snippet') { |v| opts[:wrappers] = v }
+  o.on('--seed N', Integer, 'picks the wrappers (default: today, YYYYMMDD)') { |v| opts[:seed] = v }
+end.parse!
+
+dest = ARGV.shift
+abort('usage: script/extract-spec-snippets DEST_DIR SPEC_DIR [SPEC_DIR ...]') if dest.nil? || ARGV.empty?
+
+count = RuboCopFuzz::Snippets.new(ARGV, wrappers: opts[:wrappers], seed: opts[:seed]).write(dest)
+puts "#{count} snippets -> #{dest}"

@@ -114,5 +114,19 @@ RSpec.describe RuboCopFuzz::Triage do
       expect(triage.body).to include('1 finding(s), 1 unique group(s)')
       expect(triage.body).to include('| loop | `Style/C` | `loop:Style/C` |')
     end
+
+    it 'counts the cops hidden by the filter' do
+      triage = described_class.new(findings, known_path: nil, cops: /^Style\/A/)
+
+      expect(triage.body).to include('| loop | `Style/A` +1 | `loop:Style/A+Style/B` |')
+    end
+  end
+
+  context 'with an exclude cops filter' do
+    it 'keeps only groups without a matching cop' do
+      triage = described_class.new(findings, known_path: nil, exclude_cops: /^Style\/[AB]/)
+
+      expect(triage.grouped.map { |g| g[:signature] }).to contain_exactly('loop:Style/C', 'syntax:boom')
+    end
   end
 end

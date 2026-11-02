@@ -54,6 +54,15 @@ jobs:
       - name: Install rubocop dependencies
         run: bundle install
         working-directory: rubocop
+      - name: Extract spec snippets
+        run: script/extract-spec-snippets --wrappers 2 snippets/spec-snippets plugin/spec
+      - name: Scan (spec snippets)
+        run: |
+          ruby exe/rubocop-fuzz scan --deadline "$SCAN_DEADLINE" \
+            --rubocop rubocop --plugin ${{ matrix.plugin }}=plugin --gems-dir snippets \
+            --tier baseline,packed \
+            --shard-slice ${{ matrix.slice }}/6 \
+            --out fuzz-out/snippets
       - name: Fetch gem corpus
         if: matrix.corpus == 'gems'
         run: |
@@ -114,6 +123,15 @@ jobs:
               --cops "^$department/" | sed 's/^## /### /' >> body.md
             echo >> body.md
           done
+          cat rubocop-*.jsonl > all-plugins.jsonl 2>/dev/null || true
+          if [ -s all-plugins.jsonl ]; then
+            echo "# Core cops on plugin corpora" >> body.md
+            echo >> body.md
+            ruby exe/rubocop-fuzz triage \
+              --findings all-plugins.jsonl --known known_issues.yml \
+              --exclude-cops '^(Performance|Rails|RSpec|Minitest)/' | sed 's/^## /### /' >> body.md
+            echo >> body.md
+          fi
           if [ -s body.md ]; then
             gh issue list --label nightly-plugins --state open --json number --jq '.[].number' \
               | xargs -r -I{} gh issue close {} --comment "Superseded by the next nightly run."

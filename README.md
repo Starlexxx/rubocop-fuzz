@@ -33,6 +33,10 @@ script/fetch-fresh-corpus corpus-gems 100
 # shallow-clone Rails apps and spec/test heavy projects (corpus/repos.txt) for plugin cops
 script/fetch-repos corpus-repos
 
+# turn cop spec examples into a corpus, plus 2 wrapped copies of each
+script/extract-spec-snippets --wrappers 2 corpus-snippets/spec-snippets path/to/rubocop/spec/rubocop/cop
+rubocop-fuzz scan --rubocop path/to/rubocop --gems-dir corpus-snippets --tier baseline,packed
+
 # shrink findings to a minimal repro
 rubocop-fuzz minimize --rubocop path/to/rubocop --findings fuzz-out/findings.jsonl
 ```
@@ -42,10 +46,15 @@ Findings are written to `fuzz-out/findings.jsonl` and `fuzz-out/report.md`.
 ```sh
 # collapse known findings and keep only groups that involve a plugin cop
 rubocop-fuzz triage --findings fuzz-out/findings.jsonl --known known_issues.yml --cops '^Performance/'
+
+# or the opposite: groups with no plugin cop
+rubocop-fuzz triage --findings fuzz-out/findings.jsonl --known known_issues.yml --exclude-cops '^Performance/'
 ```
 
 The `nightly` workflow fuzzes core; `nightly-plugins` fuzzes core together with
-the plugin checkouts and files its findings under the `nightly-plugins` label.
+the plugin checkouts and files its findings under the `nightly-plugins` label;
+`snippets` runs only the spec snippet corpus every four hours and opens an issue
+when it sees something new.
 
 ## Development
 
