@@ -28,13 +28,13 @@
   cops: [Performance/MapCompact]
 
 - pr: 16226
-  status: open
+  status: merged
   note: "(koic, replaced my #16224) LiteralAsCondition ClobberingError: `||`/`&&` literal operand in an elsif of an `if false` replaced same pass (EmptyCaseCondition output; snippet corpus)"
   signature_regex: '^Lint/LiteralAsCondition: Parser::ClobberingError'
   cops: [Lint/LiteralAsCondition]
 
 - pr: 16225
-  status: open
+  status: merged
   note: "(koic, replaced my #16223) EndlessMethod require_single_line ClobberingError for a def nested in a multiline endless def (snippet corpus)"
   signature_regex: '^Style/EndlessMethod: Parser::ClobberingError'
   cops: [Style/EndlessMethod]
