@@ -82,7 +82,7 @@
   cops: [Naming/HeredocDelimiterCase]
 
 - pr: 16232
-  status: open
+  status: merged
   note: "(koic) RedundantInitialize/DigChain NoMethodError line for nil (node without end location; snippet corpus `def initialize; foo?; end`)"
   signature_regex: "^Style/(RedundantInitialize|DigChain): NoMethodError"
   cops: []
