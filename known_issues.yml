@@ -45,6 +45,12 @@
   signature_regex: "^Style/StringConcatenation: NoMethodError: undefined method .begin. for an instance of Parser::Source::Map::Heredoc"
   cops: [Style/StringConcatenation]
 
+- pr: 16242
+  status: open
+  note: "IdenticalConditionalBranches hoisted a duplicated expression out of a conditional used as a value (argument/array element) -> syntax error (snippet corpus)"
+  signature_regex: '^syntax:syntax error, unexpected local variable or method'
+  cops: [Style/IdenticalConditionalBranches]
+
 - pr: 16241
   status: open
   note: "ParenthesesAsGroupedExpression removed the space before `(bar in baz)` / `(a; b)` -> invalid argument (snippet corpus, with MCWAP omit_parentheses)"
