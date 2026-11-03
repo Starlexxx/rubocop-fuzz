@@ -45,6 +45,12 @@
   signature_regex: "^Style/StringConcatenation: NoMethodError: undefined method .begin. for an instance of Parser::Source::Map::Heredoc"
   cops: [Style/StringConcatenation]
 
+- pr: 16239
+  status: open
+  note: "SingleLineMethods ClobberingError: outer -> endless while nested empty def expanded (AllowIfMethodIsEmpty: false; snippet corpus)"
+  signature_regex: '^Style/SingleLineMethods: Parser::ClobberingError'
+  cops: [Style/SingleLineMethods]
+
 - pr: 16236
   status: open
   note: "HeredocDelimiterCase: quote inside quoted delimiter `<<~'EDGE\"CASE'` -> closing rewritten to `edge` (snippet corpus)"
