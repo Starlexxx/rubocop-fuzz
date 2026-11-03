@@ -51,26 +51,26 @@
   signature_regex: '^syntax:syntax error, unexpected string literal, expecting end-of-input'
   cops: [Lint/AmbiguousOperatorPrecedence, Style/LineEndConcatenation]
 
-- pr: 16242
-  status: open
-  note: "IdenticalConditionalBranches hoisted a duplicated expression out of a conditional used as a value (argument/array element) -> syntax error (snippet corpus)"
+- pr: 16246
+  status: merged
+  note: "(koic, replaced my #16242) IdenticalConditionalBranches hoisted a duplicated expression out of a conditional used as a value (argument/array element) -> syntax error (snippet corpus)"
   signature_regex: '^syntax:syntax error, unexpected local variable or method'
   cops: [Style/IdenticalConditionalBranches]
 
-- pr: 16241
-  status: open
-  note: "ParenthesesAsGroupedExpression removed the space before `(bar in baz)` / `(a; b)` -> invalid argument (snippet corpus, with MCWAP omit_parentheses)"
+- pr: 16245
+  status: merged
+  note: "(koic, replaced my #16241) ParenthesesAsGroupedExpression removed the space before `(bar in baz)` / `(a; b)` -> invalid argument (snippet corpus, with MCWAP omit_parentheses)"
   signature_regex: '^syntax:syntax error, unexpected (.in.|.;.), expecting .\).'
   cops: [Lint/ParenthesesAsGroupedExpression]
 
-- pr: 16240
-  status: open
-  note: "GuardClause rewrote an `if` used as a value (argument/hash value/array element) into a guard clause -> syntax error (snippet corpus)"
+- pr: 16244
+  status: merged
+  note: "(koic, replaced my #16240) GuardClause rewrote an `if` used as a value (argument/hash value/array element) into a guard clause -> syntax error (snippet corpus)"
   signature_regex: "^syntax:syntax error, unexpected .(unless|if). modifier"
   cops: [Style/GuardClause]
 
 - pr: 16239
-  status: open
+  status: merged
   note: "SingleLineMethods ClobberingError: outer -> endless while nested empty def expanded (AllowIfMethodIsEmpty: false; snippet corpus)"
   signature_regex: '^Style/SingleLineMethods: Parser::ClobberingError'
   cops: [Style/SingleLineMethods]
