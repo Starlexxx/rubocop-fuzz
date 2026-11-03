@@ -45,6 +45,12 @@
   signature_regex: "^Style/StringConcatenation: NoMethodError: undefined method .begin. for an instance of Parser::Source::Map::Heredoc"
   cops: [Style/StringConcatenation]
 
+- pr: 16241
+  status: open
+  note: "ParenthesesAsGroupedExpression removed the space before `(bar in baz)` / `(a; b)` -> invalid argument (snippet corpus, with MCWAP omit_parentheses)"
+  signature_regex: '^syntax:syntax error, unexpected (.in.|.;.), expecting .\).'
+  cops: [Lint/ParenthesesAsGroupedExpression]
+
 - pr: 16240
   status: open
   note: "GuardClause rewrote an `if` used as a value (argument/hash value/array element) into a guard clause -> syntax error (snippet corpus)"
