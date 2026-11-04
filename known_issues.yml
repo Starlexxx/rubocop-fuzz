@@ -76,7 +76,7 @@
   cops: [Style/SingleLineMethods]
 
 - pr: 16236
-  status: open
+  status: merged
   note: "HeredocDelimiterCase: quote inside quoted delimiter `<<~'EDGE\"CASE'` -> closing rewritten to `edge` (snippet corpus)"
   signature_regex: "^syntax:can't find string"
   cops: [Naming/HeredocDelimiterCase]
@@ -106,7 +106,7 @@
   cops: [Style/RedundantFilterChain, Layout/SingleLineBlockChain]
 
 - pr: 16218
-  status: open
+  status: merged
   note: "Style/SendWithLiteralMethodName ArgumentError invalid byte sequence on `send(\"\xF8\")` (rspec-core bisect/utilities_spec.rb, plugin #71 artifacts)"
   signature_regex: '^Style/SendWithLiteralMethodName: ArgumentError: invalid byte sequence'
   cops: [Style/SendWithLiteralMethodName]
