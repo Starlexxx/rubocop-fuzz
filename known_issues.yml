@@ -45,6 +45,12 @@
   signature_regex: "^Style/StringConcatenation: NoMethodError: undefined method .begin. for an instance of Parser::Source::Map::Heredoc"
   cops: [Style/StringConcatenation]
 
+- pr: 16257
+  status: open
+  note: "RescuedExceptionsVariableName NoMethodError each_node for Symbol: `begin ... rescue => ex ... end.bar` (right_siblings include method name; snippet corpus)"
+  signature_regex: "^Naming/RescuedExceptionsVariableName: NoMethodError"
+  cops: [Naming/RescuedExceptionsVariableName]
+
 - pr: 16243
   status: open
   note: "AmbiguousOperatorPrecedence + LineEndConcatenation same pass: `('a' \ 'b') \ 'c'` (snippet corpus)"
