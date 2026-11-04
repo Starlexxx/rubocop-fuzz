@@ -45,6 +45,12 @@
   signature_regex: "^Style/StringConcatenation: NoMethodError: undefined method .begin. for an instance of Parser::Source::Map::Heredoc"
   cops: [Style/StringConcatenation]
 
+- pr: 16258
+  status: open
+  note: "RedundantBegin NoMethodError rescue_type? for nil: empty `begin ... ensure` as if/case branch or while body (EnsureNode#rescue_node in rubocop-ast; snippet corpus)"
+  signature_regex: "^Style/RedundantBegin: NoMethodError: .*rescue_type"
+  cops: [Style/RedundantBegin]
+
 - pr: 16257
   status: open
   note: "RescuedExceptionsVariableName NoMethodError each_node for Symbol: `begin ... rescue => ex ... end.bar` (right_siblings include method name; snippet corpus)"
