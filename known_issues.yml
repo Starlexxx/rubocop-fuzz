@@ -4,6 +4,11 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16282
+  status: open
+  note: "Lint/Void removed a void interpolated literal (dropping the interpolated call) while also correcting a void operator inside it -> ClobberingError (nightly #87 snippets)"
+  signature_regex: "^Lint/Void: Parser::ClobberingError"
+
 - pr: 16280
   status: open
   note: "DuplicateMethods delegate_prefix read .value of every option key; non-symbol key (`key => 1`, dsym) -> NoMethodError (plugin #88, rubocop-rails snippets)"
