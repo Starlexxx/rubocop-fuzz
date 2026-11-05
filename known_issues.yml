@@ -4,6 +4,13 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16276
+  status: open
+  note: "RedundantInterpolation turned a void interpolation (`\"#{return foo}\"`, statements/begin/ensure/rescue/conditional ending in return) into `(...).to_s` (snippet #86, 22 files). Remaining case-form is IdenticalConditionalBranches hoisting return inside `(case ...).to_s`"
+  signatures:
+    - "syntax:void value expression"
+  cops: [Style/RedundantInterpolation]
+
 - pr: 16270
   status: open
   note: "(koic) FirstArgumentIndentation NoMethodError in begins_its_line? with an inner call without parentheses (snippet corpus)"
