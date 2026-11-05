@@ -4,6 +4,11 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16271
+  status: open
+  note: "RedundantInterpolation replaced the whole outer dstr while a nested redundant interpolation in its argument/receiver was corrected in the same pass (snippet #81, 43 findings / 3 files)"
+  signature_regex: '^Style/RedundantInterpolation: Parser::ClobberingError'
+
 - pr: 16209
   status: merged
   note: "(koic) MapIntoArray unwraps `x.push(...)` while TrailingCommaInArguments adds `,` after the argument in the same pass (testcentricity_web media.rb, #68; verified on branch)"
