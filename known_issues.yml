@@ -4,6 +4,13 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16277
+  status: open
+  note: "IdenticalConditionalBranches hoisted an identical trailing return/next/break after a case whose value is used ((case ...).to_s, x = case, x = begin ... end) -> void value (snippet #86 dadb76, after TopLevelReturnWithArgument strips arguments)"
+  signatures:
+    - "syntax:void value expression"
+  cops: [Style/IdenticalConditionalBranches]
+
 - pr: 16262
   status: open
   note: "(koic) EmptyLinesAroundExceptionHandlingKeywords vs EmptyLinesAroundBlockBody loop with a rescue clause at the block body beginning (nightly #87, 70+16+6; verified on PR branch)"
