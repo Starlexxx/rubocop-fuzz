@@ -4,6 +4,16 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16270
+  status: open
+  note: "(koic) FirstArgumentIndentation NoMethodError in begins_its_line? with an inner call without parentheses (snippet corpus)"
+  signature_regex: "^Layout/FirstArgumentIndentation: NoMethodError: .*begins_its_line"
+
+- pr: 16266
+  status: open
+  note: "(koic) Style/For ClobberingError with an `each` block in the receiver (snippet corpus)"
+  signature_regex: "^Style/For: Parser::ClobberingError"
+
 - pr: 16275
   status: open
   note: "MultilineLiteralBraceCorrector moved only a dot chain after `)` for a heredoc first argument, assuming the call is its receiver; as an argument -> NoMethodError (loc.dot nil). Now moves the rest of the brace line (snippet #81)"
