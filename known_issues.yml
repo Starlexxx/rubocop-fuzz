@@ -45,9 +45,9 @@
   signature_regex: "^Style/StringConcatenation: NoMethodError: undefined method .begin. for an instance of Parser::Source::Map::Heredoc"
   cops: [Style/StringConcatenation]
 
-- pr: 16267
+- pr: 16268
   status: open
-  note: "LiteralInInterpolation NoMethodError basic_literal? for nil on endless/beginless range `\"#{42..}\"` (snippet corpus)"
+  note: "(koic, replaced my #16267) LiteralInInterpolation NoMethodError basic_literal? for nil on endless/beginless range `\"#{42..}\"` (snippet corpus)"
   signature_regex: "^Lint/LiteralInInterpolation: NoMethodError"
   cops: [Lint/LiteralInInterpolation]
 
@@ -58,7 +58,7 @@
   cops: [Style/RedundantBegin]
 
 - pr: 16259
-  status: open
+  status: merged
   note: "(koic, replaced my #16257) RescuedExceptionsVariableName NoMethodError each_node for Symbol: `begin ... rescue => ex ... end.bar` (right_siblings include method name; snippet corpus)"
   signature_regex: "^Naming/RescuedExceptionsVariableName: NoMethodError"
   cops: [Naming/RescuedExceptionsVariableName]
