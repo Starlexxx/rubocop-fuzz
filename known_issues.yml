@@ -45,6 +45,12 @@
   signature_regex: "^Style/StringConcatenation: NoMethodError: undefined method .begin. for an instance of Parser::Source::Map::Heredoc"
   cops: [Style/StringConcatenation]
 
+- pr: 16267
+  status: open
+  note: "LiteralInInterpolation NoMethodError basic_literal? for nil on endless/beginless range `\"#{42..}\"` (snippet corpus)"
+  signature_regex: "^Lint/LiteralInInterpolation: NoMethodError"
+  cops: [Lint/LiteralInInterpolation]
+
 - pr: 16258
   status: open
   note: "RedundantBegin NoMethodError rescue_type? for nil: empty `begin ... ensure` as if/case branch or while body (EnsureNode#rescue_node in rubocop-ast; snippet corpus)"
