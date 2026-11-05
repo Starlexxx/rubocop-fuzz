@@ -4,9 +4,9 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
-- pr: 16277
+- pr: 16278
   status: open
-  note: "IdenticalConditionalBranches hoisted an identical trailing return/next/break after a case whose value is used ((case ...).to_s, x = case, x = begin ... end) -> void value (snippet #86 dadb76, after TopLevelReturnWithArgument strips arguments)"
+  note: "(koic, my #16277 closed) IdenticalConditionalBranches hoisted an identical trailing return/next/break after a case whose value is used ((case ...).to_s, x = case, x = begin ... end) -> void value (snippet #86 dadb76, after TopLevelReturnWithArgument strips arguments)"
   signatures:
     - "syntax:void value expression"
   cops: [Style/IdenticalConditionalBranches]
@@ -16,9 +16,9 @@
   note: "(koic) EmptyLinesAroundExceptionHandlingKeywords vs EmptyLinesAroundBlockBody loop with a rescue clause at the block body beginning (nightly #87, 70+16+6; verified on PR branch)"
   signature_regex: "^loop:Layout/EmptyLinesAroundBlockBody\\+Layout/EmptyLinesAroundExceptionHandlingKeywords"
 
-- pr: 16276
+- pr: 16279
   status: open
-  note: "RedundantInterpolation turned a void interpolation (`\"#{return foo}\"`, statements/begin/ensure/rescue/conditional ending in return) into `(...).to_s` (snippet #86, 22 files). Remaining case-form is IdenticalConditionalBranches hoisting return inside `(case ...).to_s`"
+  note: "(koic, my #16276 closed) RedundantInterpolation turned a void interpolation (`\"#{return foo}\"`, statements/begin/ensure/rescue/conditional ending in return) into `(...).to_s` (snippet #86, 22 files). Remaining case-form is IdenticalConditionalBranches hoisting return inside `(case ...).to_s`"
   signatures:
     - "syntax:void value expression"
   cops: [Style/RedundantInterpolation]
@@ -205,7 +205,7 @@
   cops: [Rails/IndexBy, Layout/SingleLineBlockChain]
 
 - pr: 16196
-  status: open
+  status: merged
   note: "OperatorMethodCall dropped the dot of `pool.<< [1, 2] do ... end` -> `pool << [1, 2] do` (puma test_thread_pool.rb, plugin #63 minitest bucket)"
   signature_regex: "^syntax:syntax error, unexpected .do., expecting .end."
   cops: [Style/OperatorMethodCall]
@@ -1207,13 +1207,13 @@
   signature_regex: 'loop:Layout/LineEndStringConcatenationIndentation'
 
 - pr: 15622
-  status: open
-  note: Layout/HashAlignment vs IndentationStyle tabs
+  status: merged
+  note: "(closed: fixed on master by IndentationStyle keeping alignment spaces) Layout/HashAlignment vs IndentationStyle tabs"
   signature_regex: 'loop:.*Layout/HashAlignment\+.*Layout/IndentationStyle'
 
 - pr: 15633
-  status: open
-  note: alignment cops vs IndentationStyle tabs
+  status: merged
+  note: "(closed: fixed on master by IndentationStyle keeping alignment spaces) alignment cops vs IndentationStyle tabs"
   signature_regex: 'loop:.*Layout/IndentationStyle'
 
 - pr: 15665
