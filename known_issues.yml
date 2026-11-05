@@ -51,9 +51,9 @@
   signature_regex: "^Style/RedundantBegin: NoMethodError: .*rescue_type"
   cops: [Style/RedundantBegin]
 
-- pr: 16257
+- pr: 16259
   status: open
-  note: "RescuedExceptionsVariableName NoMethodError each_node for Symbol: `begin ... rescue => ex ... end.bar` (right_siblings include method name; snippet corpus)"
+  note: "(koic, replaced my #16257) RescuedExceptionsVariableName NoMethodError each_node for Symbol: `begin ... rescue => ex ... end.bar` (right_siblings include method name; snippet corpus)"
   signature_regex: "^Naming/RescuedExceptionsVariableName: NoMethodError"
   cops: [Naming/RescuedExceptionsVariableName]
 
