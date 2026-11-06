@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16299
+  status: open
+  note: "RaiseArgs removed parens of `raise X.new(<<~MSG ...)` while HeredocArgumentClosingParenthesis moved `)` next to the heredoc opening in the same pass -> `<<~MSG)` (nightly #91)"
+  signature_regex: "^syntax:"
+  cops: [Layout/HeredocArgumentClosingParenthesis, Style/RaiseArgs]
+
 - pr: 16297
   status: open
   note: "Semicolon parenthesizes args before `;` after an omitted hash value (`m 1, key:;`) in the same pass as MethodCallWithArgsParentheses / HashSyntax(never) -> extra `)` (nightly #91, 43 of 45). Remaining: `raise X, <<~MSG;` heredoc"
