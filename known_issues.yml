@@ -11,7 +11,7 @@
   cops: [Style/OperatorMethodCall]
 
 - pr: 16293
-  status: open
+  status: merged
   note: "HashConversion wrapped a braced hash argument in braces again: `Hash[{a: 1}]` -> `{{a: 1}}` (nightly #87, surfaced after EmptyLiteral fix)"
   signature_regex: "^syntax:"
   cops: [Style/HashConversion, Style/EmptyLiteral]
@@ -34,7 +34,7 @@
   signature_regex: "^Lint/Void: Parser::ClobberingError"
 
 - pr: 16280
-  status: open
+  status: merged
   note: "DuplicateMethods delegate_prefix read .value of every option key; non-symbol key (`key => 1`, dsym) -> NoMethodError (plugin #88, rubocop-rails snippets)"
   signature_regex: "^Lint/DuplicateMethods: NoMethodError: .*hash_value"
 
@@ -125,7 +125,7 @@
   cops: [Lint/LiteralInInterpolation]
 
 - pr: 16258
-  status: open
+  status: merged
   note: "RedundantBegin NoMethodError rescue_type? for nil: empty `begin ... ensure` as if/case branch or while body (EnsureNode#rescue_node in rubocop-ast; snippet corpus)"
   signature_regex: "^Style/RedundantBegin: NoMethodError: .*rescue_type"
   cops: [Style/RedundantBegin]
@@ -251,7 +251,7 @@
   cops: [Style/MethodCallWithArgsParentheses, Style/ParenthesesAroundCondition]
 
 - pr: 16188
-  status: open
+  status: merged
   note: "InterpolationCheck turned 'A #{yield}' into a double-quoted string outside a method -> Invalid yield (sinatra test/*_test.rb, plugin #63 minitest bucket)"
   signatures:
     - 'syntax:Invalid yield'
