@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16297
+  status: open
+  note: "Semicolon parenthesizes args before `;` after an omitted hash value (`m 1, key:;`) in the same pass as MethodCallWithArgsParentheses / HashSyntax(never) -> extra `)` (nightly #91, 43 of 45). Remaining: `raise X, <<~MSG;` heredoc"
+  signature_regex: "^syntax:syntax error, unexpected .\\)., expecting end-of-input"
+  cops: [Style/Semicolon]
+
 - pr: 16294
   status: open
   note: "OperatorMethodCall left `foo +(bar)` (= foo(+(bar))) after removing the dot; syntax error as an operand (`[foo.+(bar)]`, `x && foo.+(bar)`) (nightly #87, 24 of 29). Remaining 5: AndOr adds parens in same pass (`foo and bar.+ baz`)"
