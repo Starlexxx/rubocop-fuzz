@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16294
+  status: open
+  note: "OperatorMethodCall left `foo +(bar)` (= foo(+(bar))) after removing the dot; syntax error as an operand (`[foo.+(bar)]`, `x && foo.+(bar)`) (nightly #87, 24 of 29). Remaining 5: AndOr adds parens in same pass (`foo and bar.+ baz`)"
+  signature_regex: "^syntax:syntax error, unexpected unary[+-]"
+  cops: [Style/OperatorMethodCall]
+
 - pr: 16293
   status: open
   note: "HashConversion wrapped a braced hash argument in braces again: `Hash[{a: 1}]` -> `{{a: 1}}` (nightly #87, surfaced after EmptyLiteral fix)"
