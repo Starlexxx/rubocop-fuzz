@@ -4,15 +4,15 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
-- pr: 16291
+- pr: 16292
   status: open
-  note: "EmptyLiteral treated an index call `x[Hash.new]`/`Hash[Hash[]]` as an unparenthesized command call -> `x({})]` (nightly #87). Follow-up: HashConversion `Hash[{}]` -> `{{}}`"
+  note: "(koic, my #16291 closed) EmptyLiteral treated an index call `x[Hash.new]`/`Hash[Hash[]]` as an unparenthesized command call -> `x({})]` (nightly #87). Follow-up: HashConversion `Hash[{}]` -> `{{}}`"
   signature_regex: "^syntax:syntax error, unexpected .\\]., expecting end-of-input"
   cops: [Style/EmptyLiteral]
 
-- pr: 16289
+- pr: 16290
   status: open
-  note: "Lint/Void reported `x.==(a, b)` (dot operator call with 2+ args) as a void op and split it into `x` + `(a, b)` -> syntax error (nightly #87, 17 findings)"
+  note: "(koic, my #16289 closed) Lint/Void reported `x.==(a, b)` (dot operator call with 2+ args) as a void op and split it into `x` + `(a, b)` -> syntax error (nightly #87, 17 findings)"
   signature_regex: "^syntax:syntax error, unexpected .,., expecting .\\)."
   cops: [Lint/Void]
 
