@@ -5,7 +5,7 @@
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
 - pr: 16282
-  status: open
+  status: merged
   note: "Lint/Void removed a void interpolated literal (dropping the interpolated call) while also correcting a void operator inside it -> ClobberingError (nightly #87 snippets)"
   signature_regex: "^Lint/Void: Parser::ClobberingError"
 
