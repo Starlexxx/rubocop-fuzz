@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16289
+  status: open
+  note: "Lint/Void reported `x.==(a, b)` (dot operator call with 2+ args) as a void op and split it into `x` + `(a, b)` -> syntax error (nightly #87, 17 findings)"
+  signature_regex: "^syntax:syntax error, unexpected .,., expecting .\\)."
+  cops: [Lint/Void]
+
 - pr: 16282
   status: merged
   note: "Lint/Void removed a void interpolated literal (dropping the interpolated call) while also correcting a void operator inside it -> ClobberingError (nightly #87 snippets)"
