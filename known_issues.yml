@@ -137,7 +137,7 @@
   cops: [Naming/RescuedExceptionsVariableName]
 
 - pr: 16243
-  status: open
+  status: merged
   note: "AmbiguousOperatorPrecedence + LineEndConcatenation same pass: `('a' \ 'b') \ 'c'` (snippet corpus)"
   signature_regex: '^syntax:syntax error, unexpected string literal, expecting end-of-input'
   cops: [Lint/AmbiguousOperatorPrecedence, Style/LineEndConcatenation]
@@ -179,13 +179,13 @@
   cops: []
 
 - pr: 16221
-  status: open
+  status: merged
   note: "SendWithMixinArgument dropped parens outside statement position: `[Foo.send(:extend, Bar)]` -> `[Foo.extend Bar]` (snippet corpus)"
   signature_regex: '^syntax:'
   cops: [Lint/SendWithMixinArgument]
 
 - pr: 16220
-  status: open
+  status: merged
   note: "ExplicitBlockArgument appended `&block` after an unparenthesized call in the last arg (block moved to inner call; with MCWAP `.new((/./, &))`); minitest metametameta.rb, plugin #71 artifacts"
   signature_regex: "^syntax:syntax error, unexpected ','"
   cops: [Style/ExplicitBlockArgument]
