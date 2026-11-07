@@ -5,7 +5,7 @@
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
 - pr: 16299
-  status: open
+  status: merged
   note: "RaiseArgs removed parens of `raise X.new(<<~MSG ...)` while HeredocArgumentClosingParenthesis moved `)` next to the heredoc opening in the same pass -> `<<~MSG)` (nightly #91)"
   signature_regex: "^syntax:"
   cops: [Layout/HeredocArgumentClosingParenthesis, Style/RaiseArgs]
@@ -203,7 +203,7 @@
   cops: [Style/ExplicitBlockArgument]
 
 - pr: 16219
-  status: open
+  status: merged
   note: "RedundantFilterChain + SingleLineBlockChain same pass: `.empty?` moved to next line then removed, newline left before `,` (lobsters notification.rb, plugin #71 artifacts)"
   signature_regex: "^syntax:syntax error, unexpected ','"
   cops: [Style/RedundantFilterChain, Layout/SingleLineBlockChain]
