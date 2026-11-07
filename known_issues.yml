@@ -4,6 +4,11 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16308
+  status: open
+  note: "EmptyLinesAroundClassBody empty_lines_special did not treat `private if cond` as an access modifier and required a blank line before the first def, which EmptyLinesAroundAccessModifier only_before removes -> loop (nightly #91, 6 files)"
+  signature_regex: "^loop:Layout/EmptyLinesAroundAccessModifier\\+Layout/EmptyLinesAroundClassBody"
+
 - pr: 16299
   status: merged
   note: "RaiseArgs removed parens of `raise X.new(<<~MSG ...)` while HeredocArgumentClosingParenthesis moved `)` next to the heredoc opening in the same pass -> `<<~MSG)` (nightly #91)"
