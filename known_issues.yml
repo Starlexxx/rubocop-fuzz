@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16318
+  status: open
+  note: "Naming/BlockForwarding anonymous style wrapped index call args in parentheses: `foo[&block]` -> `foo[&])(` (local run 2026110816, 21 findings)"
+  signature_regex: "^syntax:syntax error, unexpected .\\)."
+  cops: [Naming/BlockForwarding]
+
 - pr: 16317
   status: open
   note: "HeredocArgumentClosingParenthesis moved the outer call paren after its last argument, which already ended below the HEREDOC opening (`foo(bar(<<~X),\n...\nX\n  baz)` or a chain after the heredoc) -> no-op correction loop (local run 2026110816, 14 files)"
