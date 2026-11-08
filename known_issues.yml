@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16320
+  status: open
+  note: "AmbiguousEndlessMethodDefinition (and shared EndlessMethodRewriter) put `end` before the HEREDOC body: `def m = foo(<<~EOS) if c` -> `def m\n  foo(<<~EOS)\nend if c\n...EOS` (local run 2026110818, 5 files); now offense without correction"
+  signature_regex: "^syntax:"
+  cops: [Style/AmbiguousEndlessMethodDefinition]
+
 - pr: 16318
   status: open
   note: "Naming/BlockForwarding anonymous style wrapped index call args in parentheses: `foo[&block]` -> `foo[&])(` (local run 2026110816, 21 findings)"
