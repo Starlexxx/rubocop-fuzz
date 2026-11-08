@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16317
+  status: open
+  note: "HeredocArgumentClosingParenthesis moved the outer call paren after its last argument, which already ended below the HEREDOC opening (`foo(bar(<<~X),\n...\nX\n  baz)` or a chain after the heredoc) -> no-op correction loop (local run 2026110816, 14 files)"
+  signature_regex: "^loop:.*Layout/HeredocArgumentClosingParenthesis"
+  cops: [Layout/FirstArgumentIndentation]
+
 - pr: 16309
   status: merged
   note: "(koic, my #16308 closed) EmptyLinesAroundClassBody empty_lines_special did not treat `private if cond` as an access modifier and required a blank line before the first def, which EmptyLinesAroundAccessModifier only_before removes -> loop (nightly #91, 6 files)"
