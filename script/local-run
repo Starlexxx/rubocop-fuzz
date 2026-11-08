@@ -4,7 +4,8 @@
 #   script/local-run [RUBOCOP_DIR]
 #
 # Env: SEED (default: current UTC hour), MINUTES (scan budget, default 45),
-# WORKERS (default: CPU count), OUT (default: local-runs/SEED).
+# WORKERS (default: CPU count), OUT (default: local-runs/SEED),
+# KEEP (runs kept under local-runs, default 3).
 set -euo pipefail
 
 root=$(cd "$(dirname "$0")/.." && pwd)
@@ -32,6 +33,8 @@ ruby "$root/exe/rubocop-fuzz" scan --deadline $(( $(date +%s) + minutes * 60 )) 
 find "$out/scan" -name findings.jsonl -exec cat {} + > "$out/findings.jsonl"
 ruby "$root/exe/rubocop-fuzz" triage \
   --findings "$out/findings.jsonl" --known "$root/known_issues.yml" --out "$out/report.md"
+
+ls -1dt "$root"/local-runs/*/ 2>/dev/null | tail -n +$(( ${KEEP:-3} + 1 )) | xargs rm -rf
 
 echo "rubocop $(git -C "$rubocop" log --oneline -1)"
 head -1 "$out/report.md"
