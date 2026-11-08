@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# Runs the snippet scan locally and writes a triage report.
+#
+#   script/local-run [RUBOCOP_DIR]
+#
+# Env: SEED (default: current UTC hour), MINUTES (scan budget, default 45),
+# WORKERS (default: CPU count), OUT (default: local-runs/SEED).
+set -euo pipefail
+
+root=$(cd "$(dirname "$0")/.." && pwd)
+rubocop=$(cd "${1:-$root/../rubocop-master}" && pwd)
+seed=${SEED:-$(date -u +%Y%m%d%H)}
+minutes=${MINUTES:-45}
+workers=${WORKERS:-$(sysctl -n hw.ncpu 2>/dev/null || nproc)}
+out=${OUT:-$root/local-runs/$seed}
+
+git -C "$rubocop" fetch -q origin master
+git -C "$rubocop" checkout -q --detach origin/master
+(cd "$rubocop" && bundle install --quiet)
+
+rm -rf "$out"
+mkdir -p "$out"
+
+"$root/script/extract-spec-snippets" --wrappers 2 --seed "$seed" \
+  "$out/corpus/spec-snippets" "$rubocop/spec/rubocop/cop" "$rubocop/spec/rubocop/cli"
+
+ruby "$root/exe/rubocop-fuzz" scan --deadline $(( $(date +%s) + minutes * 60 )) \
+  --rubocop "$rubocop" --gems-dir "$out/corpus" \
+  --tier baseline,packed --seed "$seed" --workers "$workers" \
+  --out "$out/scan"
+
+find "$out/scan" -name findings.jsonl -exec cat {} + > "$out/findings.jsonl"
+ruby "$root/exe/rubocop-fuzz" triage \
+  --findings "$out/findings.jsonl" --known "$root/known_issues.yml" --out "$out/report.md"
+
+echo "rubocop $(git -C "$rubocop" log --oneline -1)"
+head -1 "$out/report.md"
+echo "report: $out/report.md"
