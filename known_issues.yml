@@ -5,7 +5,7 @@
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
 - pr: 16309
-  status: open
+  status: merged
   note: "(koic, my #16308 closed) EmptyLinesAroundClassBody empty_lines_special did not treat `private if cond` as an access modifier and required a blank line before the first def, which EmptyLinesAroundAccessModifier only_before removes -> loop (nightly #91, 6 files)"
   signature_regex: "^loop:Layout/EmptyLinesAroundAccessModifier\\+Layout/EmptyLinesAroundClassBody"
 
