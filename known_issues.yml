@@ -10,6 +10,12 @@
   signature_regex: "^syntax:syntax error, unexpected .\\)."
   cops: [Naming/BlockForwarding]
 
+- pr: 16319
+  status: open
+  note: "HeredocArgumentClosingParenthesis walked from a HEREDOC in another HEREDOC interpolation (`foo(<<~A)\n  #{baz(<<~C)}`) up to the outer call and registered a no-op offense -> loop with MultilineIfModifier (local run 2026110818, 31 files)"
+  signature_regex: "^loop:.*Layout/HeredocArgumentClosingParenthesis"
+  cops: [Style/MultilineIfModifier]
+
 - pr: 16317
   status: open
   note: "HeredocArgumentClosingParenthesis moved the outer call paren after its last argument, which already ended below the HEREDOC opening (`foo(bar(<<~X),\n...\nX\n  baz)` or a chain after the heredoc) -> no-op correction loop (local run 2026110816, 14 files)"
