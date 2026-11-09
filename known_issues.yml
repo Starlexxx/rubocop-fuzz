@@ -41,7 +41,7 @@
   cops: [Style/AmbiguousEndlessMethodDefinition]
 
 - pr: 16326
-  status: open
+  status: merged
   note: "(koic, my #16318 closed; also []=) Naming/BlockForwarding anonymous style wrapped index call args in parentheses: `foo[&block]` -> `foo[&])(` (local run 2026110816, 21 findings)"
   signature_regex: "^syntax:syntax error, unexpected .\\)."
   cops: [Naming/BlockForwarding]
