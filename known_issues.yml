@@ -4,9 +4,9 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
-- pr: 16320
+- pr: 16321
   status: open
-  note: "AmbiguousEndlessMethodDefinition (and shared EndlessMethodRewriter) put `end` before the HEREDOC body: `def m = foo(<<~EOS) if c` -> `def m\n  foo(<<~EOS)\nend if c\n...EOS` (local run 2026110818, 5 files); now offense without correction"
+  note: "(koic, my #16320 closed) AmbiguousEndlessMethodDefinition (and shared EndlessMethodRewriter) put `end` before the HEREDOC body: `def m = foo(<<~EOS) if c` -> `def m\n  foo(<<~EOS)\nend if c\n...EOS` (local run 2026110818, 5 files); no offense when the body has a heredoc, like EndlessMethod"
   signature_regex: "^syntax:"
   cops: [Style/AmbiguousEndlessMethodDefinition]
 
