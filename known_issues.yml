@@ -70,13 +70,13 @@
   cops: [Style/HashConversion, Style/EmptyLiteral]
 
 - pr: 16292
-  status: open
+  status: merged
   note: "(koic, my #16291 closed) EmptyLiteral treated an index call `x[Hash.new]`/`Hash[Hash[]]` as an unparenthesized command call -> `x({})]` (nightly #87). Follow-up: HashConversion `Hash[{}]` -> `{{}}`"
   signature_regex: "^syntax:syntax error, unexpected .\\]., expecting end-of-input"
   cops: [Style/EmptyLiteral]
 
 - pr: 16290
-  status: open
+  status: merged
   note: "(koic, my #16289 closed) Lint/Void reported `x.==(a, b)` (dot operator call with 2+ args) as a void op and split it into `x` + `(a, b)` -> syntax error (nightly #87, 17 findings)"
   signature_regex: "^syntax:syntax error, unexpected .,., expecting .\\)."
   cops: [Lint/Void]
@@ -92,31 +92,31 @@
   signature_regex: "^Lint/DuplicateMethods: NoMethodError: .*hash_value"
 
 - pr: 16278
-  status: open
+  status: merged
   note: "(koic, my #16277 closed) IdenticalConditionalBranches hoisted an identical trailing return/next/break after a case whose value is used ((case ...).to_s, x = case, x = begin ... end) -> void value (snippet #86 dadb76, after TopLevelReturnWithArgument strips arguments)"
   signatures:
     - "syntax:void value expression"
   cops: [Style/IdenticalConditionalBranches]
 
 - pr: 16262
-  status: open
+  status: merged
   note: "(koic) EmptyLinesAroundExceptionHandlingKeywords vs EmptyLinesAroundBlockBody loop with a rescue clause at the block body beginning (nightly #87, 70+16+6; verified on PR branch)"
   signature_regex: "^loop:Layout/EmptyLinesAroundBlockBody\\+Layout/EmptyLinesAroundExceptionHandlingKeywords"
 
 - pr: 16279
-  status: open
+  status: merged
   note: "(koic, my #16276 closed) RedundantInterpolation turned a void interpolation (`\"#{return foo}\"`, statements/begin/ensure/rescue/conditional ending in return) into `(...).to_s` (snippet #86, 22 files). Remaining case-form is IdenticalConditionalBranches hoisting return inside `(case ...).to_s`"
   signatures:
     - "syntax:void value expression"
   cops: [Style/RedundantInterpolation]
 
 - pr: 16270
-  status: open
+  status: merged
   note: "(koic) FirstArgumentIndentation NoMethodError in begins_its_line? with an inner call without parentheses (snippet corpus)"
   signature_regex: "^Layout/FirstArgumentIndentation: NoMethodError: .*begins_its_line"
 
 - pr: 16266
-  status: open
+  status: merged
   note: "(koic) Style/For ClobberingError with an `each` block in the receiver (snippet corpus)"
   signature_regex: "^Style/For: Parser::ClobberingError"
 
@@ -126,7 +126,7 @@
   signature_regex: "^Layout/MultilineMethodCallBraceLayout: NoMethodError: .*correct_heredoc_argument_method_chain"
 
 - pr: 16273
-  status: open
+  status: merged
   note: "(koic, my #16271 closed) RedundantInterpolation replaced the whole outer dstr while a nested redundant interpolation in its argument/receiver was corrected in the same pass (snippet #81, 43 findings / 3 files)"
   signature_regex: '^Style/RedundantInterpolation: Parser::ClobberingError'
 
@@ -148,7 +148,7 @@
     - 'loop:Layout/EmptyLineAfterGuardClause+Layout/EmptyLinesAroundBlockBody+Layout/LineLength'
 
 - pr: rubocop-performance#556
-  status: open
+  status: merged
   note: "MapCompact: call taking `map do..end.compact` as argument treated as chained method, whole `end.compact` line removed (aws-sdk-s3 multipart_file_uploader.rb, plugin #65)"
   signature_regex: "^syntax:syntax error, unexpected .\\)., expecting .end."
   cops: [Performance/MapCompact]
@@ -172,7 +172,7 @@
   cops: [Style/StringConcatenation]
 
 - pr: 16268
-  status: open
+  status: merged
   note: "(koic, replaced my #16267) LiteralInInterpolation NoMethodError basic_literal? for nil on endless/beginless range `\"#{42..}\"` (snippet corpus)"
   signature_regex: "^Lint/LiteralInInterpolation: NoMethodError"
   cops: [Lint/LiteralInInterpolation]
@@ -657,7 +657,7 @@
     - Style/MethodCallWithArgsParentheses
 
 - pr: 16100
-  status: open
+  status: merged
   note: "koic: EmptyStringInsideInterpolation ternary + MCWAP omit_parentheses same pass -> `b? ? foo 'a' : ''` (rspec-expectations include.rb verified; actionview tag_helper, pry, rolemodel likely same)"
   signature_regex: "^syntax:syntax error, unexpected (local variable or method|string literal), expecting ('do' or '\\{' or '\\('|':')"
   cops:
@@ -732,7 +732,7 @@
   signature_regex: "^loop:Layout/(LineContinuationSpacing\\+)?Layout/LineEndStringConcatenationIndentation\\+Layout/LineLength"
 
 - pr: 16074
-  status: open
+  status: merged
   note: "koic: MCWAP omit_parentheses removed parens of a call assigned inside a parenthesized arg in a >64KB scope (reparse skipped) (brick engine.rb)"
   signatures:
     - "syntax:syntax error, unexpected string literal, expecting ')'"
@@ -740,7 +740,7 @@
     - Style/MethodCallWithArgsParentheses
 
 - pr: 16072
-  status: open
+  status: merged
   note: "koic: CombinableLoops + RedundantLineBreak (InspectBlocks) same pass -> extra end (carray carray_cast_func.rb)"
   signatures:
     - "syntax:syntax error, unexpected '}'"
@@ -791,7 +791,7 @@
   signature_regex: "^Style/RescueModifier: Parser::ClobberingError"
 
 - pr: 16043
-  status: open
+  status: merged
   note: "koic: AndOr + ReturnNil same pass -> `bar || return nil` (ollama_chat, grape, simplecov...)"
   signature_regex: "^syntax:syntax error, unexpected 'nil'"
   cops:
@@ -974,7 +974,7 @@
   signature_regex: '^loop:.*Layout/LineLength.*Layout/SpaceInsideParens.*Style/EndlessMethod'
 
 - pr: 15955
-  status: open
+  status: merged
   note: "(koic) MultilineBlockLayout incompatible with Style/Lambda (lambda block args moved into ->(...)) (virtus etc.)"
   signatures:
     - "syntax:syntax error, unexpected '|'"
@@ -983,7 +983,7 @@
     - Style/Lambda
 
 - pr: 15955
-  status: open
+  status: merged
   note: "(koic) MultilineBlockLayout incompatible with Style/ItBlockParameter (worldwide plurals etc.)"
   signatures:
     - "syntax:ordinary parameter is defined"
@@ -1006,7 +1006,7 @@
   signature_regex: '^Style/ClassAndModuleChildren: Parser::ClobberingError'
 
 - pr: 15838
-  status: open
+  status: merged
   note: (bbatsov, replaces 15929) AmbiguousOperator parenthesizes `bar *args` while ArgumentsForwarding rewrites the splat -> `bar((*))` (files.com)
   signatures:
     - "syntax:syntax error, unexpected ')', expecting '='"
@@ -1026,7 +1026,7 @@
     - 'loop:Layout/LineEndStringConcatenationIndentation+Layout/LineLength'
 
 - pr: 15932
-  status: open
+  status: merged
   note: (koic, replaces 15917) MultilineHashBraceLayout + RedundantDoubleSplatHashBraces same pass -> dangling `}` (friendly_id; default config)
   signatures:
     - "syntax:syntax error, unexpected '}', expecting 'end' or dummy end"
@@ -1050,7 +1050,7 @@
     - "syntax:syntax error, unexpected global variable, expecting end-of-input"
 
 - pr: 15933
-  status: open
+  status: merged
   note: (koic, replaces 15871) chained casgn (`A = B = C`) under strict also loops with LineLength; shares signature with 15891
   signatures:
     - 'loop:Layout/LineLength+Style/MutableConstant'
@@ -1081,7 +1081,7 @@
   signature_regex: 'loop:Lint/TopLevelReturnWithArgument\+.*Style/ReturnNil'
 
 - pr: 15933
-  status: open
+  status: merged
   note: (koic, replaces 15871) MutableConstant strict freezes chained casgn value, RedundantFreeze strips it (loop)
   signature_regex: 'loop:.*Style/MutableConstant\+.*Style/RedundantFreeze'
 
@@ -1171,7 +1171,7 @@
   signature_regex: 'syntax:premature end of char-class'
 
 - pr: 15809
-  status: open
+  status: merged
   note: (koic, replaced 15808) RegexpLiteral escapes slashes inside interpolation converting %r to //
   signatures:
     - "syntax:syntax error, unexpected backslash, expecting ']'"
