@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16324
+  status: open
+  note: "Style/For each style: ForToEachCorrector replaced `for ... do` embedding the collection source; a `for` in the collection (shape produced by #16266 from nested each) -> ClobberingError (local run 2026110910, 3 files/36 hits)"
+  signature_regex: "^Style/For: Parser::ClobberingError"
+  cops: [Style/For]
+
 - pr: 16323
   status: open
   note: "IndentationStyle tabs converted the closing delimiter of a heredoc nested in another heredoc (Prism heredoc_body of the outer heredoc stops at the nested one when nothing follows), ClosingHeredocIndentation re-added spaces -> growing loop (local run 2026110818, 3 files)"
