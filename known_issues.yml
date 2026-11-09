@@ -23,14 +23,14 @@
   cops: [Layout/LineLength]
 
 - pr: 16321
-  status: open
+  status: merged
   note: "(koic, my #16320 closed) AmbiguousEndlessMethodDefinition (and shared EndlessMethodRewriter) put `end` before the HEREDOC body: `def m = foo(<<~EOS) if c` -> `def m\n  foo(<<~EOS)\nend if c\n...EOS` (local run 2026110818, 5 files); no offense when the body has a heredoc, like EndlessMethod"
   signature_regex: "^syntax:"
   cops: [Style/AmbiguousEndlessMethodDefinition]
 
-- pr: 16318
+- pr: 16326
   status: open
-  note: "Naming/BlockForwarding anonymous style wrapped index call args in parentheses: `foo[&block]` -> `foo[&])(` (local run 2026110816, 21 findings)"
+  note: "(koic, my #16318 closed; also []=) Naming/BlockForwarding anonymous style wrapped index call args in parentheses: `foo[&block]` -> `foo[&])(` (local run 2026110816, 21 findings)"
   signature_regex: "^syntax:syntax error, unexpected .\\)."
   cops: [Naming/BlockForwarding]
 
