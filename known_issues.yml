@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16334
+  status: open
+  note: "UselessAssignment removed `var = ` before a keyword if/unless/while/until as first command arg (`foo var = if x` -> modifier if) or a rescue modifier in args; same pass with MCWAP omit_parentheses (local run 2026110910, 12 findings `unexpected elsif`)"
+  signature_regex: "^syntax:syntax error, unexpected .elsif"
+  cops: [Lint/UselessAssignment]
+
 - pr: 16333
   status: open
   note: "EmptyLinesAroundExceptionHandlingKeywords NoMethodError on endless def with rescue modifier after multiline body (no `end`) (local run 2026110910, 1 file/6 hits)"
