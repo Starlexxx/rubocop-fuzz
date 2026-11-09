@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16323
+  status: open
+  note: "IndentationStyle tabs converted the closing delimiter of a heredoc nested in another heredoc (Prism heredoc_body of the outer heredoc stops at the nested one when nothing follows), ClosingHeredocIndentation re-added spaces -> growing loop (local run 2026110818, 3 files)"
+  signature_regex: "^loop:.*Layout/IndentationStyle"
+  cops: [Layout/ArgumentAlignment, Layout/ClosingHeredocIndentation]
+
 - pr: 16322
   status: open
   note: "LineLength rewrote an over-limit endless method with a heredoc body into multiline with `end` before the heredoc body (same EndlessMethodRewriter bug as #16321; found by hand)"
