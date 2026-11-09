@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16333
+  status: open
+  note: "EmptyLinesAroundExceptionHandlingKeywords NoMethodError on endless def with rescue modifier after multiline body (no `end`) (local run 2026110910, 1 file/6 hits)"
+  signature_regex: "^Layout/EmptyLinesAroundExceptionHandlingKeywords: NoMethodError"
+  cops: [Layout/EmptyLinesAroundExceptionHandlingKeywords]
+
 - pr: 16324
   status: open
   note: "Style/For each style: ForToEachCorrector replaced `for ... do` embedding the collection source; a `for` in the collection (shape produced by #16266 from nested each) -> ClobberingError (local run 2026110910, 3 files/36 hits)"
