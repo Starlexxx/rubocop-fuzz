@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16322
+  status: open
+  note: "LineLength rewrote an over-limit endless method with a heredoc body into multiline with `end` before the heredoc body (same EndlessMethodRewriter bug as #16321; found by hand)"
+  signature_regex: "^syntax:"
+  cops: [Layout/LineLength]
+
 - pr: 16321
   status: open
   note: "(koic, my #16320 closed) AmbiguousEndlessMethodDefinition (and shared EndlessMethodRewriter) put `end` before the HEREDOC body: `def m = foo(<<~EOS) if c` -> `def m\n  foo(<<~EOS)\nend if c\n...EOS` (local run 2026110818, 5 files); no offense when the body has a heredoc, like EndlessMethod"
