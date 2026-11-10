@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16345
+  status: open
+  note: "LiteralInInterpolation inlined a literal that becomes the delimiter after RegexpLiteral/PercentLiteralDelimiters change delimiters in the same pass (`%r{a#{'/'}b}` -> `/a/b/`) (local run 2026110910, 6 files)"
+  signature_regex: "^syntax:(unknown regexp options|unterminated regexp)"
+  cops: [Lint/LiteralInInterpolation]
+
 - pr: 16344
   status: open
   note: "DeprecatedClassMethods replaced parenthesized `attr(:x, true)` with `attr_accessor :x` -> nested command call in args (local run 2026110910, 2 files)"
