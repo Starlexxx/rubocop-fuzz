@@ -4,9 +4,9 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
-- pr: 16341
+- pr: 16342
   status: open
-  note: "HashTransformKeys/Values removed `.to_h` that SingleLineBlockChain moved to the next line in the same pass -> line break splits off modifier (local run 2026110910, 1 file)"
+  note: "(koic, my #16341 closed; list on SingleLineBlockChain side) HashTransformKeys/Values removed `.to_h` that SingleLineBlockChain moved to the next line in the same pass -> line break splits off modifier (local run 2026110910, 1 file)"
   signature_regex: "^syntax:"
   cops: [Style/HashTransformValues, Layout/SingleLineBlockChain]
 
