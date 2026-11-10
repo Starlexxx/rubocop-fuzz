@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16343
+  status: open
+  note: "SingleLineDoEndBlock inserted line break after `do` while a heredoc is opened earlier on the line (receiver/args) -> block body moved into heredoc, `end` before heredoc body; now no offense (local run 2026110910, 8 files)"
+  signature_regex: "^syntax:syntax error, unexpected end-of-input"
+  cops: [Style/SingleLineDoEndBlock]
+
 - pr: 16342
   status: open
   note: "(koic, my #16341 closed; list on SingleLineBlockChain side) HashTransformKeys/Values removed `.to_h` that SingleLineBlockChain moved to the next line in the same pass -> line break splits off modifier (local run 2026110910, 1 file)"
