@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16344
+  status: open
+  note: "DeprecatedClassMethods replaced parenthesized `attr(:x, true)` with `attr_accessor :x` -> nested command call in args (local run 2026110910, 2 files)"
+  signature_regex: "^syntax:syntax error, unexpected symbol literal"
+  cops: [Lint/DeprecatedClassMethods]
+
 - pr: 16343
   status: open
   note: "SingleLineDoEndBlock inserted line break after `do` while a heredoc is opened earlier on the line (receiver/args) -> block body moved into heredoc, `end` before heredoc body; now no offense (local run 2026110910, 8 files)"
