@@ -5,7 +5,7 @@
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
 - pr: 16345
-  status: open
+  status: merged
   note: "LiteralInInterpolation inlined a literal that becomes the delimiter after RegexpLiteral/PercentLiteralDelimiters change delimiters in the same pass (`%r{a#{'/'}b}` -> `/a/b/`) (local run 2026110910, 6 files)"
   signature_regex: "^syntax:(unknown regexp options|unterminated regexp)"
   cops: [Lint/LiteralInInterpolation]
@@ -16,14 +16,14 @@
   signature_regex: "^syntax:syntax error, unexpected symbol literal"
   cops: [Lint/DeprecatedClassMethods]
 
-- pr: 16343
+- pr: 16347
   status: open
-  note: "SingleLineDoEndBlock inserted line break after `do` while a heredoc is opened earlier on the line (receiver/args) -> block body moved into heredoc, `end` before heredoc body; now no offense (local run 2026110910, 8 files)"
+  note: "(koic, my #16343 closed; moves body after heredoc) SingleLineDoEndBlock inserted line break after `do` while a heredoc is opened earlier on the line (receiver/args) -> block body moved into heredoc, `end` before heredoc body; now no offense (local run 2026110910, 8 files)"
   signature_regex: "^syntax:syntax error, unexpected end-of-input"
   cops: [Style/SingleLineDoEndBlock]
 
 - pr: 16342
-  status: open
+  status: merged
   note: "(koic, my #16341 closed; list on SingleLineBlockChain side) HashTransformKeys/Values removed `.to_h` that SingleLineBlockChain moved to the next line in the same pass -> line break splits off modifier (local run 2026110910, 1 file)"
   signature_regex: "^syntax:"
   cops: [Style/HashTransformValues, Layout/SingleLineBlockChain]
@@ -35,19 +35,19 @@
   cops: [Lint/UselessAssignment]
 
 - pr: 16333
-  status: open
+  status: merged
   note: "EmptyLinesAroundExceptionHandlingKeywords NoMethodError on endless def with rescue modifier after multiline body (no `end`) (local run 2026110910, 1 file/6 hits)"
   signature_regex: "^Layout/EmptyLinesAroundExceptionHandlingKeywords: NoMethodError"
   cops: [Layout/EmptyLinesAroundExceptionHandlingKeywords]
 
 - pr: 16324
-  status: open
+  status: merged
   note: "Style/For each style: ForToEachCorrector replaced `for ... do` embedding the collection source; a `for` in the collection (shape produced by #16266 from nested each) -> ClobberingError (local run 2026110910, 3 files/36 hits)"
   signature_regex: "^Style/For: Parser::ClobberingError"
   cops: [Style/For]
 
 - pr: 16323
-  status: open
+  status: merged
   note: "IndentationStyle tabs converted the closing delimiter of a heredoc nested in another heredoc (Prism heredoc_body of the outer heredoc stops at the nested one when nothing follows), ClosingHeredocIndentation re-added spaces -> growing loop (local run 2026110818, 3 files)"
   signature_regex: "^loop:.*Layout/IndentationStyle"
   cops: [Layout/ArgumentAlignment, Layout/ClosingHeredocIndentation]
@@ -71,7 +71,7 @@
   cops: [Naming/BlockForwarding]
 
 - pr: 16319
-  status: open
+  status: merged
   note: "HeredocArgumentClosingParenthesis walked from a HEREDOC in another HEREDOC interpolation (`foo(<<~A)\n  #{baz(<<~C)}`) up to the outer call and registered a no-op offense -> loop with MultilineIfModifier (local run 2026110818, 31 files)"
   signature_regex: "^loop:.*Layout/HeredocArgumentClosingParenthesis"
   cops: [Style/MultilineIfModifier]
@@ -93,9 +93,9 @@
   signature_regex: "^syntax:"
   cops: [Layout/HeredocArgumentClosingParenthesis, Style/RaiseArgs]
 
-- pr: 16297
-  status: open
-  note: "Semicolon parenthesizes args before `;` after an omitted hash value (`m 1, key:;`) in the same pass as MethodCallWithArgsParentheses / HashSyntax(never) -> extra `)` (nightly #91, 43 of 45). Remaining: `raise X, <<~MSG;` heredoc"
+- pr: 16331
+  status: merged
+  note: "(koic #16330+#16331, my #16297 closed) Semicolon parenthesizes args before `;` after an omitted hash value (`m 1, key:;`) in the same pass as MethodCallWithArgsParentheses / HashSyntax(never) -> extra `)` (nightly #91, 43 of 45). Remaining: `raise X, <<~MSG;` heredoc"
   signature_regex: "^syntax:syntax error, unexpected .\\)., expecting end-of-input"
   cops: [Style/Semicolon]
 
