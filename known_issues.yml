@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16378
+  status: open
+  note: "StructInheritance removed the closing brace of a brace block and kept the class end -> `{ ... end` (also via BlockDelimiters turning `do end` into braces; local run 2026110910, 9 files)"
+  signature_regex: "^syntax:syntax error, unexpected .end."
+  cops: [Style/StructInheritance]
+
 - pr: 16356
   status: merged
   note: "(koic) RedundantCopEnableDirective with text after the directive, CommentIndentation variant with unexpected comma (local run 2026110910, 11 files, all converge on master 906d65244+)"
