@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16356
+  status: merged
+  note: "(koic) RedundantCopEnableDirective removed a directive with text after it (`# rubocop:enable X if cond`) -> end-of-input (local run 2026110910, 9 files)"
+  signature_regex: "^syntax:syntax error, unexpected end-of-input"
+  cops: [Lint/RedundantCopEnableDirective]
+
 - pr: 16366
   status: open
   note: "(koic #16366+#16367, my #16364 closed; also LiteralAsCondition) EndlessMethod made a method endless while UselessTimes/IdenticalConditionalBranches split its body into several statements in the same pass -> trailing statements fall outside the method (local run 2026110910, /tmp/de/16,18)"
