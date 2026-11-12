@@ -4,15 +4,15 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
-- pr: 16364
+- pr: 16366
   status: open
-  note: "EndlessMethod made a method endless while UselessTimes/IdenticalConditionalBranches split its body into several statements in the same pass -> trailing statements fall outside the method (local run 2026110910, /tmp/de/16,18)"
+  note: "(koic #16366+#16367, my #16364 closed; also LiteralAsCondition) EndlessMethod made a method endless while UselessTimes/IdenticalConditionalBranches split its body into several statements in the same pass -> trailing statements fall outside the method (local run 2026110910, /tmp/de/16,18)"
   signature_regex: "^syntax:"
   cops: [Style/EndlessMethod, Lint/UselessTimes]
 
-- pr: 16363
+- pr: 16365
   status: open
-  note: "EndlessMethod converted def with command-call body used as hash value/array element/ternary branch -> `{ key: def foo(x) = bar :baz, x }` syntax error (local run 2026110910, 17/20 files; rest: UselessTimes multi-statement body, nested def)"
+  note: "(koic, my #16363 closed; also `return x`, nested endless, case else) EndlessMethod converted def with command-call body used as hash value/array element/ternary branch -> `{ key: def foo(x) = bar :baz, x }` syntax error (local run 2026110910, 17/20 files; rest: UselessTimes multi-statement body, nested def)"
   signature_regex: "^syntax:syntax error, unexpected local variable or method"
   cops: [Style/EndlessMethod]
 
@@ -100,9 +100,9 @@
   signature_regex: "^loop:.*Layout/HeredocArgumentClosingParenthesis"
   cops: [Style/MultilineIfModifier]
 
-- pr: 16317
-  status: open
-  note: "HeredocArgumentClosingParenthesis moved the outer call paren after its last argument, which already ended below the HEREDOC opening (`foo(bar(<<~X),\n...\nX\n  baz)` or a chain after the heredoc) -> no-op correction loop (local run 2026110816, 14 files)"
+- pr: 16360
+  status: merged
+  note: "(koic; covers my still-open #16317) HeredocArgumentClosingParenthesis moved the outer call paren after its last argument, which already ended below the HEREDOC opening (`foo(bar(<<~X),\n...\nX\n  baz)` or a chain after the heredoc) -> no-op correction loop (local run 2026110816, 14 files)"
   signature_regex: "^loop:.*Layout/HeredocArgumentClosingParenthesis"
   cops: [Layout/FirstArgumentIndentation]
 
