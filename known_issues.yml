@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16363
+  status: open
+  note: "EndlessMethod converted def with command-call body used as hash value/array element/ternary branch -> `{ key: def foo(x) = bar :baz, x }` syntax error (local run 2026110910, 17/20 files; rest: UselessTimes multi-statement body, nested def)"
+  signature_regex: "^syntax:syntax error, unexpected local variable or method"
+  cops: [Style/EndlessMethod]
+
 - pr: 16358
   status: open
   note: "IndentationStyle collected only str/dstr ranges, so command heredoc (xstr) body indentation was converted -> loop with HeredocIndentation (local run 2026110818, /tmp/hn/63; converges together with #16317)"
