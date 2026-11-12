@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16356
+  status: merged
+  note: "(koic) RedundantCopEnableDirective with text after the directive, CommentIndentation variant with unexpected comma (local run 2026110910, 11 files, all converge on master 906d65244+)"
+  signature_regex: "^syntax:syntax error, unexpected ','"
+  cops: [Lint/RedundantCopEnableDirective, Layout/CommentIndentation]
+
 - pr: 16374
   status: open
   note: "IfUnlessModifierOfIfUnless wrapped the inner modifier with end at the same offset where MCWAP inserts the closing paren for a command-call condition (a if foo 1 if c -> foo(1 end)) (local run 2026110910, 9 files)"
