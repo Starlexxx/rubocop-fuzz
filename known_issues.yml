@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16374
+  status: open
+  note: "IfUnlessModifierOfIfUnless wrapped the inner modifier with end at the same offset where MCWAP inserts the closing paren for a command-call condition (a if foo 1 if c -> foo(1 end)) (local run 2026110910, 9 files)"
+  signature_regex: "^syntax:syntax error, unexpected .end."
+  cops: [Style/IfUnlessModifierOfIfUnless, Style/MethodCallWithArgsParentheses]
+
 - pr: 16356
   status: merged
   note: "(koic) RedundantCopEnableDirective removed a directive with text after it (`# rubocop:enable X if cond`) -> end-of-input (local run 2026110910, 9 files)"
