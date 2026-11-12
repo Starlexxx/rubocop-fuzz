@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16364
+  status: open
+  note: "EndlessMethod made a method endless while UselessTimes/IdenticalConditionalBranches split its body into several statements in the same pass -> trailing statements fall outside the method (local run 2026110910, /tmp/de/16,18)"
+  signature_regex: "^syntax:"
+  cops: [Style/EndlessMethod, Lint/UselessTimes]
+
 - pr: 16363
   status: open
   note: "EndlessMethod converted def with command-call body used as hash value/array element/ternary branch -> `{ key: def foo(x) = bar :baz, x }` syntax error (local run 2026110910, 17/20 files; rest: UselessTimes multi-statement body, nested def)"
