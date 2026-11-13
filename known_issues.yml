@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16388
+  status: open
+  note: "UselessAssignment corrected `x += foo a` to `x + foo a` (command value -> syntax error) and `x *= a + b` to `x * a + b` (precedence); value now wrapped unless primary/non-op assignment (local run 2026110910, TrailingEmptyLines+UselessAssignment+TernaryParentheses group)"
+  signature_regex: "^syntax:syntax error, unexpected local variable or method, expecting `do' or '\\{' or '\\('"
+  cops: [Lint/UselessAssignment]
+
 - pr: 16383
   status: open
   note: "(koic, my #16382 closed; also DuplicateRequire, slot-in-parent check) RedundantRequireStatement removed a redundant require whose value is used (assignment, argument, &&/||, ternary) by deleting the whole line -> `x ||= # c` dangling, `foo(require 'set')` line gone; now no offense (local run 2026110910, 3 files baseline)"
