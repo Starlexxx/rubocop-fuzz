@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16391
+  status: open
+  note: "StabbyLambdaParentheses (require_no_parentheses) removed parens of `->(x; y)` block-local vars -> `->x; y` syntax error (via Style/Lambda from `lambda { |x; y| }`), also `->((a, b), c)` syntax error and `->((a, b))` arity change; now no offense (local run 2026110910, 4 files)"
+  signature_regex: "^syntax:syntax error, unexpected ';', expecting `do' for lambda"
+  cops: [Style/StabbyLambdaParentheses]
+
 - pr: 16390
   status: open
   note: "EndlessMethod/AmbiguousEndlessMethodDefinition/LineLength (EndlessMethodRewriter#receiver) and EmptyMethod rebuilt `def (foo.bar).baz` from receiver.source -> `def foo.bar.baz` syntax error; receiver now taken from source between `def` and name (local run 2026110910, 3 files, packed EndlessMethod disallow)"
