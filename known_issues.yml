@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16382
+  status: open
+  note: "RedundantRequireStatement removed a redundant require whose value is used (assignment, argument, &&/||, ternary) by deleting the whole line -> `x ||= # c` dangling, `foo(require 'set')` line gone; now no offense (local run 2026110910, 3 files baseline)"
+  signature_regex: "^syntax:syntax error, unexpected end-of-input"
+  cops: [Lint/RedundantRequireStatement]
+
 - pr: 16379
   status: open
   note: "(koic, my #16378 closed; replaces `{` plus following whitespace with `do`) StructInheritance removed the closing brace of a brace block and kept the class end -> `{ ... end` (also via BlockDelimiters turning `do end` into braces; local run 2026110910, 9 files)"
