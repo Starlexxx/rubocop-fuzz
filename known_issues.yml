@@ -11,7 +11,7 @@
   cops: [Style/DefWithParentheses]
 
 - pr: 16373
-  status: open
+  status: merged
   note: "(koic) ParenthesesAsGroupedExpression removed the space in `do_something ((foo; bar))` while RedundantParentheses dropped the outer parens in the same pass -> `do_something(foo; bar)`, Semicolon then splits the args (local run 2026110910, 78ebe8797fe4ff90)"
   signature_regex: "^syntax:syntax error, unexpected local variable or method"
   cops: [Lint/ParenthesesAsGroupedExpression, Style/RedundantParentheses]
