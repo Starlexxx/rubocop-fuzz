@@ -7,7 +7,7 @@
 - pr: 16390
   status: open
   note: "EndlessMethod/AmbiguousEndlessMethodDefinition/LineLength (EndlessMethodRewriter#receiver) and EmptyMethod rebuilt `def (foo.bar).baz` from receiver.source -> `def foo.bar.baz` syntax error; receiver now taken from source between `def` and name (local run 2026110910, 3 files, packed EndlessMethod disallow)"
-  signature_regex: "^syntax:syntax error, unexpected '\\.', expecting ';' or '\\n'"
+  signature_regex: "^syntax:syntax error, unexpected '\\.', expecting ';'"
   cops: [Style/EndlessMethod, Style/AmbiguousEndlessMethodDefinition, Layout/LineLength, Style/EmptyMethod]
 
 - pr: 16389
