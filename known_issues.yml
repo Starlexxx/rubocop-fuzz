@@ -4,9 +4,9 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
-- pr: 16378
+- pr: 16379
   status: open
-  note: "StructInheritance removed the closing brace of a brace block and kept the class end -> `{ ... end` (also via BlockDelimiters turning `do end` into braces; local run 2026110910, 9 files)"
+  note: "(koic, my #16378 closed; replaces `{` plus following whitespace with `do`) StructInheritance removed the closing brace of a brace block and kept the class end -> `{ ... end` (also via BlockDelimiters turning `do end` into braces; local run 2026110910, 9 files)"
   signature_regex: "^syntax:syntax error, unexpected .end."
   cops: [Style/StructInheritance]
 
@@ -29,13 +29,13 @@
   cops: [Lint/RedundantCopEnableDirective]
 
 - pr: 16366
-  status: open
+  status: merged
   note: "(koic #16366+#16367, my #16364 closed; also LiteralAsCondition) EndlessMethod made a method endless while UselessTimes/IdenticalConditionalBranches split its body into several statements in the same pass -> trailing statements fall outside the method (local run 2026110910, /tmp/de/16,18)"
   signature_regex: "^syntax:"
   cops: [Style/EndlessMethod, Lint/UselessTimes]
 
 - pr: 16365
-  status: open
+  status: merged
   note: "(koic, my #16363 closed; also `return x`, nested endless, case else) EndlessMethod converted def with command-call body used as hash value/array element/ternary branch -> `{ key: def foo(x) = bar :baz, x }` syntax error (local run 2026110910, 17/20 files; rest: UselessTimes multi-statement body, nested def)"
   signature_regex: "^syntax:syntax error, unexpected local variable or method"
   cops: [Style/EndlessMethod]
@@ -65,7 +65,7 @@
   cops: [Lint/DeprecatedClassMethods]
 
 - pr: 16347
-  status: open
+  status: merged
   note: "(koic, my #16343 closed; moves body after heredoc) SingleLineDoEndBlock inserted line break after `do` while a heredoc is opened earlier on the line (receiver/args) -> block body moved into heredoc, `end` before heredoc body; now no offense (local run 2026110910, 8 files)"
   signature_regex: "^syntax:syntax error, unexpected end-of-input"
   cops: [Style/SingleLineDoEndBlock]
