@@ -4,9 +4,9 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
-- pr: 16382
+- pr: 16383
   status: open
-  note: "RedundantRequireStatement removed a redundant require whose value is used (assignment, argument, &&/||, ternary) by deleting the whole line -> `x ||= # c` dangling, `foo(require 'set')` line gone; now no offense (local run 2026110910, 3 files baseline)"
+  note: "(koic, my #16382 closed; also DuplicateRequire, slot-in-parent check) RedundantRequireStatement removed a redundant require whose value is used (assignment, argument, &&/||, ternary) by deleting the whole line -> `x ||= # c` dangling, `foo(require 'set')` line gone; now no offense (local run 2026110910, 3 files baseline)"
   signature_regex: "^syntax:syntax error, unexpected end-of-input"
   cops: [Lint/RedundantRequireStatement]
 
