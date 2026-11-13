@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16373
+  status: open
+  note: "(koic) ParenthesesAsGroupedExpression removed the space in `do_something ((foo; bar))` while RedundantParentheses dropped the outer parens in the same pass -> `do_something(foo; bar)`, Semicolon then splits the args (local run 2026110910, 78ebe8797fe4ff90)"
+  signature_regex: "^syntax:syntax error, unexpected local variable or method"
+  cops: [Lint/ParenthesesAsGroupedExpression, Style/RedundantParentheses]
+
 - pr: 16388
   status: open
   note: "UselessAssignment corrected `x += foo a` to `x + foo a` (command value -> syntax error) and `x *= a + b` to `x * a + b` (precedence); value now wrapped unless primary/non-op assignment (local run 2026110910, TrailingEmptyLines+UselessAssignment+TernaryParentheses group)"
