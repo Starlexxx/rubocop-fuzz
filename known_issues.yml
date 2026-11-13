@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16389
+  status: open
+  note: "DefWithParentheses removed `()` of an endless def whose `=` is after a line break or comment -> `def foo` + `= 1` syntax error; parens now kept unless only spaces/tabs/line continuation before `=` (local run 2026110910, 3 files / 6 hits)"
+  signature_regex: "^syntax:syntax error, unexpected '='"
+  cops: [Style/DefWithParentheses]
+
 - pr: 16373
   status: open
   note: "(koic) ParenthesesAsGroupedExpression removed the space in `do_something ((foo; bar))` while RedundantParentheses dropped the outer parens in the same pass -> `do_something(foo; bar)`, Semicolon then splits the args (local run 2026110910, 78ebe8797fe4ff90)"
