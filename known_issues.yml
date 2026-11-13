@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16390
+  status: open
+  note: "EndlessMethod/AmbiguousEndlessMethodDefinition/LineLength (EndlessMethodRewriter#receiver) and EmptyMethod rebuilt `def (foo.bar).baz` from receiver.source -> `def foo.bar.baz` syntax error; receiver now taken from source between `def` and name (local run 2026110910, 3 files, packed EndlessMethod disallow)"
+  signature_regex: "^syntax:syntax error, unexpected '\\.', expecting ';' or '\\n'"
+  cops: [Style/EndlessMethod, Style/AmbiguousEndlessMethodDefinition, Layout/LineLength, Style/EmptyMethod]
+
 - pr: 16389
   status: open
   note: "DefWithParentheses removed `()` of an endless def whose `=` is after a line break or comment -> `def foo` + `= 1` syntax error; parens now kept unless only spaces/tabs/line continuation before `=` (local run 2026110910, 3 files / 6 hits)"
