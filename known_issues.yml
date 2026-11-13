@@ -47,7 +47,7 @@
   cops: [Style/EndlessMethod]
 
 - pr: 16358
-  status: open
+  status: merged
   note: "IndentationStyle collected only str/dstr ranges, so command heredoc (xstr) body indentation was converted -> loop with HeredocIndentation (local run 2026110818, /tmp/hn/63; converges together with #16317)"
   signature_regex: "^loop:.*Layout/IndentationStyle"
   cops: [Layout/HeredocIndentation]
