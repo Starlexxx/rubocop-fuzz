@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16275
+  status: open
+  note: "MultilineMethodCallBraceLayout crash `parent.loc.dot` nil when the heredoc-argument call is not the receiver of a chain (argument, operand, index); fixed by #16275 rework 2026-11-15 (local run 2026111420, f47a68bb6f96193b, 6 hits)"
+  signature_regex: "^Layout/MultilineMethodCallBraceLayout: NoMethodError: undefined method `begin_pos' for nil"
+  cops: [Layout/MultilineMethodCallBraceLayout]
+
 - pr: 16391
   status: open
   note: "StabbyLambdaParentheses (require_no_parentheses) removed parens of `->(x; y)` block-local vars -> `->x; y` syntax error (via Style/Lambda from `lambda { |x; y| }`), also `->((a, b), c)` syntax error and `->((a, b))` arity change; now no offense (local run 2026110910, 4 files)"
