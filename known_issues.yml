@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16403
+  status: open
+  note: "Style/For copied the loop variable verbatim: `for (x,) in` -> `|(x,)|` syntax error; `for x, in` -> `|x|` (whole element). Now drops trailing comma inside parens, keeps top-level one (runs 2026110910/2026111420/2026111422; previously tagged as #15775 regression)"
+  signature_regex: "^syntax:syntax error, unexpected '\\)'"
+  cops: [Style/For]
+
 - pr: 16275
   status: open
   note: "MultilineMethodCallBraceLayout moved `)` above the heredoc body while other code followed it (`]`, `}` of interpolation, `, bar)`, `if cond`) -> heredoc left unterminated; #16275 leaves those uncorrected / moves only a same-line chain (local run 2026111422, 4 files, verified on branch)"
