@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16404
+  status: open
+  note: "IndentationStyle (tabs) converted fewer leading spaces than the indentation width to zero tabs, removing the indentation; alignment cops (tab = 1 column) put the space back -> loop with HashAlignment/FirstHashElementIndentation; now offense without correction (local run 2026111510, 12+ files)"
+  signature_regex: "^loop:.*Layout/HashAlignment.*Layout/IndentationStyle"
+  cops: [Layout/IndentationStyle, Layout/HashAlignment, Layout/FirstHashElementIndentation]
+
 - pr: 16403
   status: open
   note: "Style/For copied the loop variable verbatim: `for (x,) in` -> `|(x,)|` syntax error; `for x, in` -> `|x|` (whole element). Now drops trailing comma inside parens, keeps top-level one (runs 2026110910/2026111420/2026111422; previously tagged as #15775 regression)"
