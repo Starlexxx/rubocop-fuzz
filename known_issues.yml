@@ -4,9 +4,9 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
-- pr: 16407
+- pr: 16408
   status: open
-  note: "NumberConversion replaced `&:to_i` with a brace block and removed the parens while MethodCallWithArgsParentheses added parens in the same pass -> `map({ |i| Integer(i, 10) })`; MCWAP incompat += Lint::NumberConversion (runs 2026111420/2026111510)"
+  note: "(koic #16408, my #16407 closed; also NestedParenthesizedCalls) NumberConversion replaced `&:to_i` with a brace block and removed the parens while MethodCallWithArgsParentheses added parens in the same pass -> `map({ |i| Integer(i, 10) })`; MCWAP incompat += Lint::NumberConversion (runs 2026111420/2026111510)"
   signature_regex: "^syntax:syntax error, unexpected '\\|', expecting '\\}'"
   cops: [Lint/NumberConversion, Style/MethodCallWithArgsParentheses]
 
