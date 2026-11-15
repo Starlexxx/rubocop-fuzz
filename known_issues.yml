@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16275
+  status: open
+  note: "MultilineMethodCallBraceLayout moved `)` above the heredoc body while other code followed it (`]`, `}` of interpolation, `, bar)`, `if cond`) -> heredoc left unterminated; #16275 leaves those uncorrected / moves only a same-line chain (local run 2026111422, 4 files, verified on branch)"
+  signature_regex: "^syntax:can't find string \"EOS\" anywhere before EOF"
+  cops: [Layout/MultilineMethodCallBraceLayout]
+
 - pr: 16401
   status: open
   note: "MethodCallWithArgsParentheses reused the parens of a grouped argument with a semicolon `obj.foo (x;)` / `(; x)` (parser drops the empty statement, begin has one child) -> `obj.foo(x;)`; now wrapped `obj.foo((x;))` (local run 2026111420, 5 files / 11 hits)"
