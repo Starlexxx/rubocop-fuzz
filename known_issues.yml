@@ -4,9 +4,9 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
-- pr: 16405
+- pr: 16406
   status: open
-  note: "SafeNavigationChain corrected a dotless operator call to the command form `x&.foo&. >= bar` without parentheses where a command call is not allowed (non-sole argument, ternary branch) or swallows code (receiver of another operator) -> syntax error / regrouping; now wrapped (runs 2026111420/2026111422/2026111510, 3 files)"
+  note: "(koic #16406, my #16405 closed; whitelist of command-call positions, wrap elsewhere) SafeNavigationChain corrected a dotless operator call to the command form `x&.foo&. >= bar` without parentheses where a command call is not allowed (non-sole argument, ternary branch) or swallows code (receiver of another operator) -> syntax error / regrouping; now wrapped (runs 2026111420/2026111422/2026111510, 3 files)"
   signature_regex: "^syntax:syntax error, unexpected local variable or method, expecting (end-of-input|':')"
   cops: [Lint/SafeNavigationChain]
 
