@@ -125,7 +125,7 @@
   cops: [Layout/HeredocIndentation]
 
 - pr: 16349
-  status: open
+  status: merged
   note: "RedundantPercentQ corrected %Q with escaped double quote to single quotes, keeping the backslash (value change; found via LiteralInInterpolation pair in run 2026110910)"
   signature_regex: "^semantic:"
   cops: [Style/RedundantPercentQ]
