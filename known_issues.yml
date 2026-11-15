@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16413
+  status: open
+  note: "MultilineTernaryOperator rebuilt the ternary from branch sources and dropped a heredoc body (`c ? foo(<<~EOT)\\n  x\\nEOT\\n  : nil`); also HeredocArgumentClosingParenthesis alone left code after `)` (`) if c`, `) rescue x`, `) == y`, `)[0]`) on its own line. Both now keep the offense without correcting (runs 2026111510/2026111518, 3 files)"
+  signature_regex: '^syntax:can.t find string ".*" anywhere before EOF'
+  cops: [Style/MultilineTernaryOperator]
+
 - pr: 16412
   status: open
   note: "RedundantCopDisableDirective removed one entry per run when a directive repeats a cop (`disable Lint/Void, Lint/Void`): directive_count counted duplicates, per-cop path removed only the first occurrence -> non-idempotent (runs 2026111420/2026111422/2026111510, 6 files; previously tagged as #16147 regression)"
