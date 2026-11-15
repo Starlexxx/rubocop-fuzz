@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16412
+  status: open
+  note: "RedundantCopDisableDirective removed one entry per run when a directive repeats a cop (`disable Lint/Void, Lint/Void`): directive_count counted duplicates, per-cop path removed only the first occurrence -> non-idempotent (runs 2026111420/2026111422/2026111510, 6 files; previously tagged as #16147 regression)"
+  signature_regex: '^nonidem:.*Lint/RedundantCopDisableDirective'
+  cops: [Lint/RedundantCopDisableDirective]
+
 - pr: 16408
   status: open
   note: "(koic #16408, my #16407 closed; also NestedParenthesizedCalls) NumberConversion replaced `&:to_i` with a brace block and removed the parens while MethodCallWithArgsParentheses added parens in the same pass -> `map({ |i| Integer(i, 10) })`; MCWAP incompat += Lint::NumberConversion (runs 2026111420/2026111510)"
