@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16418
+  status: open
+  note: "NilLambda removed spaces on both sides of a single-line body: `-> do nil end` -> `-> doend` (RedundantLineBreak joins multi-line lambdas first; runs 2026111510/2026111518)"
+  signature_regex: "^syntax:syntax error, unexpected .*expecting `do' for lambda or tLAMBEG"
+  cops: [Style/NilLambda]
+
 - pr: 16415
   status: open
   note: "(koic #16414 HACP + #16415 MTO, my #16413 closed; MTO also heredoc opened before ternary) MultilineTernaryOperator rebuilt the ternary from branch sources and dropped a heredoc body (`c ? foo(<<~EOT)\\n  x\\nEOT\\n  : nil`); also HeredocArgumentClosingParenthesis alone left code after `)` (`) if c`, `) rescue x`, `) == y`, `)[0]`) on its own line. Both now keep the offense without correcting (runs 2026111510/2026111518, 3 files)"
