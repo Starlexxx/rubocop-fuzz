@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16419
+  status: open
+  note: "LiteralAsCondition removed an empty `if true ... end` whose value is unused in a ternary branch or modifier body -> `c ?  : nil` / ` while c`; now nil outside statement positions (runs 2026111518/2026111610, 2 files)"
+  signature_regex: "^syntax:syntax error, unexpected ':'$"
+  cops: [Lint/LiteralAsCondition]
+
 - pr: 16418
   status: open
   note: "NilLambda removed spaces on both sides of a single-line body: `-> do nil end` -> `-> doend` (RedundantLineBreak joins multi-line lambdas first; runs 2026111510/2026111518)"
