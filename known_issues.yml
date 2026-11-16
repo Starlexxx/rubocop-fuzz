@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16420
+  status: open
+  note: "NonAtomicFileOperation kept the newline before removed `end`, so `, bar)` / `if c` started a line; single-line `then` kept (run 2026111610)"
+  signature_regex: "^syntax:syntax error, unexpected ',', expecting '\\)'"
+  cops: [Lint/NonAtomicFileOperation]
+
 - pr: 16414
   status: open
   note: "(koic) HeredocArgumentClosingParenthesis left code after `)` (`) if cond`) on its own line -> end-of-input (runs 2026111518/2026111610, 5 files; verified on PR branch)"
