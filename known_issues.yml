@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16414
+  status: open
+  note: "(koic) HeredocArgumentClosingParenthesis left code after `)` (`) if cond`) on its own line -> end-of-input (runs 2026111518/2026111610, 5 files; verified on PR branch)"
+  signature_regex: "^syntax:syntax error, unexpected end-of-input"
+  cops: [Layout/HeredocArgumentClosingParenthesis]
+
 - pr: 16419
   status: open
   note: "LiteralAsCondition removed an empty `if true ... end` whose value is unused in a ternary branch or modifier body -> `c ?  : nil` / ` while c`; now nil outside statement positions (runs 2026111518/2026111610, 2 files)"
