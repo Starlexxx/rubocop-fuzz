@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16422
+  status: open
+  note: "FileWrite restored heredoc bodies right after the replacement, so code after `end` on the same line (` }`, `}\"`, `, bar)`) landed on the terminator line (runs 2026111610/2026111618, tagged as #15811 regression by regex)"
+  signature_regex: "^syntax:can't find string \".*\" anywhere before EOF"
+  cops: [Style/FileWrite]
+
 - pr: 16421
   status: open
   note: "OperatorMethodCall turned argument parens into grouping parens and kept a trailing comma (`foo.<<(\\n  {...},\\n)` -> `foo <<(...,)`); TrailingCommaInArguments adds the comma in the same pass -> comma removed + incompat (run 2026111610, 3 files)"
