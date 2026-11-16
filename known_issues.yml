@@ -12,6 +12,12 @@
 
 - pr: 16419
   status: open
+  note: "LiteralAsCondition removed a never-running `while`/`until` used as an argument -> `foo(, bar)` (run 2026111610, 2 files)"
+  signature_regex: "^syntax:syntax error, unexpected ',', expecting '\\)'"
+  cops: [Lint/LiteralAsCondition]
+
+- pr: 16419
+  status: open
   note: "LiteralAsCondition removed an empty `if true ... end` whose value is unused in a ternary branch or modifier body -> `c ?  : nil` / ` while c`; now nil outside statement positions (runs 2026111518/2026111610, 2 files)"
   signature_regex: "^syntax:syntax error, unexpected ':'$"
   cops: [Lint/LiteralAsCondition]
