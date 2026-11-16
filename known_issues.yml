@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16421
+  status: open
+  note: "OperatorMethodCall turned argument parens into grouping parens and kept a trailing comma (`foo.<<(\\n  {...},\\n)` -> `foo <<(...,)`); TrailingCommaInArguments adds the comma in the same pass -> comma removed + incompat (run 2026111610, 3 files)"
+  signature_regex: "^syntax:syntax error, unexpected ',', expecting '\\)'"
+  cops: [Style/OperatorMethodCall]
+
 - pr: 16420
   status: open
   note: "NonAtomicFileOperation kept the newline before removed `end`, so `, bar)` / `if c` started a line; single-line `then` kept (run 2026111610)"
