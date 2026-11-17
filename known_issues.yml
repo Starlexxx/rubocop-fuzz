@@ -4,9 +4,9 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
-- pr: 16422
+- pr: 16426
   status: open
-  note: "FileWrite restored heredoc bodies right after the replacement, so code after `end` on the same line (` }`, `}\"`, `, bar)`) landed on the terminator line (runs 2026111610/2026111618, tagged as #15811 regression by regex)"
+  note: "(koic #16426, my #16422 closed; same-pass line-break cops, two File.open on one line) FileWrite restored heredoc bodies right after the replacement, so code after `end` on the same line (` }`, `}\"`, `, bar)`) landed on the terminator line (runs 2026111610/2026111618, tagged as #15811 regression by regex)"
   signature_regex: "^syntax:can't find string \".*\" anywhere before EOF"
   cops: [Style/FileWrite]
 
@@ -16,9 +16,9 @@
   signature_regex: "^syntax:syntax error, unexpected ',', expecting '\\)'"
   cops: [Style/OperatorMethodCall]
 
-- pr: 16420
+- pr: 16424
   status: open
-  note: "NonAtomicFileOperation kept the newline before removed `end`, so `, bar)` / `if c` started a line; single-line `then` kept (run 2026111610)"
+  note: "(koic #16424/#16425, my #16420 closed; no correction when code follows end, then removed in #16425) NonAtomicFileOperation kept the newline before removed `end`, so `, bar)` / `if c` started a line; single-line `then` kept (run 2026111610)"
   signature_regex: "^syntax:syntax error, unexpected ',', expecting '\\)'"
   cops: [Lint/NonAtomicFileOperation]
 
@@ -40,9 +40,9 @@
   signature_regex: "^syntax:syntax error, unexpected ':'$"
   cops: [Lint/LiteralAsCondition]
 
-- pr: 16418
+- pr: 16428
   status: open
-  note: "NilLambda removed spaces on both sides of a single-line body: `-> do nil end` -> `-> doend` (RedundantLineBreak joins multi-line lambdas first; runs 2026111510/2026111518)"
+  note: "(koic #16428, my #16418 closed; also multiline body sharing line with do/end) NilLambda removed spaces on both sides of a single-line body: `-> do nil end` -> `-> doend` (RedundantLineBreak joins multi-line lambdas first; runs 2026111510/2026111518)"
   signature_regex: "^syntax:syntax error, unexpected .*expecting `do' for lambda or tLAMBEG"
   cops: [Style/NilLambda]
 
