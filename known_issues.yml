@@ -285,9 +285,9 @@
   signature_regex: "^syntax:syntax error, unexpected .\\)., expecting end-of-input"
   cops: [Style/Semicolon]
 
-- pr: 16294
-  status: open
-  note: "OperatorMethodCall left `foo +(bar)` (= foo(+(bar))) after removing the dot; syntax error as an operand (`[foo.+(bar)]`, `x && foo.+(bar)`) (nightly #87, 24 of 29). Remaining 5: AndOr adds parens in same pass (`foo and bar.+ baz`)"
+- pr: 16409
+  status: merged
+  note: "(#16294 closed in favor of #16409; the unparenthesized operand guard landed in #16433) OperatorMethodCall left `foo +(bar)` (= foo(+(bar))) after removing the dot; syntax error as an operand (`[foo.+(bar)]`, `x && foo.+(bar)`) (nightly #87, 24 of 29). Remaining 5: AndOr adds parens in same pass (`foo and bar.+ baz`)"
   signature_regex: "^syntax:syntax error, unexpected unary[+-]"
   cops: [Style/OperatorMethodCall]
 
