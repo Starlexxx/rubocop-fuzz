@@ -23,31 +23,31 @@
   cops: [Style/OperatorMethodCall]
 
 - pr: 16424
-  status: open
+  status: merged
   note: "(koic #16424/#16425, my #16420 closed; no correction when code follows end, then removed in #16425) NonAtomicFileOperation kept the newline before removed `end`, so `, bar)` / `if c` started a line; single-line `then` kept (run 2026111610)"
   signature_regex: "^syntax:syntax error, unexpected ',', expecting '\\)'"
   cops: [Lint/NonAtomicFileOperation]
 
 - pr: 16414
-  status: open
+  status: merged
   note: "(koic) HeredocArgumentClosingParenthesis left code after `)` (`) if cond`) on its own line -> end-of-input (runs 2026111518/2026111610, 5 files; verified on PR branch)"
   signature_regex: "^syntax:syntax error, unexpected end-of-input"
   cops: [Layout/HeredocArgumentClosingParenthesis]
 
 - pr: 16419
-  status: open
+  status: merged
   note: "LiteralAsCondition removed a never-running `while`/`until` used as an argument -> `foo(, bar)` (run 2026111610, 2 files)"
   signature_regex: "^syntax:syntax error, unexpected ',', expecting '\\)'"
   cops: [Lint/LiteralAsCondition]
 
 - pr: 16419
-  status: open
+  status: merged
   note: "LiteralAsCondition removed an empty `if true ... end` whose value is unused in a ternary branch or modifier body -> `c ?  : nil` / ` while c`; now nil outside statement positions (runs 2026111518/2026111610, 2 files)"
   signature_regex: "^syntax:syntax error, unexpected ':'$"
   cops: [Lint/LiteralAsCondition]
 
 - pr: 16428
-  status: open
+  status: merged
   note: "(koic #16428, my #16418 closed; also multiline body sharing line with do/end) NilLambda removed spaces on both sides of a single-line body: `-> do nil end` -> `-> doend` (RedundantLineBreak joins multi-line lambdas first; runs 2026111510/2026111518)"
   signature_regex: "^syntax:syntax error, unexpected .*expecting `do' for lambda or tLAMBEG"
   cops: [Style/NilLambda]
@@ -65,13 +65,13 @@
   cops: [Lint/RedundantCopDisableDirective]
 
 - pr: 16408
-  status: open
+  status: merged
   note: "(koic #16408, my #16407 closed; also NestedParenthesizedCalls) NumberConversion replaced `&:to_i` with a brace block and removed the parens while MethodCallWithArgsParentheses added parens in the same pass -> `map({ |i| Integer(i, 10) })`; MCWAP incompat += Lint::NumberConversion (runs 2026111420/2026111510)"
   signature_regex: "^syntax:syntax error, unexpected '\\|', expecting '\\}'"
   cops: [Lint/NumberConversion, Style/MethodCallWithArgsParentheses]
 
 - pr: 16406
-  status: open
+  status: merged
   note: "(koic #16406, my #16405 closed; whitelist of command-call positions, wrap elsewhere) SafeNavigationChain corrected a dotless operator call to the command form `x&.foo&. >= bar` without parentheses where a command call is not allowed (non-sole argument, ternary branch) or swallows code (receiver of another operator) -> syntax error / regrouping; now wrapped (runs 2026111420/2026111422/2026111510, 3 files)"
   signature_regex: "^syntax:syntax error, unexpected local variable or method, expecting (end-of-input|':')"
   cops: [Lint/SafeNavigationChain]
@@ -95,7 +95,7 @@
   cops: [Layout/MultilineMethodCallBraceLayout]
 
 - pr: 16401
-  status: open
+  status: merged
   note: "MethodCallWithArgsParentheses reused the parens of a grouped argument with a semicolon `obj.foo (x;)` / `(; x)` (parser drops the empty statement, begin has one child) -> `obj.foo(x;)`; now wrapped `obj.foo((x;))` (local run 2026111420, 5 files / 11 hits)"
   signature_regex: "^syntax:syntax error, unexpected ';', expecting '\\)'"
   cops: [Style/MethodCallWithArgsParentheses]
@@ -107,7 +107,7 @@
   cops: [Layout/MultilineMethodCallBraceLayout]
 
 - pr: 16391
-  status: open
+  status: merged
   note: "StabbyLambdaParentheses (require_no_parentheses) removed parens of `->(x; y)` block-local vars -> `->x; y` syntax error (via Style/Lambda from `lambda { |x; y| }`), also `->((a, b), c)` syntax error and `->((a, b))` arity change; now no offense (local run 2026110910, 4 files)"
   signature_regex: "^syntax:syntax error, unexpected ';', expecting `do' for lambda"
   cops: [Style/StabbyLambdaParentheses]
@@ -119,7 +119,7 @@
   cops: [Style/EndlessMethod, Style/AmbiguousEndlessMethodDefinition, Layout/LineLength, Style/EmptyMethod]
 
 - pr: 16389
-  status: open
+  status: merged
   note: "DefWithParentheses removed `()` of an endless def whose `=` is after a line break or comment -> `def foo` + `= 1` syntax error; parens now kept unless only spaces/tabs/line continuation before `=` (local run 2026110910, 3 files / 6 hits)"
   signature_regex: "^syntax:syntax error, unexpected '='"
   cops: [Style/DefWithParentheses]
@@ -131,7 +131,7 @@
   cops: [Lint/ParenthesesAsGroupedExpression, Style/RedundantParentheses]
 
 - pr: 16388
-  status: open
+  status: merged
   note: "UselessAssignment corrected `x += foo a` to `x + foo a` (command value -> syntax error) and `x *= a + b` to `x * a + b` (precedence); value now wrapped unless primary/non-op assignment (local run 2026110910, TrailingEmptyLines+UselessAssignment+TernaryParentheses group)"
   signature_regex: "^syntax:syntax error, unexpected (local variable or method|integer literal), expecting `do' or '\\{' or '\\('"
   cops: [Lint/UselessAssignment]
@@ -155,7 +155,7 @@
   cops: [Lint/RedundantCopEnableDirective, Layout/CommentIndentation]
 
 - pr: 16374
-  status: open
+  status: merged
   note: "IfUnlessModifierOfIfUnless wrapped the inner modifier with end at the same offset where MCWAP inserts the closing paren for a command-call condition (a if foo 1 if c -> foo(1 end)) (local run 2026110910, 9 files)"
   signature_regex: "^syntax:syntax error, unexpected .end."
   cops: [Style/IfUnlessModifierOfIfUnless, Style/MethodCallWithArgsParentheses]
@@ -197,7 +197,7 @@
   cops: [Lint/LiteralInInterpolation]
 
 - pr: 16344
-  status: open
+  status: merged
   note: "DeprecatedClassMethods replaced parenthesized `attr(:x, true)` with `attr_accessor :x` -> nested command call in args (local run 2026110910, 2 files)"
   signature_regex: "^syntax:syntax error, unexpected symbol literal"
   cops: [Lint/DeprecatedClassMethods]
