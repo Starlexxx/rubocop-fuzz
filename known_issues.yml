@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16439
+  status: open
+  note: "SafeNavigationChain left a multiline operator argument ungrouped; after MethodCallWithArgsParentheses added parentheses, a trailing comma made the outer call invalid (seed 2026111800, 2 hits on one snippet; verified on PR branch)"
+  signatures: ["syntax:syntax error, unexpected ')'"]
+  cops: [Lint/SafeNavigationChain, Style/MethodCallWithArgsParentheses, Style/TrailingCommaInArguments]
+
 - pr: 16426
   status: open
   note: "(koic #16426, my #16422 closed; same-pass line-break cops, two File.open on one line) FileWrite restored heredoc bodies right after the replacement, so code after `end` on the same line (` }`, `}\"`, `, bar)`) landed on the terminator line (runs 2026111610/2026111618, tagged as #15811 regression by regex)"
