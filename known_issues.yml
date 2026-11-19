@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16462
+  status: open
+  note: "RedundantArrayConstructor removed Array.new while TrailingCommaInArguments inserted a comma after its array argument (targeted #102 replay on da594cfa6; verified on the PR branch)"
+  signatures: ["syntax:syntax error, unexpected ',', expecting end-of-input"]
+  cops: [Style/RedundantArrayConstructor, Style/TrailingCommaInArguments]
+
 - pr: 16461
   status: open
   note: "RaiseArgs removed a heredoc message constructor's parentheses without removing its trailing comma; TrailingCommaInArguments could insert the comma in the same pass (packed seed 2026111915, spec-snippets.67; original config verified on the PR branch)"
