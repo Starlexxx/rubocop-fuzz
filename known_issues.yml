@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16467
+  status: open
+  note: "EmptyLiteral discarded a heredoc body between call arguments when replacing the first argument with a hash literal (targeted #109 replay on da594cfa6; verified on the PR branch)"
+  signatures: ["syntax:can't find string \"NOTE\" anywhere before EOF"]
+  cops: [Style/EmptyLiteral]
+
 - pr: 16466
   status: open
   note: "EmptyMethod discarded the body of a heredoc default argument when compacting the definition (targeted #108 replay on da594cfa6; verified on the PR branch)"
