@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16463
+  status: open
+  note: "RedundantArrayConstructor removed the heredoc body and terminator between the array and the closing parenthesis (targeted #102 heredoc replay on da594cfa6; verified on the PR branch)"
+  signatures: ["syntax:can't find string \"MSG\" anywhere before EOF"]
+  cops: [Style/RedundantArrayConstructor]
+
 - pr: 16462
   status: open
   note: "RedundantArrayConstructor removed Array.new while TrailingCommaInArguments inserted a comma after its array argument (targeted #102 replay on da594cfa6; verified on the PR branch)"
