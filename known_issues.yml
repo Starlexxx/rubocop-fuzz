@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16460
+  status: open
+  note: "RedundantInterpolationUnfreeze removed String.new while TrailingCommaInArguments inserted a comma after its interpolated string (packed seed 2026111915, spec-snippets.55; verified with both cops and the original config on the PR branch)"
+  signatures: ["syntax:syntax error, unexpected ',', expecting end-of-input"]
+  cops: [Style/RedundantInterpolationUnfreeze, Style/TrailingCommaInArguments]
+
 - pr: 16439
   status: open
   note: "SafeNavigationChain left a multiline operator argument ungrouped; after MethodCallWithArgsParentheses added parentheses, a trailing comma made the outer call invalid (seed 2026111800, 2 hits on one snippet; verified on PR branch)"
