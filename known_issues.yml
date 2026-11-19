@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16464
+  status: open
+  note: "RedundantException removed the surrounding call's heredoc body when unwrapping RuntimeError.new in a block (targeted #105 replay on da594cfa6; verified on the PR branch)"
+  signatures: ["syntax:can't find string \"KEY\" anywhere before EOF"]
+  cops: [Style/RedundantException]
+
 - pr: 16463
   status: open
   note: "RedundantArrayConstructor removed the heredoc body and terminator between the array and the closing parenthesis (targeted #102 heredoc replay on da594cfa6; verified on the PR branch)"
