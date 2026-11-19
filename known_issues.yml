@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16465
+  status: open
+  note: "FileRead discarded the heredoc filename body when replacing a File.open block (targeted #106 replay on da594cfa6; verified on the PR branch)"
+  signatures: ["syntax:can't find string \"PATH\" anywhere before EOF"]
+  cops: [Style/FileRead]
+
 - pr: 16464
   status: open
   note: "RedundantException removed the surrounding call's heredoc body when unwrapping RuntimeError.new in a block (targeted #105 replay on da594cfa6; verified on the PR branch)"
