@@ -101,7 +101,7 @@
   cops: [Style/NilLambda]
 
 - pr: 16415
-  status: open
+  status: merged
   note: "(koic #16414 HACP + #16415 MTO, my #16413 closed; MTO also heredoc opened before ternary) MultilineTernaryOperator rebuilt the ternary from branch sources and dropped a heredoc body (`c ? foo(<<~EOT)\\n  x\\nEOT\\n  : nil`); also HeredocArgumentClosingParenthesis alone left code after `)` (`) if c`, `) rescue x`, `) == y`, `)[0]`) on its own line. Both now keep the offense without correcting (runs 2026111510/2026111518, 3 files)"
   signature_regex: '^syntax:can.t find string ".*" anywhere before EOF'
   cops: [Style/MultilineTernaryOperator]
@@ -263,7 +263,7 @@
   cops: [Style/HashTransformValues, Layout/SingleLineBlockChain]
 
 - pr: 16416
-  status: open
+  status: merged
   note: "(koic #16416, my #16334 closed; also hash/unary/regexp/range first arg, yield/super) UselessAssignment removed `var = ` before a keyword if/unless/while/until as first command arg (`foo var = if x` -> modifier if) or a rescue modifier in args; same pass with MCWAP omit_parentheses (local run 2026110910, 12 findings `unexpected elsif`)"
   signature_regex: "^syntax:syntax error, unexpected .elsif"
   cops: [Lint/UselessAssignment]
