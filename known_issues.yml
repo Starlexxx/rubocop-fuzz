@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16477
+  status: open
+  note: "UselessTimes deleted the continuation of a multiline call when unindenting its block body (targeted #117 replay on 5c1bba59d; verified on the PR branch)"
+  signatures: ["syntax:syntax error, unexpected end-of-input, expecting ')'"]
+  cops: [Lint/UselessTimes]
+
 - pr: 16476
   status: open
   note: "UselessTimes replaced a symbol matching the block parameter with :0 (targeted #116 replay on 5c1bba59d; verified on the PR branch)"
