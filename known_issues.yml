@@ -4,9 +4,9 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
-- pr: 16477
+- pr: 16479
   status: open
-  note: "UselessTimes deleted the continuation of a multiline call when unindenting its block body (targeted #117 replay on 5c1bba59d; verified on the PR branch)"
+  note: "(koic #16479, #16477 closed; original replay verified on c16a30b91) UselessTimes deleted the continuation of a multiline call when unindenting its block body (targeted #117 replay on 5c1bba59d; verified on the PR branch)"
   signatures: ["syntax:syntax error, unexpected end-of-input, expecting ')'"]
   cops: [Lint/UselessTimes]
 
@@ -16,9 +16,9 @@
   signatures: ["syntax:syntax error, unexpected integer literal, expecting literal content or terminator or tSTRING_DBEG or tSTRING_DVAR"]
   cops: [Lint/UselessTimes]
 
-- pr: 16475
+- pr: 16478
   status: open
-  note: "RedundantBegin deleted the closing parentheses of a surrounding call after a modifier condition (targeted #115 replay on 5c1bba59d; verified on the PR branch)"
+  note: "(koic #16478, #16475 closed; original replay verified on b2c20ade5) RedundantBegin deleted the closing parentheses of a surrounding call after a modifier condition (targeted #115 replay on 5c1bba59d; verified on the PR branch)"
   signatures: ["syntax:syntax error, unexpected end-of-input, expecting ')'"]
   cops: [Style/RedundantBegin]
 
