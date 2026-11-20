@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16474
+  status: open
+  note: "EmptyElse removed a heredoc body belonging to the preceding branch together with the empty else clause (targeted #114 replay on 5c1bba59d; verified on the PR branch)"
+  signatures: ["syntax:can't find string \"TEXT\" anywhere before EOF"]
+  cops: [Style/EmptyElse]
+
 - pr: 16472
   status: open
   note: "HashConversion discarded the heredoc body between pairs when rebuilding Hash[] arguments (targeted #110 replay on 5c1bba59d; verified on the PR branch)"
