@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16476
+  status: open
+  note: "UselessTimes replaced a symbol matching the block parameter with :0 (targeted #116 replay on 5c1bba59d; verified on the PR branch)"
+  signatures: ["syntax:syntax error, unexpected integer literal, expecting literal content or terminator or tSTRING_DBEG or tSTRING_DVAR"]
+  cops: [Lint/UselessTimes]
+
 - pr: 16475
   status: open
   note: "RedundantBegin deleted the closing parentheses of a surrounding call after a modifier condition (targeted #115 replay on 5c1bba59d; verified on the PR branch)"
