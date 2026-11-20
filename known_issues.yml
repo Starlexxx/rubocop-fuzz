@@ -161,7 +161,7 @@
   cops: [Layout/IndentationStyle, Layout/HashAlignment, Layout/FirstHashElementIndentation]
 
 - pr: 16403
-  status: open
+  status: merged
   note: "Style/For copied the loop variable verbatim: `for (x,) in` -> `|(x,)|` syntax error; `for x, in` -> `|x|` (whole element). Now drops trailing comma inside parens, keeps top-level one (runs 2026110910/2026111420/2026111422; previously tagged as #15775 regression)"
   signature_regex: "^syntax:syntax error, unexpected '\\)'"
   cops: [Style/For]
