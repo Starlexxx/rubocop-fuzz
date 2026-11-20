@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16475
+  status: open
+  note: "RedundantBegin deleted the closing parentheses of a surrounding call after a modifier condition (targeted #115 replay on 5c1bba59d; verified on the PR branch)"
+  signatures: ["syntax:syntax error, unexpected end-of-input, expecting ')'"]
+  cops: [Style/RedundantBegin]
+
 - pr: 16474
   status: open
   note: "EmptyElse removed a heredoc body belonging to the preceding branch together with the empty else clause (targeted #114 replay on 5c1bba59d; verified on the PR branch)"
