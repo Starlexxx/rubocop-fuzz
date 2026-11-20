@@ -1470,6 +1470,7 @@
   status: merged
   note: (koic) RedundantParentheses heredoc + chained call pulled onto terminator line (reparse check skipped >64KB)
   signature_regex: "syntax:can't find string \"[A-Z_]+\" anywhere before EOF"
+  cops: [Style/RedundantParentheses]
 
 - pr: 15810
   status: merged
