@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16484
+  status: open
+  note: "ArrayIntersect discarded a heredoc while rebuilding an intersection check from its operands (targeted #128 replay on 9f83eea95; verified on the PR branch)"
+  signatures: ["syntax:can't find string \"TEXT\" anywhere before EOF"]
+  cops: [Style/ArrayIntersect]
+
 - pr: 16483
   status: open
   note: "NonNilCheck discarded a heredoc between the receiver and the nil check (targeted #123 replay on 9f83eea95; verified on the PR branch)"
