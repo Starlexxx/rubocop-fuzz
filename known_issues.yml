@@ -11,7 +11,7 @@
   cops: [Style/NonNilCheck]
 
 - pr: 16479
-  status: open
+  status: merged
   note: "(koic #16479, #16477 closed; original replay verified on c16a30b91) UselessTimes deleted the continuation of a multiline call when unindenting its block body (targeted #117 replay on 5c1bba59d; verified on the PR branch)"
   signatures: ["syntax:syntax error, unexpected end-of-input, expecting ')'"]
   cops: [Lint/UselessTimes]
@@ -23,7 +23,7 @@
   cops: [Lint/UselessTimes]
 
 - pr: 16478
-  status: open
+  status: merged
   note: "(koic #16478, #16475 closed; original replay verified on b2c20ade5) RedundantBegin deleted the closing parentheses of a surrounding call after a modifier condition (targeted #115 replay on 5c1bba59d; verified on the PR branch)"
   signatures: ["syntax:syntax error, unexpected end-of-input, expecting ')'"]
   cops: [Style/RedundantBegin]
