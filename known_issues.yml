@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16487
+  status: open
+  note: "NegatedIfElseCondition removed the branch body and end on the else line (targeted #133 replay on 9f83eea95; verified on the PR branch)"
+  signatures: ["syntax:syntax error, unexpected end-of-input"]
+  cops: [Style/NegatedIfElseCondition]
+
 - pr: 16486
   status: open
   note: "NilComparison discarded a heredoc when switching nil-check styles (targeted #132 replay on 9f83eea95; verified on the PR branch)"
