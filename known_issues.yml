@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16488
+  status: open
+  note: "SwapValues replaced whole lines, dropping the closing parenthesis of a call around the swap (targeted #134 replay on 9f83eea95; verified on the PR branch)"
+  signatures: ["syntax:syntax error, unexpected end-of-input, expecting ')'"]
+  cops: [Style/SwapValues]
+
 - pr: 16487
   status: open
   note: "NegatedIfElseCondition removed the branch body and end on the else line (targeted #133 replay on 9f83eea95; verified on the PR branch)"
