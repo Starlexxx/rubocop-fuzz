@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16494
+  status: open
+  note: "RedundantRegexpConstructor removed a preceding argument's heredoc body when unwrapping a regexp (#142, targeted replay on 77d0e31cc; verified on the PR branch)"
+  signatures: ["syntax:can't find string \"TEXT\" anywhere before EOF"]
+  cops: [Style/RedundantRegexpConstructor]
+
 - pr: 16493
   status: open
   note: "RedundantPercentQ changed string delimiters while RedundantStringEscape removed the quote escape (#141, snippet #131 on 77d0e31cc; both original packed inputs and the isolated pair pass on the fix)"
