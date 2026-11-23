@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16497
+  status: open
+  note: "DigChain dropped a heredoc key when collapsing chained dig calls (#146, targeted replay on c99f0c819; the same input passes on the fix)"
+  signatures: ["syntax:can't find string \"KEY\" anywhere before EOF"]
+  cops: [Style/DigChain]
+
 - pr: 16496
   status: open
   note: "SingleArgumentDig discarded a heredoc key when replacing dig with brackets (#144, targeted replay on c99f0c819; cop-only and trailing-comma replays pass on the fix)"
