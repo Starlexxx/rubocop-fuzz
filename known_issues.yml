@@ -125,7 +125,7 @@
   cops: [Lint/SafeNavigationChain, Style/MethodCallWithArgsParentheses, Style/TrailingCommaInArguments]
 
 - pr: 16426
-  status: open
+  status: merged
   note: "(koic #16426, my #16422 closed; same-pass line-break cops, two File.open on one line) FileWrite restored heredoc bodies right after the replacement, so code after `end` on the same line (` }`, `}\"`, `, bar)`) landed on the terminator line (runs 2026111610/2026111618, tagged as #15811 regression by regex)"
   signature_regex: "^syntax:can't find string \".*\" anywhere before EOF"
   cops: [Style/FileWrite]
