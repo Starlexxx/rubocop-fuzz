@@ -4,6 +4,14 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16493
+  status: open
+  note: "RedundantPercentQ changed string delimiters while RedundantStringEscape removed the quote escape (#141, snippet #131 on 77d0e31cc; both original packed inputs and the isolated pair pass on the fix)"
+  signatures:
+    - "syntax:syntax error, unexpected local variable or method, expecting end-of-input"
+    - "syntax:syntax error, unexpected local variable or method, expecting '}'"
+  cops: [Style/RedundantPercentQ, Style/RedundantStringEscape]
+
 - pr: 16492
   status: open
   note: "RaiseArgs discarded the heredoc message when adding parentheses in an endless method (#140, snippet #131 on 77d0e31cc; original and cop-only replays pass on the fix)"
