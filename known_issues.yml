@@ -130,6 +130,12 @@
   signature_regex: "^syntax:can't find string \".*\" anywhere before EOF"
   cops: [Style/FileWrite]
 
+- pr: 16489
+  status: open
+  note: "RedundantInterpolation discarded the heredoc body between a call and the closing interpolation brace (snippet #131, seed 2026112206; reproduced in isolation on 77d0e31cc and verified on the PR branch)"
+  signatures: ["syntax:can't find string \"EOS\" anywhere before EOF"]
+  cops: [Style/RedundantInterpolation]
+
 - pr: 16421
   status: open
   note: "OperatorMethodCall turned argument parens into grouping parens and kept a trailing comma (`foo.<<(\\n  {...},\\n)` -> `foo <<(...,)`); TrailingCommaInArguments adds the comma in the same pass -> comma removed + incompat (run 2026111610, 3 files)"
