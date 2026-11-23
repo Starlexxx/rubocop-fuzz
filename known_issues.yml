@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16492
+  status: open
+  note: "RaiseArgs discarded the heredoc message when adding parentheses in an endless method (#140, snippet #131 on 77d0e31cc; original and cop-only replays pass on the fix)"
+  signatures: ["syntax:can't find string \"MSG\" anywhere before EOF"]
+  cops: [Style/RaiseArgs]
+
 - pr: 16491
   status: open
   note: "UselessMethodDefinition removed the assigned method name (#139, packed:2026112206:4 on 77d0e31cc; original and cop-only replays pass on the fix)"
