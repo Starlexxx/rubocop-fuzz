@@ -113,7 +113,7 @@
   cops: [Style/RedundantArrayConstructor, Style/TrailingCommaInArguments]
 
 - pr: 16470
-  status: open
+  status: merged
   note: "(koic #16470, #16461 closed; original packed example verified on 3c1228e92) RaiseArgs removed a heredoc message constructor's parentheses without removing its trailing comma; TrailingCommaInArguments could insert the comma in the same pass (packed seed 2026111915, spec-snippets.67; original config verified on the PR branch)"
   signatures: ["syntax:syntax error, unexpected `end'"]
   cops: [Style/RaiseArgs, Style/TrailingCommaInArguments]
