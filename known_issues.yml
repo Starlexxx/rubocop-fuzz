@@ -139,7 +139,7 @@
   cops: [Style/RaiseArgs, Style/TrailingCommaInArguments]
 
 - pr: 16471
-  status: open
+  status: merged
   note: "(koic #16471, #16460 closed; original packed example verified on 8fd72f2ef) RedundantInterpolationUnfreeze removed String.new while TrailingCommaInArguments inserted a comma after its interpolated string (packed seed 2026111915, spec-snippets.55; verified with both cops and the original config on the PR branch)"
   signatures: ["syntax:syntax error, unexpected ',', expecting end-of-input"]
   cops: [Style/RedundantInterpolationUnfreeze, Style/TrailingCommaInArguments]
