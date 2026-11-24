@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16502
+  status: open
+  note: "RedundantSelfAssignment deleted a heredoc between the assignment and its right-hand side (#152, targeted replay on c99f0c819; checked alone and with TrailingCommaInArguments)"
+  signatures: ["syntax:can't find string \"TEXT\" anywhere before EOF"]
+  cops: [Style/RedundantSelfAssignment]
+
 - pr: 16501
   status: open
   note: "LambdaWithoutLiteralBlock dropped a heredoc when unwrapping the block argument (#151, targeted replay on c99f0c819; checked alone and with TrailingCommaInArguments)"
