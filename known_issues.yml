@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16500
+  status: open
+  note: "UselessNumericOperation discarded a preceding argument's heredoc when removing arithmetic (#149, targeted replay on c99f0c819; checked alone and with TrailingCommaInArguments)"
+  signatures: ["syntax:can't find string \"TEXT\" anywhere before EOF"]
+  cops: [Lint/UselessNumericOperation]
+
 - pr: 16498
   status: open
   note: "RedundantEach deleted a heredoc between chained calls (#148, targeted replay on c99f0c819; checked alone and with DotPosition)"
