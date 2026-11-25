@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16508
+  status: open
+  note: "SuperWithArgsParentheses parenthesized a super call whose do/end block is inside a command argument (#161, targeted replay on 23584ab19 with Ruby 3.3; the original passes on the fix)"
+  signatures: ["syntax:syntax error, unexpected `do' for block, expecting `end' or dummy end"]
+  cops: [Style/SuperWithArgsParentheses]
+
 - pr: 16502
   status: merged
   note: "RedundantSelfAssignment deleted a heredoc between the assignment and its right-hand side (#152, targeted replay on c99f0c819; checked alone and with TrailingCommaInArguments)"
