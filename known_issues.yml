@@ -4,6 +4,12 @@
 # Optional `cops` must all be present in the finding.
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
+- pr: 16513
+  status: open
+  note: "ClassMethodsDefinitions expanded one singleton class argument into multiple statements (#163, packed run 2026112521 and single-cop replay on aa7b555b6; both samples pass on the fix)"
+  signatures: ["syntax:syntax error, unexpected `def', expecting ')'"]
+  cops: [Style/ClassMethodsDefinitions]
+
 - pr: 16508
   status: open
   note: "SuperWithArgsParentheses parenthesized a super call whose do/end block is inside a command argument (#161, targeted replay on 23584ab19 with Ruby 3.3; the original passes on the fix)"
