@@ -5,49 +5,49 @@
 # `pr` is a rubocop/rubocop PR number, or `repo#number` for a plugin PR.
 
 - pr: 16502
-  status: open
+  status: merged
   note: "RedundantSelfAssignment deleted a heredoc between the assignment and its right-hand side (#152, targeted replay on c99f0c819; checked alone and with TrailingCommaInArguments)"
   signatures: ["syntax:can't find string \"TEXT\" anywhere before EOF"]
   cops: [Style/RedundantSelfAssignment]
 
 - pr: 16501
-  status: open
+  status: merged
   note: "LambdaWithoutLiteralBlock dropped a heredoc when unwrapping the block argument (#151, targeted replay on c99f0c819; checked alone and with TrailingCommaInArguments)"
   signatures: ["syntax:can't find string \"TEXT\" anywhere before EOF"]
   cops: [Lint/LambdaWithoutLiteralBlock]
 
 - pr: 16500
-  status: open
+  status: merged
   note: "UselessNumericOperation discarded a preceding argument's heredoc when removing arithmetic (#149, targeted replay on c99f0c819; checked alone and with TrailingCommaInArguments)"
   signatures: ["syntax:can't find string \"TEXT\" anywhere before EOF"]
   cops: [Lint/UselessNumericOperation]
 
 - pr: 16498
-  status: open
+  status: merged
   note: "RedundantEach deleted a heredoc between chained calls (#148, targeted replay on c99f0c819; checked alone and with DotPosition)"
   signatures: ["syntax:can't find string \"TXT\" anywhere before EOF"]
   cops: [Style/RedundantEach]
 
 - pr: 16497
-  status: open
+  status: merged
   note: "DigChain dropped a heredoc key when collapsing chained dig calls (#146, targeted replay on c99f0c819; the same input passes on the fix)"
   signatures: ["syntax:can't find string \"KEY\" anywhere before EOF"]
   cops: [Style/DigChain]
 
 - pr: 16496
-  status: open
+  status: merged
   note: "SingleArgumentDig discarded a heredoc key when replacing dig with brackets (#144, targeted replay on c99f0c819; cop-only and trailing-comma replays pass on the fix)"
   signatures: ["syntax:can't find string \"KEY\" anywhere before EOF"]
   cops: [Style/SingleArgumentDig]
 
 - pr: 16494
-  status: open
+  status: merged
   note: "RedundantRegexpConstructor removed a preceding argument's heredoc body when unwrapping a regexp (#142, targeted replay on 77d0e31cc; verified on the PR branch)"
   signatures: ["syntax:can't find string \"TEXT\" anywhere before EOF"]
   cops: [Style/RedundantRegexpConstructor]
 
 - pr: 16493
-  status: open
+  status: merged
   note: "RedundantPercentQ changed string delimiters while RedundantStringEscape removed the quote escape (#141, snippet #131 on 77d0e31cc; both original packed inputs and the isolated pair pass on the fix)"
   signatures:
     - "syntax:syntax error, unexpected local variable or method, expecting end-of-input"
@@ -67,37 +67,37 @@
   cops: [Lint/UselessMethodDefinition]
 
 - pr: 16488
-  status: open
+  status: merged
   note: "SwapValues replaced whole lines, dropping the closing parenthesis of a call around the swap (targeted #134 replay on 9f83eea95; verified on the PR branch)"
   signatures: ["syntax:syntax error, unexpected end-of-input, expecting ')'"]
   cops: [Style/SwapValues]
 
 - pr: 16487
-  status: open
+  status: merged
   note: "NegatedIfElseCondition removed the branch body and end on the else line (targeted #133 replay on 9f83eea95; verified on the PR branch)"
   signatures: ["syntax:syntax error, unexpected end-of-input"]
   cops: [Style/NegatedIfElseCondition]
 
 - pr: 16486
-  status: open
+  status: merged
   note: "NilComparison discarded a heredoc when switching nil-check styles (targeted #132 replay on 9f83eea95; verified on the PR branch)"
   signatures: ["syntax:can't find string \"TEXT\" anywhere before EOF"]
   cops: [Style/NilComparison]
 
 - pr: 16485
-  status: open
+  status: merged
   note: "NumberConversion dropped a heredoc between the receiver and its conversion call (targeted #129 replay on 9f83eea95; verified on the PR branch)"
   signatures: ["syntax:can't find string \"TEXT\" anywhere before EOF"]
   cops: [Lint/NumberConversion]
 
 - pr: 16484
-  status: open
+  status: merged
   note: "ArrayIntersect discarded a heredoc while rebuilding an intersection check from its operands (targeted #128 replay on 9f83eea95; verified on the PR branch)"
   signatures: ["syntax:can't find string \"TEXT\" anywhere before EOF"]
   cops: [Style/ArrayIntersect]
 
 - pr: 16483
-  status: open
+  status: merged
   note: "NonNilCheck discarded a heredoc between the receiver and the nil check (targeted #123 replay on 9f83eea95; verified on the PR branch)"
   signatures: ["syntax:can't find string \"TEXT\" anywhere before EOF"]
   cops: [Style/NonNilCheck]
@@ -109,7 +109,7 @@
   cops: [Lint/UselessTimes]
 
 - pr: 16476
-  status: open
+  status: merged
   note: "UselessTimes replaced a symbol matching the block parameter with :0 (targeted #116 replay on 5c1bba59d; verified on the PR branch)"
   signatures: ["syntax:syntax error, unexpected integer literal, expecting literal content or terminator or tSTRING_DBEG or tSTRING_DVAR"]
   cops: [Lint/UselessTimes]
@@ -139,7 +139,7 @@
   cops: [Style/EmptyLiteral]
 
 - pr: 16466
-  status: open
+  status: merged
   note: "EmptyMethod discarded the body of a heredoc default argument when compacting the definition (targeted #108 replay on da594cfa6; verified on the PR branch)"
   signatures: ["syntax:can't find string \"TEXT\" anywhere before EOF"]
   cops: [Style/EmptyMethod]
@@ -151,19 +151,19 @@
   cops: [Style/FileRead]
 
 - pr: 16464
-  status: open
+  status: merged
   note: "RedundantException removed the surrounding call's heredoc body when unwrapping RuntimeError.new in a block (targeted #105 replay on da594cfa6; verified on the PR branch)"
   signatures: ["syntax:can't find string \"KEY\" anywhere before EOF"]
   cops: [Style/RedundantException]
 
 - pr: 16463
-  status: open
+  status: merged
   note: "RedundantArrayConstructor removed the heredoc body and terminator between the array and the closing parenthesis (targeted #102 heredoc replay on da594cfa6; verified on the PR branch)"
   signatures: ["syntax:can't find string \"MSG\" anywhere before EOF"]
   cops: [Style/RedundantArrayConstructor]
 
 - pr: 16462
-  status: open
+  status: merged
   note: "RedundantArrayConstructor removed Array.new while TrailingCommaInArguments inserted a comma after its array argument (targeted #102 replay on da594cfa6; verified on the PR branch)"
   signatures: ["syntax:syntax error, unexpected ',', expecting end-of-input"]
   cops: [Style/RedundantArrayConstructor, Style/TrailingCommaInArguments]
@@ -193,13 +193,13 @@
   cops: [Style/FileWrite]
 
 - pr: 16489
-  status: open
+  status: merged
   note: "RedundantInterpolation discarded the heredoc body between a call and the closing interpolation brace (snippet #131, seed 2026112206; reproduced in isolation on 77d0e31cc and verified on the PR branch)"
   signatures: ["syntax:can't find string \"EOS\" anywhere before EOF"]
   cops: [Style/RedundantInterpolation]
 
 - pr: 16421
-  status: open
+  status: merged
   note: "OperatorMethodCall turned argument parens into grouping parens and kept a trailing comma (`foo.<<(\\n  {...},\\n)` -> `foo <<(...,)`); TrailingCommaInArguments adds the comma in the same pass -> comma removed + incompat (run 2026111610, 3 files)"
   signature_regex: "^syntax:syntax error, unexpected ',', expecting '\\)'"
   cops: [Style/OperatorMethodCall]
@@ -421,7 +421,7 @@
   cops: [Layout/ArgumentAlignment, Layout/ClosingHeredocIndentation]
 
 - pr: 16322
-  status: open
+  status: merged
   note: "LineLength rewrote an over-limit endless method with a heredoc body into multiline with `end` before the heredoc body (same EndlessMethodRewriter bug as #16321; found by hand)"
   signature_regex: "^syntax:"
   cops: [Layout/LineLength]
