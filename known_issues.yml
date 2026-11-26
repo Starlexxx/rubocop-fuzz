@@ -1795,3 +1795,15 @@
   note: EmptyLinesAfterModuleInclusion loop
   signatures:
     - 'loop:Layout/EmptyLinesAfterModuleInclusion+Layout/EmptyLinesAroundExceptionHandlingKeywords'
+
+- pr: 16516
+  status: open
+  note: "MapToHash joined a comma and the rest of the call to a comment when removing .to_h (#164, single-cop replay on 8f36b0dd1; the corrected sample parses on the fix)"
+  signatures: ["syntax:syntax error, unexpected end-of-input, expecting ')'"]
+  cops: [Style/MapToHash]
+
+- pr: 16516
+  status: open
+  note: "MapToSet joined a comma and the rest of the call to a comment when removing .to_set (#164, single-cop replay on 8f36b0dd1; the corrected sample parses on the fix)"
+  signatures: ["syntax:syntax error, unexpected end-of-input, expecting ')'"]
+  cops: [Style/MapToSet]
