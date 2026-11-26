@@ -1807,3 +1807,9 @@
   note: "MapToSet joined a comma and the rest of the call to a comment when removing .to_set (#164, single-cop replay on 8f36b0dd1; the corrected sample parses on the fix)"
   signatures: ["syntax:syntax error, unexpected end-of-input, expecting ')'"]
   cops: [Style/MapToSet]
+
+- pr: 16517
+  status: open
+  note: "InverseMethods raised an error for postfix negation (#167; single-cop replay on Parser and Prism)"
+  signatures: ["Style/InverseMethods: Parser::ClobberingError: Parser::Source::TreeRewriter detected clobbering"]
+  cops: [Style/InverseMethods]
