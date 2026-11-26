@@ -1813,3 +1813,9 @@
   note: "InverseMethods raised an error for postfix negation (#167; single-cop replay on Parser and Prism)"
   signatures: ["Style/InverseMethods: Parser::ClobberingError: Parser::Source::TreeRewriter detected clobbering"]
   cops: [Style/InverseMethods]
+
+- pr: 16521
+  status: open
+  note: "SymbolProc removed a heredoc body and terminator with the block it replaced (snippet run #166)"
+  signatures: ["syntax:can't find string \"TEXT\" anywhere before EOF"]
+  cops: [Style/SymbolProc]
