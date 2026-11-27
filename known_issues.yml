@@ -1819,3 +1819,11 @@
   note: "SymbolProc removed a heredoc body and terminator with the block it replaced (snippet run #166)"
   signatures: ["syntax:can't find string \"TEXT\" anywhere before EOF"]
   cops: [Style/SymbolProc]
+
+- pr: 16527
+  status: open
+  note: "EndlessMethod moved a block opener into a heredoc on the definition's signature line; BlockDelimiters then left an unmatched closing brace (snippet #166)"
+  signatures:
+    - "syntax:syntax error, unexpected '}', expecting 'end' or dummy end"
+    - "syntax:syntax error, unexpected '}', expecting `end' or dummy end"
+  cops: [Style/BlockDelimiters, Style/EndlessMethod]
