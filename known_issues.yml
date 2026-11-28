@@ -1827,3 +1827,9 @@
     - "syntax:syntax error, unexpected '}', expecting 'end' or dummy end"
     - "syntax:syntax error, unexpected '}', expecting `end' or dummy end"
   cops: [Style/BlockDelimiters, Style/EndlessMethod]
+
+- pr: 16539
+  status: open
+  note: "Alias and RedundantInterpolation left .to_s on an alias statement (snippets #173/#183; all six cases passed on 5098f30d with Parser and Prism)"
+  signatures: ["syntax:syntax error, unexpected '.', expecting end-of-input"]
+  cops: [Style/Alias, Style/RedundantInterpolation]
